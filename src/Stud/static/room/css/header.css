@@ -1,0 +1,156 @@
+body{
+    margin: 0px;
+}
+.top-element{
+    position: relative;
+    display: flex;
+}
+
+.cover{
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.group-header{
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.container-header{
+    height: 72px;
+    position: flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFEFE9;
+}
+
+.header{
+    height: 72px;
+    width: 1252px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.left-header{
+    display: flex;
+}
+
+.Stud-logo{
+    height: 60px;
+    width: 82px;
+    cursor: pointer;
+}
+
+.middle-header{
+    height: 72px;
+    width: 490px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.middle-header-Nav{
+    display: inline-flex;
+    font: 500 28px/1.5 "Outfit", Helvetica, Arial, serif;
+    color: #422320;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.right-header{
+    height: 72px;
+    width: 247px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.notification-icon{
+    height: 30px;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.Signup-text{
+    position: relative;
+    display: inline-flex;
+    min-width: 0px;
+    color: #422320;
+}
+
+.Login-button{
+    border-radius: 27px;
+    width: 128px;
+    height: 49px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #C26565;
+    color: white;
+    font-weight: 500;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+/*Header introduction*/
+.group-header-intro{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 84px 0px;
+}
+
+.top-element .header-intro-Title{
+    position: relative;
+    display: flex;
+    top: 250px;
+    left: 122px;
+    width: 510px;
+    align-items: center;
+    font: 500 53px/1.5 "Outfit", Helvetica, Arial, serif;
+    color: #422320;
+}
+
+.top-element .intro-startnow-button{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 197px;
+    max-width: 100%;
+    font: 500 32px/1.5 "Outfit", Helvetica, Arial, serif;
+    color: white;
+    text-align: center;
+    background-color: #c26565;
+    border-radius: 27px 27px 27px 27px;
+    padding: 11px 28px 11px 28px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
+    border: none;
+    top: 250px;
+    left: 250px;
+    cursor: pointer;
+}
+
+.intro-image{
+    position: absolute;
+    width: 856px;
+    height: 450px;
+    top: 300px;
+    left: 600px;
+}
+
+/*Mid element*/
+.mid-element{
+    margin-top: 120px; 
+}

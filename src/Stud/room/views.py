@@ -6,4 +6,4 @@ from django.template import loader
 
 
 def index(request):
-  return render(request, "room/test.html")
+  return render(request, "room/HomePage.html")

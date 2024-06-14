@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-81p@$s*@-)y+i82vi7n6+n_l*=nyy-ig-s6a_@aak)_g(=()oh
 DEBUG = True
 
 ALLOWED_HOSTS = []
+STATIC_URL = "static/"
 
 
 # Application definition
@@ -122,3 +123,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
