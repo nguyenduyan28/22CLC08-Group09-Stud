@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'room.apps.RoomConfig', # add this to start using app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
