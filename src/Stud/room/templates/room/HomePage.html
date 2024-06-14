@@ -1,24 +1,23 @@
 
-{% load static %}
 <!DOCTYPE html>
 <html> 
     <head>
         <title>Stud</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />    
-        <link rel="stylesheet" href="{% static 'room/css/header.css'%}"/>
-        <link rel="stylesheet" href="{% static 'room/css/fonts.css' %}" />
+        <link rel="stylesheet" href="/static/room/css/header.css"/>
+        <link rel="stylesheet" href="/static/room/css/fonts.css" />
     </head>
     <body>
         <div class="top-element">
             <!-- Background-cover-->
-            <img class="cover" src="{% static '/room/css/images/cover rectangle.svg' %}" alt="alt text"/>
+            <img class="cover" src="/static/room/css/images/cover rectangle.svg" alt="alt text"/>
             <!-- Header elements-->
             <div class="group-header">
                 <div class="container-header">
                     <header class="header">
                         <div class="left-header">
-                            <img class="Stud-logo"src="{% static '/room/css/images/logoSTUD.png' %}" />  
+                            <img class="Stud-logo"src= "/static/room/css/images/logoSTUD.png" />  
                         </div>
                         <div class="middle-header">
                             <div class="middle-header-Nav">Home</div>
@@ -27,7 +26,7 @@
                             <div class="middle-header-Nav">Contact</div>
                         </div>
                         <div class="right-header">
-                            <img class="notification-icon" src="{% static '/room/css/images/Bell.svg' %}"/>
+                            <img class="notification-icon" src="/static/room/css/images/Bell.svg"/>
                             <div class="Signup-text">
                                 Sign up
                             </div>
@@ -45,12 +44,10 @@
                 </h1>
                 <button class="intro-startnow-button">Start now</button>
             </div>
-            <img class="intro-image" src="{% static '/room/css/images/intro-image.png' %}">
+            <img class="intro-image" src="/static/room/css/images/intro-image.png">
         </div>
         <div class="mid-element">
             mid element
         </div>
-        {% block content %}
-{% endblock %}
     </body>
 </html>
