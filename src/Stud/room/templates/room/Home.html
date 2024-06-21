@@ -2,36 +2,52 @@
 <html> 
     <head>
         <title>Stud</title>
+        <link rel="web icon" type="icon" href="/static/room/css/images/Stud-logo.png"/>
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />    
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="stylesheet" href="/static/room/css/header.css"/>
         <link rel="stylesheet" href="/static/room/css/fonts.css" />
+        <link rel="stylesheet" href="/static/room/css/animation.css" />
     </head>
     <body>
         <div class="top-element">
             <!-- Background-cover-->
-            <img class="cover" src="/static/room/css/images/cover rectangle.svg" alt="alt text"/>
+               <img class="cover" src="/static/room/css/images/cover rectangle.svg" alt="alt text"/>
             <!-- Header elements-->
             <div class="group-header">
                 <div class="container-header">
                     <header class="header">
                         <div class="left-header">
-                            <img class="Stud-logo" src="/static/room/css/images/Stud-logo.png"/>  
+                            <a href="/templates/room/Home.html">
+                                <img class="Stud-logo" src="/static/room/css/images/Stud-logo.png"/>  
+                            </a>
                         </div>
-                        <div class="middle-header">
-                            <div class="middle-header-Nav">Home</div>
-                            <div class="middle-header-Nav">Explore</div>
-                            <div class="middle-header-Nav">Your Room</div>
-                            <div class="middle-header-Nav">Contact</div>
-                        </div>
+                        <nav class="middle-header">
+                            <ul class="middle-list">
+                                <li class="middle-item">
+                                    <a class="middle-header-Nav" href="/templates/room/Home.html">Home</a>
+                                </li>
+                                <li class="middle-item">
+                                    <a class="middle-header-Nav" href="/templates/room/YourRoom.html">Your Room</a>
+                                </li>
+                                <li class="middle-item">
+                                    <a class="middle-header-Nav" href="/templates/room/Explore.html">Explore</a>
+                                </li>
+                                <li class="middle-item">
+                                    <a class="middle-header-Nav" href="/templates/room/Contact.html">Contact</a>
+                                </li>
+                            </ul>
+                        </nav>
                         <div class="right-header">
-                            <img class="notification-icon" src="/static/room/css/images/Bell.svg"/>
-                            <div class="Signup-text">
-                                Sign up
+                            <div class="notification-icon-container">
+                                <img class="notification-icon" src="/static/room/css/images/Bell.svg"/>
                             </div>
-                            <button class="Login-button">
-                                Log in
-                            </button>
+                            <a class="Signup-text" href="/templates/room/Home.html">
+                                Sign up
+                            </a>
+                            <a href="/templates/room/Home.html">
+                                <button class="Login-button" >Login</button>
+                            </a>
                         </div>
                     </header>
                 </div>
@@ -41,11 +57,13 @@
                 <h1 class="header-intro-Title">
                     Find out the best environment to focus and productivity
                 </h1>
-                <button class="intro-startnow-button">Start now</button>
+                <a class="buttonStyle" href="/templates/room/Home.html">
+                    <button class="intro-startnow-button">Start now</button>
+                </a>
             </div>
             <img class="intro-image" src="/static/room/css/images/intro-image.png">
         </div>
-        <div class="mid-element">
+        <div class="mid-element" id="mid-element">
             <div class="featuresGrid">
                 <div class="featureItem">
                     <img class="featureIcon" src="/static/room/css/images/community.png" alt="alt text" />
@@ -65,34 +83,38 @@
                 </div>
             </div>
         </div>
-        <div class="location-section">
+        <div class="location-section" id="location-section">
             <img class="location" src="/static/room/css/images/location.png"/>
         </div>
-        <div class="prepare-section">
+        <div class="prepare-section" id="prepare-section">
             <div class="prepare-container">
                 <h1 class="prepare-title">Prepare Yourself And Start Exploring With Us.</h1>
                 <h1 class="prepare-subtitle">Join now</h1>
-                <button class="prepare-button">Get started</button>
+                <a class="buttonStyle" href="/templates/room/Explore.html"><button class="prepare-button">Get started</button></a>
             </div>
         </div>
-        <div class="subcribe-section">
+        <div class="subcribe-section" id="subcribe-section">
             <div class="subcribe-title">Subscribe<br />To Our Newsletter</div>
             <div class="subcribe-container">
                 <div class="subcribe-form">
                     <div class="email">Yourmail@mail.com</div>
-                    <div class="subcribe-button">Subcribe</div>
+                    <a class="buttonStyle" href="/templates/room/Home.html">
+                        <div class="subcribe-button">Subcribe</div>
+                    </a>
                 </div>
             </div>
         </div>
         <footer class="footer-section">
             <div class="footer-container">
+                <a href="/templates/room/Home.html">
                     <img class="Stud-logo-footer" src="/static/room/css/images/Stud-logo.png"/>  
-                <div class="footer-nav">
-                    <div class="nav-item">Home</div>
-                    <div class="nav-item">Your Room</div>
-                    <div class="nav-item">Explore</div>
-                    <div class="nav-item">Contact</div>
-                </div>
+                </a>
+                <nav class="footer-nav">
+                    <a class="nav-item" href="/templates/room/Home.html">Home</a>
+                    <a class="nav-item" href="/templates/room/YourRoom.html">Your Room</a>
+                    <a class="nav-item" href="/templates/room/Explore.html">Explore</a>
+                    <a class="nav-item" href="/templates/room/Contact.html">Contact</a>
+                </nav>
                 <div class="footer-link">
                     <div class="footer-link-item">Policy privacy</div>
                     <div class="footer-link-item">Term and codition</div>
@@ -108,4 +130,6 @@
             </div>
         </footer>
     </body>
+    <script src="/static/room/js/animation.js"></script>
+    <script src="/static/room/js/eventHandle.js"></script>
 </html>
