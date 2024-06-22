@@ -87,9 +87,9 @@ body{
     cursor: pointer;
     text-decoration: none;
 }
-.Signup-text:hover{
+/* .Signup-text:hover{
     text-decoration: underline;
-}
+} */
 .Login-button{
     border-radius: 27px;
     width: 128px;
