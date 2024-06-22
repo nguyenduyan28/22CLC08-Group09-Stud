@@ -23,7 +23,6 @@ body{
     justify-content: center;
     background-color: #FFEFE9;
 }
-
 .header{
     height: 72px;
     width: 1252px;
@@ -88,9 +87,9 @@ body{
     cursor: pointer;
     text-decoration: none;
 }
-.Signup-text:hover{
+/* .Signup-text:hover{
     text-decoration: underline;
-}
+} */
 .Login-button{
     border-radius: 27px;
     width: 128px;
@@ -116,8 +115,8 @@ body{
 .header-intro-Title{
     position: relative;
     display: flex;
-    top: 200px;
-    left: 250px;
+    top: 250px;
+    left: 400px;
     width: 510px;
     align-items: center;
     font: 500 53px/1.5 "Outfit", Helvetica, Arial, serif;
@@ -141,8 +140,8 @@ body{
     padding: 11px 28px 11px 28px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
     border: none;
-    top: 200px;
-    left: 300px;
+    top: 250px;
+    left: 500px;
     cursor: pointer;
 }
 :root{
@@ -150,10 +149,10 @@ body{
 }
 .intro-image{
     position: absolute;
-    width: 950px;
-    height: 500px;
+    width: 1141px;
+    height: 600px;
     top: 250px;
-    left: 600px;
+    left: 800px;
     filter: drop-shadow(0px 0px 50px var(--color));
 }
 /*Mid element*/
