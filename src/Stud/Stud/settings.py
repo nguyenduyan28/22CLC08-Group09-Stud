@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join (os.path.dirname(BASE_DIR), "staticfiles", "static")
+
 # Application definition
 
 INSTALLED_APPS = [

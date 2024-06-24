@@ -6,8 +6,4 @@ from django.template import loader
 
 
 def index(request):
-  return render(request, "room/Home.html")
-
-
-def room(request):
-  return render(request, "room/YourRoom.html")
+  return render(request, "room/HomePage.html")

@@ -3,8 +3,6 @@
     animation: loadAnimation 1s ease forwards;
     transform: scale(0);
 }
-
-
 .middle-header-Nav,
 .Signup-text,
 .Login-button,
