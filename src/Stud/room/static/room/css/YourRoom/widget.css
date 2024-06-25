@@ -127,3 +127,24 @@ body{
     left: 0px;
     border-top-right-radius: none;
 }
+/*Calendar widget*/
+.calendarContainer {
+    font-size: 16px;
+    border-radius: 4px;
+    width: 300px;
+    height: 108px;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    position: fixed;
+    border: black;
+    display: none;
+  }
+  
+.time {
+    font: 500 3em "Outfit", Helvetica, Arial, serif;
+    color: #282322;
+}
+  
+.date {
+    margin-top: 12px;
+    font: 400 1.75em "Outfit", Helvetica, Arial, serif;
+}

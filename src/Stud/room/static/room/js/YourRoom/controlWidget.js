@@ -15,12 +15,6 @@ function setupWidget(openButton, widget, closeButton) {
           widget.style.display = 'none';
       });
   }
-
-  widget.addEventListener('click', function(event) {
-      if (event.target === widget) {
-          widget.style.display = 'none';
-      }
-  });
 }
 
 // Theme widget
@@ -28,15 +22,7 @@ const openThemeButton = document.querySelector('.theme');
 const closeThemeWidget = document.querySelector('.closeThemeWidget');
 const themeWidget = document.querySelector('.themeWidget');
 
-// Music widget
-const openMusicButton = document.querySelector('.music');
-const musicWidget = document.querySelector('.musicContainer');
-const closeMusicWidget = document.querySelector('.closeMusicWidget');
-
-setupWidget(openThemeButton, themeWidget, closeThemeWidget);
-setupWidget(openMusicButton, musicWidget, closeMusicWidget);
-
-// Interact theme selector
+//Interact theme selector
 const imageBox =document.getElementsByClassName('imageBox');
 document.querySelectorAll('.imageBox').forEach(function(img) {
     img.addEventListener('click', function() {
@@ -45,6 +31,22 @@ document.querySelectorAll('.imageBox').forEach(function(img) {
         document.body.style.backgroundSize = 'cover';
     });
 });
+
+// Music widget
+const openMusicButton = document.querySelector('.music');
+const musicWidget = document.querySelector('.musicContainer');
+const closeMusicWidget = document.querySelector('.closeMusicWidget');
+
+//Calendar
+const openCalendarButton = document.querySelector('.calendar');
+const calendarWidget = document.querySelector('.calendarContainer');
+const closeCalendarWidget = document.querySelector('.closeCalendarWidget');
+
+// Setup widget
+setupWidget(openThemeButton, themeWidget, closeThemeWidget);
+setupWidget(openMusicButton, musicWidget, closeMusicWidget);
+setupWidget(openCalendarButton, calendarWidget, closeCalendarWidget);
+
 //Fullscreen button
 document.querySelector('.zoomOut').addEventListener('click', function() {
     if (!document.fullscreenElement) {
@@ -94,47 +96,49 @@ setInterval(() => {
 }, 200);
 
 //Drag and Drop
-function makeDraggable(draggableElement) {
-    let isDragging = false;
-    let initialX, initialY;
-    let widthValue = 0, heightValue = 0;
-    const wasHidden = true;
-    if (wasHidden) {
-      draggableElement.style.display = 'block';
-      widthValue = draggableElement.offsetWidth;
-      heightValue = draggableElement.offsetHeight;
-    }
-    if (wasHidden) {
-      draggableElement.style.display = 'none';
-    }
-    //Limit draggable space
-    const maxX = window.innerWidth - widthValue;
-    const maxY = window.innerHeight - heightValue;
-    //const maxX = window.innerWidth - 268;
-    //const maxY = window.innerHeight - 342;
 
-    draggableElement.addEventListener('mousedown', function(e) {
-      isDragging = true;
-      initialX = e.clientX - draggableElement.offsetLeft;
-      initialY = e.clientY - draggableElement.offsetTop;
-    });
-  
-    document.addEventListener('mousemove', function(e) {
-      if (isDragging) {
-        let newX = e.clientX - initialX;
-        let newY = e.clientY - initialY;
-  
-        newX = Math.max(0, Math.min(newX, maxX));
-        newY = Math.max(0, Math.min(newY, maxY));
-  
-        draggableElement.style.left = `${newX}px`;
-        draggableElement.style.top = `${newY}px`;
-      }
-    });
-  
-    document.addEventListener('mouseup', function() {
-      isDragging = false;
-    });
+function makeDraggable(draggableElement) {
+  let isDragging = false;
+  let initialX, initialY;
+  let widthValue = 0, heightValue = 0;
+  const wasHidden = true;
+  if (wasHidden) {
+    draggableElement.style.display = 'block';
+    widthValue = draggableElement.offsetWidth;
+    heightValue = draggableElement.offsetHeight;
   }
-  makeDraggable(themeWidget);
-  makeDraggable(musicWidget);
+  if (wasHidden) {
+    draggableElement.style.display = 'none';
+  }
+  //Limit draggable space
+  const maxX = window.innerWidth - widthValue;
+  const maxY = window.innerHeight - heightValue;
+  //const maxX = window.innerWidth - 268;
+  //const maxY = window.innerHeight - 342;
+
+  draggableElement.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    initialX = e.clientX - draggableElement.offsetLeft;
+    initialY = e.clientY - draggableElement.offsetTop;
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (isDragging) {
+      let newX = e.clientX - initialX;
+      let newY = e.clientY - initialY;
+
+      newX = Math.max(0, Math.min(newX, maxX));
+      newY = Math.max(0, Math.min(newY, maxY));
+
+      draggableElement.style.left = `${newX}px`;
+      draggableElement.style.top = `${newY}px`;
+    }
+  });
+
+  document.addEventListener('mouseup', function() {
+    isDragging = false;
+  });
+}
+makeDraggable(themeWidget);
+makeDraggable(musicWidget);
+makeDraggable(calendarWidget);
