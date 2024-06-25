@@ -119,8 +119,8 @@ header{
 .participate:hover,
 .message:hover
 {
-    background-color: #17191E;
-    
+    background-color: #1A0602;
+    transform: scale(1.1);    
 }
 .navImage,
 .themeImage,

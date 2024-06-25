@@ -33,7 +33,6 @@
             </div>
         </header>
 
-        <div class="quote"></div>
         <nav class="nav">
             <div class="container-nav">
                 <div class="theme">
@@ -104,6 +103,46 @@
             <div class="date"></div>
         </div>
         <!--Clock-->
+        <div class="clockWidget">
+            <div class="containerClose">
+                <div class="textClockWidget">Clock</div>
+                <img class="closeClockWidget" src="/static/room/css/images/YourRoom/closeWidget.svg">
+            </div>
+            <div class="containerTwoSection">
+                <div class="containerPomodoro">
+                    <h1 class="textPomodoro">Pomodoro</h1>
+                    <div class="pomodoroSection">
+                        <span class="pomodoro">00:00</span>
+                    </div>
+                    <div class="timeSection">
+                        <div class="minutesSection">
+                            <label for="minutes">Minute:</label>
+                            <input type="number" id="minutes" min="0" max="59" value="25">
+                        </div>
+                        <div class="secondSection">
+                            <label for="seconds">Second:</label>
+                        <input type="number" id="seconds" min="0" max="59" value="0">
+                        </div>
+                    </div>
+                    <div class="startResetSection">
+                        <button class="startButton" id="startButton">Start</button>
+                        <button class="resetButton" id="resetButton">Reset</button>
+                    </div>
+                </div>
+                <div class="containerTracking">
+                    <h1 class="textTracking">Tracking</h1>
+                    <div class="trackingSection">
+                        <span class="tracking" id="tracking">00:00</span>
+                    </div>
+                    <div class="trackingToggleSection">
+                        <div class="trackingButton" id="trackingButton">
+                            <input type="checkbox" id="toggle-switch" class="toggle-input">
+                            <label for="toggle-switch" class="toggle-label"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
     <script src="/static/room/js/YourRoom/controlWidget.js"></script>
 </html>

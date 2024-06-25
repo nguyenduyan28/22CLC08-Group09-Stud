@@ -28,7 +28,7 @@ body{
 .leftHeaderTheme{
     width: 40%;
     height: 100%;
-    gap: 20px;
+    gap: 10px;
     position: relative; 
     display: flex;
     flex-direction: row;
@@ -48,6 +48,7 @@ body{
     transform: scale(1.1);
 }
 .textHeaderTheme{
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
     color: white;
 }
 .rightHeaderTheme{
@@ -61,7 +62,7 @@ body{
     padding-left: 10px;
 }
 .textTheme{
-    font-size: 14px;
+    font: 200 14px "Outfit", Helvetica, Arial, serif;
     font-weight: light;
     position: absolute;
     top: 50px;
@@ -111,13 +112,21 @@ body{
     background-color: #282322;
     display: none;
     overflow: hidden;
-    border-radius: 15px;
+    border-radius: 14px;
 }
 .topperMusic{
     width: 100%;
     height: 28px;
     padding-left: 465px;
     padding-top: 4px;
+    position: relative;
+}
+.textTopperMusic{
+    position: absolute;
+    left: 15px;
+    bottom: 5px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    color: white;
 }
 .musicWidget{
     position :absolute;
@@ -147,4 +156,209 @@ body{
 .date {
     margin-top: 12px;
     font: 400 1.75em "Outfit", Helvetica, Arial, serif;
+}
+
+/*Clock Widget*/
+.clockWidget{
+    width: 564px;
+    height: 254px;
+    background-color: #282322;
+    border-radius: 20px;
+    position: fixed;
+    display: none;
+    color: white;
+}
+.containerClose{
+    height: 27px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.textClockWidget{
+    position: absolute;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    left: 15px;
+}
+.closeClockWidget{
+    right: 20px;
+    position: absolute;
+}
+.containerTwoSection{
+    height: 227px;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 27px;
+    flex-direction: row;
+}
+/*Pomodoro*/
+.containerPomodoro{
+    width: 50%;
+    position: relative;
+    border-right-color: white;
+    border-right: 0.5px solid white;
+    border-top: 0.5px solid white;
+}
+.textPomodoro{
+    position: absolute;
+    top: -10px;
+    left: 5px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+}
+.pomodoroSection{
+    position: relative;
+    top: 45px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pomodoro{
+    font: 400 64px "Outfit", Helvetica, Arial, serif;
+}
+.timeSection{
+    position: relative;
+    height: 40px;
+    top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.minutesSection,
+.secondSection{
+    display: flex;
+    justify-content: center;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    gap: 40px;
+}
+.timeSection label {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: right;
+}
+
+.timeSection input {
+    width: 50px;
+    position: flex;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    font: 400 14px "Outfit", Helvetica, Arial, serif;
+    border: 1px solid #ccc;
+}
+
+.startResetSection{
+    position: relative;
+    height: 40px;
+    top: 72px;
+    display: flex;
+    justify-content: center;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    gap: 30px;
+}
+.startButton,
+.resetButton{
+    height: 30px;
+    width: 50px;
+    border-radius: 10px;
+    border: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    cursor: pointer;
+}
+.startButton:hover,
+.resetButton:hover,
+.closeClockWidget:hover{
+    transform: scale(1.1);
+}
+/*Tracking*/
+.containerTracking{
+    width: 50%;
+    position: relative;
+    border-top: 0.5px solid white;
+}
+.textTracking{
+    position: absolute;
+    top: -10px;
+    left: 5px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+}
+.trackingSection{
+    height: 64px;
+    top: 45px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tracking{
+    font: 400 64px "Outfit", Helvetica, Arial, serif;
+}
+.trackingToggleSection{
+    position: relative;
+    top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.trackingButton {
+    width: 50px;
+    height: 25px;
+    position: relative;
+    background: #000;
+    border-radius: 50px;
+  }
+  
+.toggle-input {
+display: none;
+}
+
+.toggle-label {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 #ff0000;
+}
+
+.toggle-label::before {
+    content: "";
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.toggle-input:checked + .toggle-label {
+    animation: shadow-animation_5020 10s linear infinite;
+}
+
+.toggle-input:checked + .toggle-label::before {
+    transform: translateX(25px);
+}
+    @keyframes shadow-animation_5020 {
+    0% {
+        box-shadow: 0 0 0 0 #ff0000;
+    }
+
+    50% {
+        box-shadow: 0 0 25px 25px #ffa500;
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 #ff0000;
+    }
 }
