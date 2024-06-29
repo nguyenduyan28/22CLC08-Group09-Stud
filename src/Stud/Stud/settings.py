@@ -25,13 +25,18 @@ SECRET_KEY = 'django-insecure-81p@$s*@-)y+i82vi7n6+n_l*=nyy-ig-s6a_@aak)_g(=()oh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 ALLOWED_HOSTS = []
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join (os.path.dirname(BASE_DIR), "staticfiles", "static")
+
 # Application definition
 
 INSTALLED_APPS = [
-    'room.apps.RoomConfig', # add this to start using app
+    'mainpage.apps.MainPageConfig', # add this to start using app
+    'room.apps.RoomConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
