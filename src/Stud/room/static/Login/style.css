@@ -32,19 +32,43 @@ body {
   background-size: cover;
   background-position: center;
 }
-
-.wrapper {
+.Wrapper {
+  position: relative;
   width: 420px;
+  height: 450px;
   background: #c26565;
   border-radius: 20px;
-  padding: 30px 40px;
+  padding: 40px;
 }
 
-.wrapper h1 {
+.wrapper1 {
+  display: flex;
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  transition: 1s ease-in-out;
+}
+
+.Wrapper.active .wrapper1.sign-in {
+  transform: scale(0) translate(-300px, 500px);
+}
+
+.Wrapper .wrapper1.sign-up {
+  position: absolute;
+  top: 20px;
+  transform: scale(0) translate(200px, -500px);
+}
+
+.Wrapper.active .wrapper1.sign-up {
+  transform: scale(1) translate(0, 0);
+}
+
+.wrapper1 h1 {
   text-align: center;
   font: 24px "Outfit", Helvetica, Arial, serif;
 }
-.wrapper .input-box {
+
+.wrapper1 .input-box {
   position: relative;
   width: 100%;
   height: 50px;
@@ -52,7 +76,7 @@ body {
 }
 
 .input-box input {
-  width: 100%;
+  width: 330px;
   height: 100%;
   background: transparent;
   border: none;
@@ -77,7 +101,7 @@ body {
   color: #fff;
 }
 
-.wrapper .remember-forgot {
+.wrapper1 .remember-forgot {
   display: flex;
   justify-content: space-between;
   font: 16px "Outfit", Helvetica, Arial, serif;
@@ -100,7 +124,7 @@ body {
   text-decoration: underline;
 }
 
-.wrapper .btn {
+.wrapper1 .btn {
   width: 100%;
   height: 40px;
   background-color: #fff;
@@ -114,7 +138,21 @@ body {
   font-weight: 600;
 }
 
-.wrapper .register {
+.wrapper1 .btn1 {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+}
+
+.wrapper1 .register {
   color: #fff;
   text-align: center;
   margin: 20px 0 16px;
@@ -127,7 +165,7 @@ body {
   font: 16px "Outfit", Helvetica, Arial, serif;
 }
 
-.wrapper register {
+.wrapper1 register {
   display: flex;
   justify-content: space-between;
   font-size: 16px;
