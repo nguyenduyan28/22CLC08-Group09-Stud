@@ -35,7 +35,7 @@ body {
 .Wrapper {
   position: relative;
   width: 420px;
-  height: 450px;
+  height: 500px;
   background: #c26565;
   border-radius: 20px;
   padding: 40px;
@@ -65,7 +65,7 @@ body {
 
 .wrapper1 h1 {
   text-align: center;
-  font: 24px "Outfit", Helvetica, Arial, serif;
+  font: 32px "Outfit", Helvetica, Arial, serif;
 }
 
 .wrapper1 .input-box {
@@ -76,7 +76,7 @@ body {
 }
 
 .input-box input {
-  width: 330px;
+  width: 340px;
   height: 100%;
   background: transparent;
   border: none;
@@ -181,4 +181,40 @@ body {
 
 .register a:hover {
   text-decoration: underline;
+}
+
+.wrapper1 .social-platform {
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+}
+
+.wrapper1 .social-platform .social-icons a {
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  border: 1px solid #fff;
+  line-height: 35px;
+  border-radius: 40%;
+  margin: 15px 6px 0;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.social-icons a:hover {
+  background: #fff;
+}
+
+.social-icons a i {
+  color: #fff;
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover i {
+  color: rgba(0, 0, 0, 0.3);
 }
