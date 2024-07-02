@@ -34,7 +34,7 @@ DEBUG = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh"]
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join (os.path.dirname(BASE_DIR), "staticfiles", "static")
 
@@ -82,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Stud.wsgi.application'
+WSGI_APPLICATION = 'Stud.wsgi.app'
 
 
 # Database
