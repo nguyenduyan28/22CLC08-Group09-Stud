@@ -34,7 +34,7 @@ DEBUG = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join (os.path.dirname(BASE_DIR), "staticfiles", "static")
 
