@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ImageForm
 from .models import Image
+from account.models import AuthUser
 # Create your views here.
 def yourroom(request):
   images = Image.objects.all()
@@ -30,3 +31,6 @@ def delete_image(request, image_id):
         return redirect('image_list')
     return render(request, 'confirm_delete.html', {'image': image})
 
+
+def login(request):
+  return render(request, "room/Login.html")
