@@ -118,64 +118,77 @@ let intervalId;
 let trackingIntervalId;
 let isPomodoroRunning = false;
 let isTrackingRunning = false;
+minutesInput.addEventListener('blur', () => {
+  if (minutesInput.value.trim() === '') {
+    minutesInput.value = 0;
+  }
+});
 
+secondsInput.addEventListener('blur', () => {
+  if (secondsInput.value.trim() === '') {
+    secondsInput.value = 0;
+  }
+});
 let totalSeconds = 0;
 let trackingSeconds = 0;
 // Pomodoro
 function formatTimePomodoro(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
 
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-    const formattedSeconds = remainingSeconds.toString().padStart(2, '0');
+  const formattedMinutes = minutes.toString().padStart(2, '0');
+  const formattedSeconds = remainingSeconds.toString().padStart(2, '0');
 
-    return `${formattedMinutes}:${formattedSeconds}`;
+  return `${formattedMinutes}:${formattedSeconds}`;
 }
 function playAudio() {
-  const audioElement = new Audio("/static/room/css/images/YourRoom/music/doneSound.mp3");
+  const audioElement = new Audio("../../static/room/images/YourRoom/music/doneSound.mp3");
   audioElement.play();
 }
 function startPomodoro() {
-    const minutes = parseInt(minutesInput.value);
-    const seconds = parseInt(secondsInput.value);
+  const minutes = parseInt(minutesInput.value);
+  const seconds = parseInt(secondsInput.value);
+  totalSeconds = minutes * 60 + seconds;
+    // Check if totalSeconds is zero
+  if (totalSeconds === 0) {
+    return;
+  }
+  timerDisplay.textContent = formatTimePomodoro(totalSeconds);
 
-    totalSeconds = minutes * 60 + seconds;
+  intervalId = setInterval(() => {
+    totalSeconds--;
+
     timerDisplay.textContent = formatTimePomodoro(totalSeconds);
 
-    intervalId = setInterval(() => {
-        totalSeconds--;
+    // check timeout
+    if (totalSeconds === 0) {
+        clearInterval(intervalId);
+        isPomodoroRunning = false;
 
-        timerDisplay.textContent = formatTimePomodoro(totalSeconds);
-
-        // check timeout
         if (totalSeconds === 0) {
             clearInterval(intervalId);
             isPomodoroRunning = false;
-
-            if (totalSeconds === 0) {
-                clearInterval(intervalId);
-                isPomodoroRunning = false;
-                playAudio();
-            }
-            minutesInput.value = 25;
-            secondsInput.value = 0;
+            playAudio();
         }
-    }, 1000);
+        minutesInput.value = 25;
+        secondsInput.value = 0;
+    }
+  }, 1000);
 
-    startBtn.disabled = true;
-    resetBtn.disabled = false;
-    isPomodoroRunning = true;
+  startBtn.disabled = true;
+  resetBtn.disabled = false;
+  isPomodoroRunning = true;
 }
 
 function resetPomodoro() {
-    clearInterval(intervalId);
-    totalSeconds = 0;
+  clearInterval(intervalId);
+  totalSeconds = 0;
 
-    timerDisplay.textContent = formatTimePomodoro(totalSeconds);
+  timerDisplay.textContent = formatTimePomodoro(totalSeconds);
 
-    startBtn.disabled = false;
-    resetBtn.disabled = true;
-    isPomodoroRunning = false;
+  startBtn.disabled = false;
+  resetBtn.disabled = true;
+  isPomodoroRunning = false;
 }
 // Tracking
 function startTracking() {
@@ -191,11 +204,11 @@ function stopTracking() {
     isTrackingRunning = false;
 }
 toggleSwitch.addEventListener('change', () => {
-    if (toggleSwitch.checked) {
-        startTracking();
-    } else {
-        stopTracking();
-    }
+  if (toggleSwitch.checked) {
+      startTracking();
+  } else {
+      stopTracking();
+  }
 });
 
 startBtn.addEventListener('click', () => {
