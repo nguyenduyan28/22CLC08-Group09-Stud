@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="signup.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="Wrapper">
+      <div class="wrapper1 sign-up">
+        <form action="">
+          <h1>Sign Up</h1>
+          <div class="input-box">
+            <input type="text" placeholder="Username" required />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="input-box">
+            <input type="email" placeholder="Email" required />
+            <i class="bx bx-envelope"></i>
+          </div>
+          <div class="input-box">
+            <input
+              type="password"
+              placeholder="Password"
+              id="password-signup"
+              required
+            />
+            <i
+              class="bx bxs-lock-alt"
+              onclick="togglePasswordVisibility('password-signup')"
+            ></i>
+          </div>
+          <div class="input-box">
+            <input
+              type="password"
+              placeholder="Confirm password"
+              id="confirm-password-signup"
+              required
+            />
+            <i
+              class="bx bxs-lock-alt"
+              onclick="togglePasswordVisibility('confirm-password-signup')"
+            ></i>
+          </div>
+          <div class="remember-forgot">
+            <label
+              ><input type="checkbox" />I agree to the terms & conditions</label
+            >
+          </div>
+          <button type="button" class="btn" onclick="handleSignUp()">
+            Sign Up
+          </button>
+          <div class="register">
+            <p>
+              Already have an account?
+              <a href="Login.html" class="signInBtn-link">Sign in</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      function togglePasswordVisibility(id) {
+        const passwordInput = document.getElementById(id);
+        const icon = passwordInput.nextElementSibling;
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          icon.classList.remove("bxs-lock-alt");
+          icon.classList.add("bxs-lock-open-alt");
+        } else {
+          passwordInput.type = "password";
+          icon.classList.remove("bxs-lock-open-alt");
+          icon.classList.add("bxs-lock-alt");
+        }
+      }
+    </script>
+  </body>
+</html>
