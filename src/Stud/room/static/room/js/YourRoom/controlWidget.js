@@ -47,11 +47,17 @@ const openClockButton = document.querySelector('.clock');
 const clockWidget = document.querySelector('.clockWidget');
 const closeClockWidget = document.querySelector('.closeClockWidget');
 
+// Note Widget
+const openNoteButton = document.querySelector('.notebook');
+const noteWidget = document.querySelector('.noteWidget');
+const closeNoteWidget = document.querySelector('.closeNoteWidget');
+
 // Setup widget
 setupWidget(openThemeButton, themeWidget, closeThemeWidget);
 setupWidget(openMusicButton, musicWidget, closeMusicWidget);
 setupWidget(openCalendarButton, calendarWidget, closeCalendarWidget);
 setupWidget(openClockButton, clockWidget, closeClockWidget);
+setupWidget(openNoteButton, noteWidget, closeNoteWidget);
 
 // INTERACT SECTION
 // Theme widget
@@ -217,6 +223,61 @@ startBtn.addEventListener('click', () => {
 });
 resetBtn.addEventListener('click', resetPomodoro);
 
+// Note Widget
+document.getElementById('addTodoButton').addEventListener('click', function() {
+  const todoItem = document.createElement('div');
+  todoItem.className = 'todoItem';
+
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+
+  const todoTextInput = document.createElement('input');
+  todoTextInput.type = 'text';
+  todoTextInput.placeholder = 'Enter your todo...';
+
+  todoTextInput.addEventListener('keydown', function(event) {
+      if (event.key === 'Backspace' && todoTextInput.value === '') {
+          todoItem.remove();
+
+          if (document.getElementById('todoContainer').children.length === 0) {
+              document.getElementById('noteInput').placeholder = 'Write your note here...';
+          }
+      }
+  });
+
+  checkbox.addEventListener('change', function() {
+      if (checkbox.checked) {
+          todoTextInput.style.textDecoration = 'line-through';
+      } else {
+          todoTextInput.style.textDecoration = 'none';
+      }
+  });
+
+  todoItem.appendChild(checkbox);
+  todoItem.appendChild(todoTextInput);
+  document.getElementById('todoContainer').appendChild(todoItem);
+
+  document.getElementById('noteInput').placeholder = '';
+});
+
+document.getElementById('noteInput').addEventListener('keydown', function(event) {
+  if (event.key === 'Backspace' && this.selectionStart === 0) {
+      const todoContainer = document.getElementById('todoContainer');
+      const lastTodoItem = todoContainer.lastElementChild;
+
+      if (lastTodoItem) {
+          todoContainer.removeChild(lastTodoItem);
+
+          if (todoContainer.children.length === 0) {
+              document.getElementById('noteInput').placeholder = 'Write your note here...';
+          }
+
+          event.preventDefault();
+      }
+  }
+});
+
+
 //Drag and drop
 function makeDraggable(draggableElement) {
   let isDragging = false;
@@ -265,3 +326,4 @@ makeDraggable(themeWidget);
 makeDraggable(musicWidget);
 makeDraggable(calendarWidget);
 makeDraggable(clockWidget);
+makeDraggable(noteWidget);

@@ -367,3 +367,134 @@ display: none;
         box-shadow: 0 0 0 0 #ff0000;
     }
 }
+
+/*Note widget*/
+.noteWidget {
+    position: fixed;
+    width: 268px;
+    height: 380px;
+    padding: 10px;
+    background-color: #282322;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.containerHeaderNote{
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+.textNote {
+    position: relative;
+    left: 10px;
+    width: 100%;
+    height: 30px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    color: #fff;
+}
+.closeNoteWidget{
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: -2px;
+    position: relative;
+}
+.closeNoteWidget:hover{
+    transform: scale(1.1);
+}
+.containerNoteButton {
+    margin-left: 180px;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 50px;  
+}
+
+#addTodoButton {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    background-color: #C26565;
+    color: #fff;
+    cursor: pointer;
+}
+
+#addTodoButton:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+#noteSection {
+    position: absolute;
+    top: 80px;
+    margin-bottom: 20px;
+    position: relative;
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#noteInput {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    border: none;
+    margin-top: 10px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #282322;
+    box-sizing: border-box;
+    resize: none;
+}
+
+#noteInput:focus {
+    outline: none;
+}
+
+#todoContainer {
+    margin-bottom: 0px;
+}
+
+.todoItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 7px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #584E4C;
+}
+
+.todoItem input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.todoItem input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;   
+    box-sizing: border-box;
+    background-color: #282322;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.todoItem input[type="text"]:focus {
+    outline: none;
+    border: 1px solid #fff;
+}
