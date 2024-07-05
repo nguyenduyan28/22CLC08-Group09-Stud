@@ -4,65 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="/static/room/css/Login/style.css" />
+    <link rel="stylesheet" href="signup.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    
   </head>
   <body>
     <div class="Wrapper">
-      <div class="wrapper1 sign-in">
+      <div class="wrapper1 sign-up">
         <form action="">
-          <h1>Login</h1>
+          <h1>Sign Up</h1>
           <div class="input-box">
             <input type="text" placeholder="Username" required />
             <i class="bx bxs-user"></i>
           </div>
           <div class="input-box">
+            <input type="email" placeholder="Email" required />
+            <i class="bx bx-envelope"></i>
+          </div>
+          <div class="input-box">
             <input
               type="password"
               placeholder="Password"
-              id="password-login"
+              id="password-signup"
               required
             />
             <i
               class="bx bxs-lock-alt"
-              onclick="togglePasswordVisibility('password-login')"
+              onclick="togglePasswordVisibility('password-signup')"
+            ></i>
+          </div>
+          <div class="input-box">
+            <input
+              type="password"
+              placeholder="Confirm password"
+              id="confirm-password-signup"
+              required
+            />
+            <i
+              class="bx bxs-lock-alt"
+              onclick="togglePasswordVisibility('confirm-password-signup')"
             ></i>
           </div>
           <div class="remember-forgot">
-            <label><input type="checkbox" />Remember me</label>
-            <a href="Forgot.html">Forgot password</a
-            ><!--Link with forgot-->
+            <label
+              ><input type="checkbox" />I agree to the terms & conditions</label
+            >
           </div>
-          <button type="submit" class="btn">Login</button>
+          <button type="button" class="btn" onclick="handleSignUp()">
+            Sign Up
+          </button>
           <div class="register">
             <p>
-              Don't have an account?
-              <a href="Signup.html" class="signUpBtn-link">Register</a>
+              Already have an account?
+              <a href="Login.html" class="signInBtn-link">Sign in</a>
             </p>
-          </div>
-          <div class="line"></div>
-
-          <div class="media-options">
-            <a href="" class="field facebook">
-              <i class="bx bxl-facebook facebook-icon"></i>
-              <span>Login with facebook</span>
-            </a>
-          </div>
-
-          <div class="media-options">
-            <a href="" class="field google">
-              <img src="google.png" alt="" class="google-img" />
-              <!--Bỏ ảnh màu của google vào-->
-              <span>Login with Google</span>
-            </a>
           </div>
         </form>
       </div>
-
+    </div>
     <script src="script.js"></script>
     <script>
       function togglePasswordVisibility(id) {
