@@ -70,6 +70,31 @@ document.querySelectorAll('.imageBox').forEach(function(img) {
     });
 });
 
+// Music widget
+document.getElementById('playMusicButton').addEventListener('click', function() {
+  const url = document.getElementById('urlInput').value;
+  const musicWidget = document.getElementById('musicWidget');
+
+  if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      const videoId = url.split('v=')[1] || url.split('/').pop();
+      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      musicWidget.src = embedUrl;
+  } else if (url.includes('spotify.com')) {
+      const embedUrl = url.replace('/track/', '/embed/track/').replace('/album/', '/embed/album/').replace('/playlist/', '/embed/playlist/');
+      musicWidget.src = embedUrl;
+  } else if (url.includes('music.apple.com')) {
+      const embedUrl = url.replace('music.apple.com', 'embed.music.apple.com');
+      musicWidget.src = embedUrl;
+  } else {
+      alert('Unsupported URL');
+  }
+});
+
+document.getElementById('resetButton').addEventListener('click', function() {
+  const defaultUrl = 'https://open.spotify.com/embed/album/6s84u2TUpR3wdUv4NgKA2j?utm_source=generator';
+  document.getElementById('musicWidget').src = defaultUrl;
+});
+
 // Calendar widget
 const timeElement = document.querySelector(".time");
 const dateElement = document.querySelector(".date");
@@ -327,3 +352,5 @@ makeDraggable(musicWidget);
 makeDraggable(calendarWidget);
 makeDraggable(clockWidget);
 makeDraggable(noteWidget);
+
+

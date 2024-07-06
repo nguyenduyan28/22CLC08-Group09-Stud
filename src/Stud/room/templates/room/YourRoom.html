@@ -98,7 +98,12 @@
                 <div class="textTopperMusic">Sounds</div>  
                 <img class="closeMusicWidget" src="../../static/room/images/YourRoom/closeWidget.svg">
             </div>
-            <iframe class="musicWidget" src="https://open.spotify.com/embed/album/6s84u2TUpR3wdUv4NgKA2j?utm_source=generator" frameBorder="none" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe id="musicWidget" class="musicWidget" src="https://open.spotify.com/embed/album/6s84u2TUpR3wdUv4NgKA2j?utm_source=generator" frameborder="none" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <div class="urlInputContainer">
+                <input type="text" id="urlInput" placeholder="Enter YouTube, Spotify, or Apple Music URL here">
+                <button id="playMusicButton">Play</button>
+                <button id="resetButton">Reset</button>
+            </div>
         </div>
         <!--Calendar-->
         <div class="calendarContainer">
