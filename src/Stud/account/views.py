@@ -9,6 +9,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
+
 from . tokens import generate_token
 
 def index(request):
@@ -69,7 +70,7 @@ def signup(request):
         email.send()
         return redirect('signin')
 
-    return render(request, "account/signup.html")
+    return render(request, "account/Signup.html")
 def signin(request):
 
     if request.method == 'POST':
@@ -81,12 +82,12 @@ def signin(request):
             name = user.first_name
             #messages.success(request, "Sign in successfully!")
             #return render(request, "account/index.html")
-            return render(request, "account/index.html", {'name': name})
+            return redirect('../../')
         else:
             messages.error(request, "Wrong username/password")
             return redirect('signin')
     else:
-        return render(request, 'account/signin.html')
+        return render(request, 'account/Login.html')
 def signout(request):
     logout(request)
     #messages.success(request, "Loged out successfully!")
@@ -108,3 +109,6 @@ def activate(request, uidb64, token):
         return redirect('home')
     else:
         return render(request,'activation_failed.html')
+
+def forgot(request):
+    return render(request, 'account/Forgot.html')
