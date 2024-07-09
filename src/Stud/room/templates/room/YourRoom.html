@@ -106,9 +106,29 @@
             </div>
         </div>
         <!--Calendar-->
-        <div class="calendarContainer">
-            <div class="time"></div>
-            <div class="date"></div>
+        <div class="calendarWidget">
+            <div class="headerCalendarWidget">
+                <div class="textCalendarWidget">Calendar</div>
+                <img class="closeCalendarWidget" src="../../static/room/images/YourRoom/closeWidget.svg">
+            </div>
+            <div class="clockSection">
+                <div class="timeClock"></div>
+                <div class="dateClock"></div>
+            </div>
+            <div class="controls">
+                <div class="dateNavButton">
+                    <button id="prevDayButton" onclick="prevDay()">Previous Day</button>
+                    <span id="currentDate"></span>
+                    <button id="nextDayButton" onclick="nextDay()">Next Day</button>
+                </div>
+            </div>
+            <div class="calendarSection" id="calendarSection">
+                <!-- Display by js -->
+            </div>
+            <div class="calendarNavButton">
+                <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+                <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+            </div>
         </div>
         <!--Clock-->
         <div class="clockWidget">
@@ -167,4 +187,6 @@
         </div>
     </body>
     <script src="../../static/room/js/YourRoom/controlWidget.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 </html>

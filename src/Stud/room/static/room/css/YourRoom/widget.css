@@ -1,3 +1,4 @@
+/* Theme Widget*/
 .themeWidget{
     width: 268px;
     height: 342px;
@@ -165,25 +166,143 @@ body{
 }
 
 /*Calendar widget*/
-.calendarContainer {
+.calendarWidget{
+    background-color: #282322;
+    position: fixed;
+    width: 370px;
+    height: 608px;
+    color: white;
+    display: none;
+    border-radius: 10px;
+}
+.headerCalendarWidget{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.5px solid #fff;
+}
+.textCalendarWidget{
+    margin-left: 10px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+}
+.closeCalendarWidget{
+    margin-right: 10px;
+}
+.calendarSection {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    height: 300px;
+    top: 240px;
+    overflow: auto;
+    font: 500 14px "Outfit", Helvetica, Arial, serif;
+    border: 0.5px solid #fff;
+}
+.hour {
+    position: relative;
+    display: flex;
+    border-bottom: 0.5px solid #fff;
+    height: 60px;
+    box-sizing: border-box;
+}
+.hour .time {
+    width: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+.hour .events {
+    position: relative;
+    flex-grow: 1;
+    border-left: 1px solid #fff;
+    height: 100%;
+}
+.event {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: #C26565;
+    padding: 2px;
+    box-sizing: border-box;
+}
+.clockSection {
     font-size: 16px;
     border-radius: 4px;
-    width: 300px;
-    height: 108px;
+    position: absolute;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 145px;
     font: 500 16px "Outfit", Helvetica, Arial, serif;
-    position: fixed;
-    border: black;
-    display: none;
-}
-  
-.time {
+    border-bottom: 1px solid #fff;
+}  
+.timeClock {
     font: 500 3em "Outfit", Helvetica, Arial, serif;
-    color: #282322;
+    color: #fff;
 }
   
-.date {
+.dateClock {
     margin-top: 12px;
     font: 400 1.75em "Outfit", Helvetica, Arial, serif;
+}
+
+.controls {
+    position: absolute;
+    top: 188px;
+    width: 100%;
+    height: 52px;
+    display: flex;
+    justify-content: space-between;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    white-space: nowrap;
+    align-items: center;
+}
+.dateNavButton {
+    display: flex;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dateNavButton button {
+    margin: 0 5px;
+    background-color: #C26565;
+    font: 500 14px "Outfit", Helvetica, Arial, serif;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.calendarNavButton{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    top: 563px;
+    border-top: 1px solid #fff;
+}
+#authorize_button,
+#signout_button{
+    margin: 0px 10px 0px 10px;
+    background-color: #C26565;
+    padding: 5px;
+    font: 500 14px "Outfit", Helvetica, Arial, serif;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#sigout_button:hover,
+#authorize_button:hover,
+#prevDayButton:hover,
+#nextDayButton:hover{
+    transform: scale(1.1);
 }
 
 /*Clock Widget*/
@@ -402,6 +521,7 @@ display: none;
     width: 268px;
     height: 380px;
     padding: 10px;
+    display: none;
     background-color: #282322;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

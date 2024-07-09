@@ -39,7 +39,7 @@ const closeMusicWidget = document.querySelector('.closeMusicWidget');
 
 // Calendar
 const openCalendarButton = document.querySelector('.calendar');
-const calendarWidget = document.querySelector('.calendarContainer');
+const calendarWidget = document.querySelector('.calendarWidget');
 const closeCalendarWidget = document.querySelector('.closeCalendarWidget');
 
 // Clock Widget
@@ -96,8 +96,175 @@ document.getElementById('resetButton').addEventListener('click', function() {
 });
 
 // Calendar widget
-const timeElement = document.querySelector(".time");
-const dateElement = document.querySelector(".date");
+const CLIENT_ID = '1010364015261-tuoislk4e7dbre5j624354i45elegbgf.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyBwk6Rs9OCLA3DkH522I7QWAgIkSJLvAFg';
+const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
+
+let tokenClient;
+let gapiInited = false;
+let gisInited = false;
+let currentDate = new Date();
+
+document.getElementById('authorize_button').style.visibility = 'hidden';
+document.getElementById('signout_button').style.visibility = 'hidden';
+
+function gapiLoaded() {
+    gapi.load('client', initializeGapiClient);
+}
+
+async function initializeGapiClient() {
+    await gapi.client.init({
+        apiKey: API_KEY,
+        discoveryDocs: [DISCOVERY_DOC],
+    });
+    gapiInited = true;
+    maybeEnableButtons();
+    listUpcomingEvents();
+}
+
+function gisLoaded() {
+    tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        callback: '', // defined later
+    });
+    gisInited = true;
+    maybeEnableButtons();
+}
+
+function maybeEnableButtons() {
+    if (gapiInited && gisInited) {
+        document.getElementById('authorize_button').style.visibility = 'visible';
+    }
+}
+
+function handleAuthClick() {
+    tokenClient.callback = async (resp) => {
+        if (resp.error !== undefined) {
+            throw (resp);
+        }
+        document.getElementById('signout_button').style.visibility = 'visible';
+        document.getElementById('authorize_button').innerText = 'Refresh';
+        await listUpcomingEvents();
+    };
+
+    if (gapi.client.getToken() === null) {
+        tokenClient.requestAccessToken({prompt: 'consent'});
+    } else {
+        tokenClient.requestAccessToken({prompt: ''});
+    }
+}
+
+function handleSignoutClick() {
+    const token = gapi.client.getToken();
+    if (token !== null) {
+        google.accounts.oauth2.revoke(token.access_token);
+        gapi.client.setToken('');
+        document.getElementById('content').innerText = '';
+        document.getElementById('authorize_button').innerText = 'Authorize';
+        document.getElementById('signout_button').style.visibility = 'hidden';
+    }
+}
+
+async function listUpcomingEvents() {
+    const calendarElement = document.getElementById('calendarSection');
+    calendarElement.innerHTML = '';
+
+    for (let i = 0; i < 24; i++) {
+        const hourElement = document.createElement('div');
+        hourElement.className = 'hour';
+        const timeElement = document.createElement('div');
+        timeElement.className = 'time';
+        timeElement.innerText = formatHour(i);
+        const eventsElement = document.createElement('div');
+        eventsElement.className = 'events';
+        hourElement.appendChild(timeElement);
+        hourElement.appendChild(eventsElement);
+        calendarElement.appendChild(hourElement);
+    }
+
+    let response;
+    try {
+        const timeMin = new Date(currentDate);
+        timeMin.setHours(0, 0, 0, 0);
+        const timeMax = new Date(currentDate);
+        timeMax.setHours(23, 59, 59, 999);
+
+        const request = {
+            'calendarId': 'primary',
+            'timeMin': timeMin.toISOString(),
+            'timeMax': timeMax.toISOString(),
+            'showDeleted': false,
+            'singleEvents': true,
+            'orderBy': 'startTime',
+        };
+        response = await gapi.client.calendar.events.list(request);
+    } catch (err) {
+        // send message 'underfined'
+        //document.getElementById('content').innerText = err.message;
+        return;
+    }
+
+    const events = response.result.items;
+    if (!events || events.length == 0) {
+        document.getElementById('content').innerText = '';
+    } else {
+        events.forEach(event => {
+            const start = new Date(event.start.dateTime || event.start.date);
+            const end = new Date(event.end.dateTime || event.end.date);
+            const startHour = start.getHours();
+            const startMinute = start.getMinutes();
+            const endHour = end.getHours();
+            const endMinute = end.getMinutes();
+            const duration = ((end - start) / 60000); // Duration in minutes
+
+            const eventElement = document.createElement('div');
+            eventElement.className = 'event';
+            eventElement.style.top = `${(startMinute / 60) * 100}%`;
+            eventElement.style.height = `${(duration / 60) * 100}%`;
+            eventElement.innerText = event.summary;
+
+            const hourElement = document.querySelector(`.hour:nth-child(${startHour + 1}) .events`);
+            if (hourElement) {
+                hourElement.appendChild(eventElement);
+            }
+        });
+
+        const output = events.reduce(
+            (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
+            'Events:\n'
+        );
+        //document.getElementById('content').innerText = output;
+    }
+
+    document.getElementById('currentDate').innerText = formatDate(currentDate);
+}
+
+function formatDate(date) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+}
+
+function formatHour(hour) {
+    const period = hour < 12 ? 'AM' : 'PM';
+    const formattedHour = hour % 12 || 12; // Convert to AM PM hour
+    return `${formattedHour} ${period}`;
+}
+
+function prevDay() {
+    currentDate.setDate(currentDate.getDate() - 1);
+    listUpcomingEvents();
+}
+
+function nextDay() {
+    currentDate.setDate(currentDate.getDate() + 1);
+    listUpcomingEvents();
+}
+
+// Calendar widget
+const timeElement = document.querySelector(".timeClock");
+const dateElement = document.querySelector(".dateClock");
 
 /**
  * @param {Date} date
@@ -352,5 +519,3 @@ makeDraggable(musicWidget);
 makeDraggable(calendarWidget);
 makeDraggable(clockWidget);
 makeDraggable(noteWidget);
-
-
