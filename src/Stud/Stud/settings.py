@@ -42,6 +42,7 @@ STATIC_ROOT = os.path.join (os.path.dirname(BASE_DIR), "staticfiles", "static")
 
 INSTALLED_APPS = [
     'mainpage.apps.MainPageConfig', # add this to start using app
+    'account.apps.AccountConfig',
     'room.apps.RoomConfig',
     'django.contrib.admin',
     'django.contrib.auth',
