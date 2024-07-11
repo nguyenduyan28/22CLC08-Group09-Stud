@@ -1,0 +1,336 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@font-face {
+  font-family: "FontAwesome";
+  font-weight: normal;
+  font-style: normal;
+  src: url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?v=4.3.0");
+  src: url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0")
+      format("embedded-opentype"),
+    url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.woff2?v=4.3.0")
+      format("woff2"),
+    url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.woff?v=4.3.0")
+      format("woff"),
+    url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.ttf?v=4.3.0")
+      format("truetype"),
+    url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular")
+      format("svg");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header theo mau */
+
+.group-header {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-header {
+  height: 100%;
+  position: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffefe9;
+}
+
+.header {
+  height: 72px;
+  width: 1252px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.left-header {
+  display: flex;
+  align-items: left-start;
+}
+
+.Stud-logo {
+  height: 60px;
+  width: 82px;
+  cursor: pointer;
+}
+
+.middle-list {
+  height: 72px;
+  width: 490px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  text-decoration: none;
+  list-style: none;
+  gap: 20px;
+  margin-left: 330px; /*cho nay de canh giua logo stud va middle*/
+}
+
+.middle-header-Nav {
+  display: inline-flex;
+  font: 500 28px/1.5 "Outfit", Helvetica, Arial, serif;
+  color: #422320;
+  align-items: left;
+  cursor: pointer;
+  text-decoration: none;
+}
+.middle-item {
+  text-decoration: none;
+}
+.middle-header-Nav:hover {
+  text-decoration: underline;
+}
+
+/* Contact*/
+.Contact {
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-size: cover;
+  background: #f8ebdb;
+}
+
+.Contact .Content {
+  max-width: 800px;
+  text-align: center;
+}
+
+.Container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; /* Center vertically */
+  margin-top: 30px;
+  gap: 120px; /* Add space between Left-side and Contact form */
+}
+
+.Container .Left-side {
+  height: 500px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+}
+.Container .Left-side .Content h1 {
+  font: 96px "Outfit", Helvetica, Arial, serif;
+  font-weight: 500;
+  line-height: 144px;
+  transform: translateX(-100px);
+}
+
+.Container .Left-side .Contactinfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10%;
+  background: #ffffff;
+}
+
+.Container .Left-side .Contactinfo .box {
+  position: relative;
+  display: flex;
+  margin-left: 24px;
+  margin-right: 24px;
+  height: fit-content;
+  width: 610px;
+}
+
+.Container .Contactinfo .box .icon {
+  min-width: 30px;
+  height: 80px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+  font-size: 60px;
+  margin-block: 16px;
+  gap: 20px;
+}
+/*text là gmail */
+.Container .Contactinfo .box .text {
+  font-size: 40px;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: flex-start; /* Align text to the start (left) */
+  text-align: left;
+  margin-left: 20px;
+}
+/*text 1 là so dt*/
+.Container .Contactinfo .box .text1 {
+  font-size: 40px;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: flex-start; /* Align text to the start (left) */
+  text-align: left;
+  transform: translateX(32px);
+}
+
+/*text 2 là dia chi*/
+.Container .Contactinfo .box .text2 {
+  font-size: 40px;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: flex-start; /* Align text to the start (left) */
+  text-align: left;
+  transform: translateX(46px);
+}
+
+.Contact form {
+  height: auto; /* Adjust height to fit content */
+  width: auto; /* Adjust width to fit content */
+  padding: 20px; /* Add padding for better spacing */
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+  margin-bottom: 10px;
+}
+.Contact form .Inputbox {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.Contact form .Inputbox input {
+  width: 100%;
+  font-size: 24px;
+  padding: 5px 0px;
+  margin: 10px 0px;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.Contact form .Inputbox span {
+  left: 0;
+  padding: 5px 0;
+  font: 24px "Outfit", Helvetica, Arial, serif;
+  margin: 10px 0;
+  pointer-events: none;
+  transition: 0.5s;
+  color: #666;
+}
+
+/*Input 1 là phần your message*/
+.Contact form .Inputbox1 {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.Contact form .Inputbox1 span {
+  left: 0;
+  padding: 5px 0;
+  font: 24px "Outfit", Helvetica, Arial, serif;
+  margin: 10px 0;
+  pointer-events: none;
+  transition: 0.5s;
+  color: #666;
+}
+
+.Contact form .Inputbox1 textarea {
+  width: 100%;
+  height: 150px; /* Adjust height as needed */
+  font-size: 24px;
+  padding: 10px; /* Add padding for better spacing */
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  resize: vertical; /* Allow vertical resizing */
+}
+.Contact form .btn {
+  width: 100%;
+  height: 60px;
+  background-color: #000000;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 600;
+}
+/* Footer section */
+.footer-section {
+  height: 298px;
+  width: 100%;
+  background-color: #ffefe9;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer-container {
+  height: 228px;
+  width: 1192px;
+  display: flex;
+  gap: 140px;
+  margin: 35px 124px 35px 124px;
+}
+.Stud-logo-footer {
+  height: 99px;
+  width: 130px;
+  cursor: pointer;
+}
+.footer-nav,
+.footer-link,
+.footer-social {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.nav-item,
+.footer-link-item {
+  font: 500 28px/1.5 "Outfit", Helvetica, Arial, serif;
+  color: #422320;
+  cursor: pointer;
+  text-decoration: none;
+}
+.footer-social-text {
+  font: 500 26px/1.5 "Outfit", Helvetica, Arial, serif;
+  color: #422320;
+  cursor: pointer;
+}
+.footer-social-icons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  margin-left: 48px;
+  width: 178px;
+  cursor: pointer;
+}
+.social-icon {
+  position: relative;
+  width: 40px;
+  min-width: 0px;
+  height: 40px;
+  cursor: pointer;
+}
+.social-icon1 {
+  position: relative;
+  margin: 3px 0px;
+  width: 34px;
+  min-width: 0px;
+  height: 34px;
+  cursor: pointer;
+}

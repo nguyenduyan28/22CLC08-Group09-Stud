@@ -1,0 +1,16 @@
+<h2>Log In</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form }}
+  
+
+  {% if user.is_authenticated %}
+  <h3>Hello {{name}}</h3>
+  <h4>You're successsfully logged in.</h4>
+  <button type="submit"> <a href="/account/signout"> Sign Out</a></button>
+
+  {% else %}
+  <button type="submit"> <a href="/account/signup"> Sign Up</a></button>
+  <button type="submit"> <a href="/account/signin"> Sign In</a></button>
+  {%endif%}
+</form>
