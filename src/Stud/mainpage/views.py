@@ -13,3 +13,6 @@ def home(request):
 
 def yourroom(request):
   return render(request, "mainpage/YourRoom.html")
+
+def contact(request):
+  return render(request, "mainpage/Contact.html")
