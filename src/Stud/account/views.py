@@ -41,6 +41,14 @@ def signup(request):
         if not username.isalnum():
             messages.error(request, "Username must be letter or number only.")
             return redirect('signup')
+        
+        if not password.isnumeric():
+            messages.error(request, "Your password can't be entirely nuumeric.")
+            return redirect('signup')
+        
+        if len(password) < 8:
+            messages.error(request, "Your password must contain at least 8 characters.")
+            return redirect('signup')
         myuser = User.objects.create_user(username, email, password)
         myuser.first_name = name
 
@@ -80,13 +88,14 @@ def signin(request):
             login(request, user)
             name = user.first_name
             #messages.success(request, "Sign in successfully!")
-            #return render(request, "account/index.html")
-            return render(request, "account/index.html", {'name': name})
+            return render(request, "mainpage/Home.html")
+
         else:
             messages.error(request, "Wrong username/password")
             return redirect('signin')
     else:
         return render(request, 'account/signin.html')
+        #return render(request, 'room/Login.html')
 def signout(request):
     logout(request)
     #messages.success(request, "Loged out successfully!")
@@ -108,3 +117,15 @@ def activate(request, uidb64, token):
         return redirect('home')
     else:
         return render(request,'activation_failed.html')
+    
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'account/password_reset_form.html'
+    email_template_name = 'account/password_reset_email.html'
+    subject_template_name = 'account/password_reset_subject.txt'
+    success_message = "We've sent you an email with instructions on how to reset your password. Please check your mail." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('signin')

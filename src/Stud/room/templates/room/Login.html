@@ -14,24 +14,35 @@
   <body>
     <div class="Wrapper">
       <div class="wrapper1 sign-in">
-        <form action="">
+        <form method="POST">
+          {% csrf_token %}
           <h1>Login</h1>
-          <div class="input-box">
-            <input type="text" placeholder="Username" required />
-            <i class="bx bxs-user"></i>
-          </div>
-          <div class="input-box">
-            <input
-              type="password"
-              placeholder="Password"
-              id="password-login"
-              required
-            />
-            <i
-              class="bx bxs-lock-alt"
-              onclick="togglePasswordVisibility('password-login')"
-            ></i>
-          </div>
+          
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          
+            <div class="input-box">
+              <input type="text" name="username" placeholder="Username" required />
+              <i class="bx bxs-user"></i>
+            </div>
+            <div class="input-box">
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                id="password-login"
+                required
+              />
+              <i
+                class="bx bxs-lock-alt"
+                onclick="togglePasswordVisibility('password-login')"
+              ></i>
+            </div>
           <div class="remember-forgot">
             <label><input type="checkbox" />Remember me</label>
             <a href="#">Forgot password</a>
@@ -47,8 +58,18 @@
       </div>
 
       <div class="wrapper1 sign-up">
-        <form action="">
+        <form method="POST" action="">
+          {% csrf_token %}
           <h1>Sign Up</h1>
+
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          
           <div class="input-box">
             <input type="text" placeholder="Username" required />
             <i class="bx bxs-user"></i>
