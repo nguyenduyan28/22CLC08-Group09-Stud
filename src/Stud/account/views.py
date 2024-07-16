@@ -17,7 +17,7 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 
 from . tokens import generate_token
-from . models import AuthUser, Profile
+from . models import  Profile
 
 def index(request):
     return render(request, 'account/index.html')
@@ -98,7 +98,7 @@ def signin(request):
 def signout(request):
     logout(request)
     #messages.success(request, "Loged out successfully!")
-    return redirect('home')
+    return redirect('../../')
 # Create your views here.
 
 def activate(request, uidb64, token):
@@ -112,7 +112,6 @@ def activate(request, uidb64, token):
         myuser.is_active = True
         myuser.save()
         login(request,myuser)
-        newUser = AuthUser(username = myuser.username, email=myuser.email_user) 
         messages.success(request, "Your Account has been activated.")
         return redirect('/')
     else:
