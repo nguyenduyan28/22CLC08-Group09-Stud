@@ -1,0 +1,648 @@
+/* Theme Widget*/
+.themeWidget{
+    width: 268px;
+    height: 342px;
+    background-color: #282322;
+    border-radius: 10px;
+    position: fixed;
+    overflow: hidden;
+    display: none;
+}
+body{
+    background-size: 100%;
+}
+.headerTheme{
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 10px;
+}
+.containerHeaderTheme{
+    width: 90%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+.leftHeaderTheme{
+    width: 40%;
+    height: 100%;
+    gap: 10px;
+    position: relative; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.closeThemeWidget,
+.closeMusicWidget,
+.themeWidgetIcon,
+.settingWidget{
+    width: 20px;
+    height: 20px;
+}
+.closeThemeWidget:hover,
+.closeMusicWidget:hover,
+.settingWidget:hover{
+    transform: scale(1.1);
+}
+.textHeaderTheme{
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    color: white;
+}
+.rightHeaderTheme{
+    width: 20%;
+    height: 100%;
+    gap: 5px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10px;
+}
+.textTheme{
+    font: 200 14px "Outfit", Helvetica, Arial, serif;
+    font-weight: light;
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    color: white;
+}
+.containerThemeList{
+    width: 100%;
+    height: 237px;
+    position: absolute;
+    top: 80px;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+}
+.themeHolder{
+    width: 237px;
+    height: 237px;
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+    overflow-y: auto;
+}
+.itemList{
+    height: 65px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 21px;
+    flex-wrap: wrap;
+}
+.imageBox{
+    width: 65px;
+    height: 65px;
+    border-radius: 10px;
+    background-color: grey;
+}
+.imageBox:hover{
+    filter: brightness(1.2);
+}
+
+/*Music Widget*/
+.musicContainer {
+    width: 500px;
+    height: 230px;
+    position: fixed;
+    background-color: #282322;
+    display: none;
+    overflow: hidden;
+    border-radius: 14px;
+}
+.topperMusic {
+    width: 100%;
+    height: 28px;
+    padding-left: 465px;
+    padding-top: 4px;
+    position: relative;
+}
+.textTopperMusic {
+    position: absolute;
+    left: 15px;
+    bottom: 5px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    color: white;
+}
+.musicWidget {
+    position: absolute;
+    width: 500px;
+    height: 152px;
+    top: 28px;
+    left: 0px;
+    border-top-right-radius: none;
+}
+.urlInputContainer {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#urlInput {
+    width: 300px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+#playMusicButton, #resetButton {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #C26565;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: white;
+    cursor: pointer;
+}
+#playMusicButton:hover, #resetButton:hover {
+    background-color: #C26565;
+}
+
+/*Calendar widget*/
+.calendarWidget{
+    background-color: #282322;
+    position: fixed;
+    width: 370px;
+    height: 608px;
+    color: white;
+    display: none;
+    border-radius: 10px;
+}
+.headerCalendarWidget{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.5px solid #fff;
+}
+.textCalendarWidget{
+    margin-left: 10px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+}
+.closeCalendarWidget{
+    margin-right: 10px;
+}
+.calendarSection {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    height: 300px;
+    top: 240px;
+    overflow: auto;
+    font: 500 14px "Outfit", Helvetica, Arial, serif;
+    border: 0.5px solid #fff;
+}
+.hour {
+    position: relative;
+    display: flex;
+    border-bottom: 0.5px solid #fff;
+    height: 60px;
+    box-sizing: border-box;
+}
+.hour .time {
+    width: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+.hour .events {
+    position: relative;
+    flex-grow: 1;
+    border-left: 1px solid #fff;
+    height: 100%;
+}
+.event {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: #C26565;
+    padding: 2px;
+    box-sizing: border-box;
+}
+.clockSection {
+    font-size: 16px;
+    border-radius: 4px;
+    position: absolute;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 145px;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    border-bottom: 1px solid #fff;
+}  
+.timeClock {
+    font: 500 3em "Outfit", Helvetica, Arial, serif;
+    color: #fff;
+}
+  
+.dateClock {
+    margin-top: 12px;
+    font: 400 1.75em "Outfit", Helvetica, Arial, serif;
+}
+
+.controls {
+    position: absolute;
+    top: 188px;
+    width: 100%;
+    height: 52px;
+    display: flex;
+    justify-content: space-between;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    white-space: nowrap;
+    align-items: center;
+}
+.dateNavButton {
+    display: flex;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dateNavButton button {
+    margin: 0 5px;
+    background-color: #C26565;
+    font: 500 14px "Outfit", Helvetica, Arial, serif;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.calendarNavButton{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    top: 563px;
+    border-top: 1px solid #fff;
+}
+#authorize_button,
+#signout_button{
+    margin: 0px 10px 0px 10px;
+    background-color: #C26565;
+    padding: 5px;
+    font: 500 14px "Outfit", Helvetica, Arial, serif;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#sigout_button:hover,
+#authorize_button:hover,
+#prevDayButton:hover,
+#nextDayButton:hover{
+    transform: scale(1.1);
+}
+
+/*Clock Widget*/
+.clockWidget{
+    width: 564px;
+    height: 254px;
+    background-color: #282322;
+    border-radius: 20px;
+    position: fixed;
+    display: none;
+    color: white;
+}
+.containerClose{
+    height: 27px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.textClockWidget{
+    position: absolute;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    left: 15px;
+}
+.closeClockWidget{
+    right: 20px;
+    position: absolute;
+}
+.containerTwoSection{
+    height: 227px;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    top: 27px;
+    flex-direction: row;
+}
+/*Pomodoro*/
+.containerPomodoro{
+    width: 50%;
+    position: relative;
+    border-right-color: white;
+    border-right: 0.5px solid white;
+    border-top: 0.5px solid white;
+}
+.textPomodoro{
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+}
+.pomodoroSection{
+    position: relative;
+    top: 45px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pomodoro{
+    font: 400 64px "Outfit", Helvetica, Arial, serif;
+}
+.timeSection{
+    position: relative;
+    height: 40px;
+    top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+#minutes,
+#seconds{
+    padding-left: 5px;
+    width: 30px;
+}
+.minutesSection,
+.secondSection{
+    display: flex;
+    justify-content: center;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    gap: 40px;
+}
+.timeSection label {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: right;
+}
+
+.timeSection input {
+    width: 50px;
+    position: flex;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    font: 400 14px "Outfit", Helvetica, Arial, serif;
+    border: 1px solid #ccc;
+}
+
+.startResetSection{
+    position: relative;
+    height: 40px;
+    top: 72px;
+    display: flex;
+    justify-content: center;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    gap: 30px;
+}
+.startButton,
+.resetButton{
+    height: 30px;
+    width: 50px;
+    border-radius: 10px;
+    border: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    cursor: pointer;
+}
+.startButton:hover,
+.resetButton:hover,
+.closeClockWidget:hover{
+    transform: scale(1.1);
+}
+/*Tracking*/
+.containerTracking{
+    width: 50%;
+    position: relative;
+    border-top: 0.5px solid white;
+}
+.textTracking{
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+}
+.trackingSection{
+    height: 64px;
+    top: 45px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tracking{
+    font: 400 64px "Outfit", Helvetica, Arial, serif;
+}
+.trackingToggleSection{
+    position: relative;
+    top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.trackingButton {
+    width: 50px;
+    height: 25px;
+    position: relative;
+    background: #000;
+    border-radius: 50px;
+  }
+  
+.toggle-input {
+display: none;
+}
+
+.toggle-label {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 #ff0000;
+}
+
+.toggle-label::before {
+    content: "";
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ffffff;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.toggle-input:checked + .toggle-label {
+    animation: shadow-animation_5020 10s linear infinite;
+}
+
+.toggle-input:checked + .toggle-label::before {
+    transform: translateX(25px);
+}
+    @keyframes shadow-animation_5020 {
+    0% {
+        box-shadow: 0 0 0 0 #ff0000;
+    }
+
+    50% {
+        box-shadow: 0 0 25px 25px #ffa500;
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 #ff0000;
+    }
+}
+
+/*Note widget*/
+.noteWidget {
+    position: fixed;
+    width: 268px;
+    height: 380px;
+    padding: 10px;
+    display: none;
+    background-color: #282322;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.containerHeaderNote{
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+.textNote {
+    position: relative;
+    left: 10px;
+    width: 100%;
+    height: 30px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    color: #fff;
+}
+.closeNoteWidget{
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: -2px;
+    position: relative;
+}
+.closeNoteWidget:hover{
+    transform: scale(1.1);
+}
+.containerNoteButton {
+    margin-left: 180px;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 50px;  
+}
+
+#addTodoButton {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    background-color: #C26565;
+    color: #fff;
+    cursor: pointer;
+}
+
+#addTodoButton:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+#noteSection {
+    position: absolute;
+    top: 80px;
+    margin-bottom: 20px;
+    position: relative;
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#noteInput {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    border: none;
+    margin-top: 10px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #282322;
+    box-sizing: border-box;
+    resize: none;
+}
+
+#noteInput:focus {
+    outline: none;
+}
+
+#todoContainer {
+    margin-bottom: 0px;
+}
+
+.todoItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 7px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #584E4C;
+}
+
+.todoItem input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.todoItem input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;   
+    box-sizing: border-box;
+    background-color: #282322;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.todoItem input[type="text"]:focus {
+    outline: none;
+    border: 1px solid #fff;
+}
