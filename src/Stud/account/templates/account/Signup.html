@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up</title>
-    <link rel="stylesheet" href="/static/account/css/Signup/signup.css" />
+    <link rel="stylesheet" href="../../static/account/css/Signup/signup.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -72,20 +72,21 @@
             >
           </div>
           <button type="submit" class="btn">Sign Up</button>
-          {% if messages %}
-          <div>
-            {% for message in messages %}
-            <p class="{{ message.tags }}">{{ message }}</p>
-            {% endfor %}
+          <div class="register">
+            <p>
+              Already have an account?
+              <a href="../signin" class="signInBtn-link">Sign in</a>
+            </p>
           </div>
-          {% endif %}
         </form>
-        <div class="register">
-          <p>
-            Already have an account?
-            <a href="../signin" class="signInBtn-link">Sign in</a>
-          </p>
+
+        {% if messages %}
+        <div>
+          {% for message in messages %}
+          <p class="{{ message.tags }}">{{ message }}</p>
+          {% endfor %}
         </div>
+        {% endif %}
       </div>
     </div>
     <script src="/static/account/js/Login/script.js"></script>
