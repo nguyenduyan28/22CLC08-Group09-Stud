@@ -34,14 +34,15 @@ DEBUG = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-ALLOWED_HOSTS = []
-STATIC_URL = "static/"
+ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh"]
+STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join (os.path.dirname(BASE_DIR), "staticfiles", "static")
 
 # Application definition
 
 INSTALLED_APPS = [
     'mainpage.apps.MainPageConfig', # add this to start using app
+    'account.apps.AccountConfig',
     'room.apps.RoomConfig',
     'account.apps.AccountConfig',
     'django.contrib.admin',
@@ -83,8 +84,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Stud.wsgi.application'
-
+ASGI_APPLICATION = 'Stud.asgi.app'
+# WSGI_APPLICATION = 'Stud.wsgi.app'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -131,7 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -139,3 +140,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "account/static"),
+]

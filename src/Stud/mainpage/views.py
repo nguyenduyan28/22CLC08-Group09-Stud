@@ -1,10 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
-from django.shortcuts import render
-from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from account.models import Profile
 # Create your views here.
 
 def home(request):
@@ -13,3 +12,6 @@ def home(request):
 @login_required
 def yourroom(request):
   return render(request, "mainpage/YourRoom.html")
+
+def contact(request):
+  return render(request, "mainpage/Contact.html")
