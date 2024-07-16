@@ -112,6 +112,23 @@ document.getElementById('signout_button').style.visibility = 'hidden';
 function gapiLoaded() {
     gapi.load('client', initializeGapiClient);
 }
+function gisLoaded() {
+  tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      callback: (resp) => {
+          if (resp.error) {
+              console.error('Error during authentication:', resp.error);
+              return;
+          }
+          document.getElementById('signout_button').style.visibility = 'visible';
+          document.getElementById('authorize_button').innerText = 'Refresh';
+          listUpcomingEvents(); // Fetch and display calendar events
+      },
+  });
+  gisInited = true;
+  maybeEnableButtons();
+}
 
 async function initializeGapiClient() {
     await gapi.client.init({
@@ -122,15 +139,15 @@ async function initializeGapiClient() {
     maybeEnableButtons();
 }
 
-function gisLoaded() {
-    tokenClient = google.accounts.oauth2.initTokenClient({
-        client_id: CLIENT_ID,
-        scope: SCOPES,
-        callback: '', // defined later
-    });
-    gisInited = true;
-    maybeEnableButtons();
-}
+// function gisLoaded() {
+//     tokenClient = google.accounts.oauth2.initTokenClient({
+//         client_id: CLIENT_ID,
+//         scope: SCOPES,
+//         callback: '', // defined later
+//     });
+//     gisInited = true;
+//     maybeEnableButtons();
+// }
 
 function maybeEnableButtons() {
     if (gapiInited && gisInited) {
