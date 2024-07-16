@@ -137,8 +137,8 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = reverse_lazy('signin')
 
-def forgot(request):
-    return render(request, 'account/Forgot.html')
+'''def forgot(request):
+    return render(request, 'account/Forgot.html')'''
 @login_required
 def me(request):
   user = request.user
