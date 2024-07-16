@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/account/css/Login/login.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="Wrapper">
+      <div class="wrapper1 sign-in">
+        <form method="POST" action="">
+          {% csrf_token %}
+          <h1>Login</h1>
+          <div class="input-box">
+            <input type="text" name="username" placeholder="Username" required />
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="input-box">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              id="password-login"
+              required
+            />
+            <i
+              class="bx bxs-lock-alt"
+              onclick="togglePasswordVisibility('password-login')"
+            ></i>
+          </div>
+          <div class="remember-forgot">
+            <label><input type="checkbox" />Remember me</label>
+            <a href="Forgot.html">Forgot password</a>
+          </div>
+          <button type="submit" class="btn">Login</button>
+          <div class="register">
+            <p>
+              Don't have an account?
+              <a href="../signup" class="signUpBtn-link">Register</a>
+            </p>
+          </div>
+          <div class="line"></div>
+          <div class="media-options">
+            <a href="" class="field facebook">
+              <i class="bx bxl-facebook facebook-icon"></i>
+              <span>Login with Facebook</span>
+            </a>
+          </div>
+          <div class="media-options">
+            <a href="" class="field google">
+              <img src="static/account/images/google.png" alt="" class="google-img" />
+              <span>Login with Google</span>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="/static/account/js/Login/script.js"></script>
+    <script>
+      function togglePasswordVisibility(id) {
+        const passwordInput = document.getElementById(id);
+        const icon = passwordInput.nextElementSibling;
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          icon.classList.remove("bxs-lock-alt");
+          icon.classList.add("bxs-lock-open-alt");
+        } else {
+          passwordInput.type = "password";
+          icon.classList.remove("bxs-lock-open-alt");
+          icon.classList.add("bxs-lock-alt");
+        }
+      }
+    </script>
+  </body>
+</html>
