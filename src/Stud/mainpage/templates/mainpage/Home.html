@@ -5,36 +5,36 @@
         <link rel="web icon" type="icon" href="../../static/mainpage/images/Home/Stud-logo.png"/>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link rel="stylesheet" href="/static/mainpage/css/header.css"/>
-        <link rel="stylesheet" href="/static/mainpage/css/fonts.css" />
-        <link rel="stylesheet" href="/static/mainpage/css/animation.css" />
+        <link rel="stylesheet" href="../../static/mainpage/css/Home/header.css"/>
+        <link rel="stylesheet" href="/static/mainpage/css/Home/fonts.css" />
+        <link rel="stylesheet" href="/static/mainpage/css/Home/animation.css" />
     </head>
-    <body>
+    <body> 
         <div class="top-element">
             <!-- Background-cover-->
-            <img class="cover" src="/static/mainpage/css/images/cover rectangle.svg" alt="alt text"/>
+            <img class="cover" src="/static/mainpage/images/Home/cover rectangle.svg" alt="alt text"/>
             <!-- Header elements-->
             <div class="group-header">
                 <div class="container-header">
                     <header class="header">
                         <div class="left-header">
                             <a href="/">
-                                <img class="Stud-logo" src="/static/mainpage/css/images/Stud-logo.png"/>  
+                                <img class="Stud-logo" src="/static/mainpage/images/Home/Stud-logo.png"/>  
                             </a>
                         </div>
                         <nav class="middle-header">
                             <ul class="middle-list">
                                 <li class="middle-item">
-                                    <a class="middle-header-Nav" href="../mainpage/Home.html">Home</a>
+                                    <a class="middle-header-Nav" href="/">Home</a>
                                 </li>
                                 <li class="middle-item">
-                                    <a class="middle-header-Nav" href="../../../room/templates/room/YourRoom.html">Your Room</a>
+                                    <a class="middle-header-Nav" href="/room/yourroom">Your Room</a>
                                 </li>
                                 <li class="middle-item">
-                                    <a class="middle-header-Nav" href="../../templates/mainpage/Explore.html">Explore</a>
+                                    <a class="middle-header-Nav" href="/explore">Explore</a>
                                 </li>
                                 <li class="middle-item">
-                                    <a class="middle-header-Nav" href="../../templates/mainpage/Contact.html">Contact</a>
+                                    <a class="middle-header-Nav" href="/contact">Contact</a>
                                 </li>
                             </ul>
                         </nav>
@@ -43,11 +43,14 @@
                                 <img class="notification-icon" src="../../static/mainpage/images/Home/Bell.svg"/>
                             </div>
                             {% if user.is_authenticated %}
-                                <span>{{ user.username }}</span>
-                                <a href="/account/logout">Logout</a>
+                            <a href="/accounts/me">
+                                <button class="Login-button">{{ user.username }}</button>
+                                </a>
+                                
+                                <a class="Signup-text" href="/accounts/signout">Logout</a>
                             {% else %}
-                                <a class="Signup-text" href="/account/signup">Sign up</a>
-                                <a href = "/account/signin">
+                                <a class="Signup-text" href="/accounts/signup">Sign up</a>
+                                <a href = "/accounts/login">
                                     <button class="Login-button">Login</button>
                                 </a>
                             {% endif %}
@@ -57,12 +60,17 @@
             </div>
             <!--Header introduction-->
             <div class="group-header-intro">
+                <div class="container-header-intro-item">
+                    <div class="left-group-header-intro">
                 <h1 class="header-intro-Title">
                     Find out the best environment to focus and productivity
                 </h1>
                 <a class="buttonStyle" href="/">
                     <button class="intro-startnow-button">Start now</button>
                 </a>
+            </div>
+            <img class="intro-image" src="../../static/mainpage/images/Home/intro-image.png">
+        </div>
             </div>
         </div>
         <div class="mid-element" id="mid-element">
@@ -109,7 +117,7 @@
         <footer class="footer-section">
             <div class="footer-container">
                 <a href="/">
-                    <img class="Stud-logo-footer" src="/static/mainpage/css/images/Stud-logo.png"/>  
+                    <img class="Stud-logo-footer" src="/static/mainpage/images/Stud-logo.png"/>  
                 </a>
                 <nav class="footer-nav">
                     <a class="nav-item" href="/">Home</a>
