@@ -360,12 +360,139 @@ main{
 .roomMembers{
     font: 400 12px "Outfit", Helvetica, Arial, serif;
 }
-/* Room Infomation*/
-.roomInformation{
-    position: absolute;
-    right: 30px;
-    top: 120px;
+/* Room modal information*/
+.roomInformation {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    right: 0px;
+    top: 130px;
+    width: 24%;
+    height: fit-content;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: none;
+    padding: 10px;
+    background-color: #C26565;
+}
+.roomModalHeader{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+.roomModalHeader--text{
+    font: 500 28px "Outfit", Helvetica, Arial, serif;
+}
+.closeModalButton,
+.menuModalImg{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.closeModalButton:hover,
+.menuModalImg:hover{
+    transform: scale(1.1);
+}
+.modalUsertheme-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.modalUserTheme{
+    border-radius: 20px;
+    width: 200px;
+    height: 200px;  
+}
+.modalInfoContent{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    margin-top: 20px;
+}
+.modalInfoContent-top{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.modalInfoContent-top-left{
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 10px;
+    gap: 20px;
+}
+#modalRoomName{
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    white-space: nowrap;
+}
+.roomUserModalImg{
+    height: 35px;
+    width: 35px;
+}
+.modalInfoContent-top-right{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+.modalRoomMembers-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 4px;
+    /* border: 0.01px solid #422320; */
+    border-radius: 15px;
+    background-color: #FFEFE9;
+    color: #422320;
+}
+#modalRoomMembers{
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+}
+#modalRoomDescription {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    max-height: 120px;
+    width: 100%;
+    overflow-y: auto;
+    word-wrap: break-word;
+    font: 400 20px "Outfit", Helvetica, Arial, serif;
+}
+.modalInfoContent-bottom{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     height: 50px;
-    width: 50px;
-    background-color: grey;
+}
+.joinRoom-button{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 45px;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #FFEFE9;
+    color: #000;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    padding: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.joinRoom-button:hover{
+    background-color: #FFEFE9;
+    color: #C26565;
+    transform: scale(1.1);
+}
+.joinRoom-button:active{
+    transform: scale(0.9);
 }

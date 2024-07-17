@@ -30,31 +30,30 @@ function prevPage() {
 showPage(currentPage);
 
 // Show info
-// JavaScript code to set up widget interaction for each room box
-const roomBoxes = document.querySelectorAll('.explore__main--discoverRoomSection--roomBox');
-const roomInformation = document.querySelector('.roomInformation');
+document.querySelectorAll('.explore__main--discoverRoomSection--roomBox').forEach(box => {
+    box.addEventListener('click', () => {
+        const roomName = box.getAttribute('data-room-name');
+        const roomDescription = box.getAttribute('data-room-description');
+        const roomMembers = box.getAttribute('data-room-members');
 
-function setupWidgets() {
-    roomBoxes.forEach((box, index) => {
-        const openButton = box.querySelector('.roomBox-bottom .roomName'); // Adjust this selector as needed
-        const closeButton = roomInformation.querySelector('.closeThemeWidget'); // Adjust this selector as needed
-        
-        openButton.addEventListener('click', function() {
-            if (roomInformation.style.display === 'block') {
-                roomInformation.style.display = 'none';
-                roomInformation.classList.remove('open');
-            } else {
-                roomInformation.style.display = 'block';
-                roomInformation.classList.add('open');
-            }
-        });
+        document.getElementById('modalRoomName').innerText = roomName;
+        document.getElementById('modalRoomDescription').innerText = roomDescription;
+        document.getElementById('modalRoomMembers').innerText = roomMembers;
 
-        if (closeButton) {
-            closeButton.addEventListener('click', function() {
-                roomInformation.style.display = 'none';
-            });
-        }
+        const modal = document.getElementById('roomModalInfos');
+        modal.style.display = 'block';
     });
-}
+});
 
-setupWidgets();
+document.querySelector('.closeModalButton').addEventListener('click', () => {
+    const modal = document.getElementById('roomModalInfos');
+    modal.style.display = 'none';
+});
+    
+// window.addEventListener('click', (event) => {
+//     const modal = document.getElementById('roomModalInfos');
+//     if (event.target == modal) {
+//         modal.style.display = 'none';
+//     }
+// });
+
