@@ -1,0 +1,369 @@
+body{
+    margin: 0px;
+}
+.explore__header{
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 123px;
+    background-color: white;
+    z-index: 2;
+}
+.explore__header--left{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 173px;
+    height: 100%;
+    cursor: pointer;
+}
+.explore__header--HomeImage{
+    width: 82px;
+    height: 60px;
+}
+.explore__header--middle{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 667px;
+    height: 100%;
+    cursor: 100%;
+}
+.explore__header--searchBar{
+    position: relative;
+    display: flex;
+    width: 80%;
+    height: 20px;
+    border-top-left-radius: 21px;
+    border-bottom-left-radius: 21px;
+    border: 1px solid #000;
+    border-right: none;
+    padding: 10px;
+    font: 500 22px "Outfit", Helvetica, Arial, serif;
+}
+.explore__header--searchIcon{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #000;
+    border-left: none;
+    border-top-right-radius: 21px;
+    border-bottom-right-radius: 21px;
+}
+.searchImg{
+    width: 25px;
+    height: 25px;
+}
+.explore__header--right{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    width: 390px;
+    height: 100%;
+}
+.explore__header--right--container{
+    position: relative;
+    display: flex;
+    gap: 40px;
+    height: fit-content;
+    align-items: center;
+    padding-left: 10px;
+    border-left: 0.01px solid #000;
+}
+.explore__header--createRoomButton{
+    position: relative;
+    width: 200px;
+    height: 55px;
+    border-radius: 45px;
+    border: none;
+    background-color: #C26565;
+    color: #fff;
+    font: 500 22px "Outfit", Helvetica, Arial, serif;
+    padding: 10px;
+    cursor: pointer;
+}
+.explore__header--noti{
+    position: relative;
+    width: 18px;
+    height: 21px;
+    cursor: pointer;
+}
+.explore__header--userInfo{
+    position: relative;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+/* Hover explore header elements*/
+.explore__header--createRoomButton{
+    transition: all 0.5s ease;
+}
+.explore__header--createRoomButton:hover{
+    background-color: #F0E1B7;
+    color: #C26565;
+    box-shadow:  #C26565 0px 7px 29px 0px;
+}
+.explore__header--noti:hover,
+.explore__header--userInfo:hover{
+    transform: scale(1.1);
+}
+.explore__header--noti:active,
+.explore__header--userInfo:active{
+    transform: scale(1.3);
+}
+/* nav elements*/
+.explore__nav{
+    position: fixed;
+    display: flex;
+    top: 123px;
+    width: 173px;
+    border-top-right-radius: 17px;
+    border-bottom-right-radius: 17px;
+    height: 585px;
+    background-color: #C26565;
+}
+.explore__nav--container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 96%;
+    margin: 12px;
+}
+.explore__nav__top{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    height: 273px;
+    border-bottom: 0.01px solid #fff;
+}
+.explore__nav__top--title{
+    font: 500 22px "Outfit", Helvetica, Arial, serif;
+}
+.explore__nav__top--discover,
+.explore__nav__top--trending,
+.explore__nav__top--theme,
+.explore__nav__top--bookmark,
+.explore__nav__middle--types{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    width: fit-content;
+    height: 30px;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.explore__nav__top--discover:hover,
+.explore__nav__top--trending:hover,
+.explore__nav__top--theme:hover,
+.explore__nav__top--bookmark:hover,
+.explore__nav__middle--types:hover,
+.explore__nav__bottom--container:hover{
+    filter: brightness(1.2);
+    transform: scale(1.1);
+}
+.explore__nav__middle{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    height: 250px;
+    padding-top: 10px;
+    border-bottom: 0.01px solid #fff;
+}
+.explore__nav__middle--categoriesText{
+    margin-left: 15px;
+    font: 500 22px "Outfit", Helvetica, Arial, serif;
+}
+.explore__nav__bottom{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 76px;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    cursor: pointer;
+}
+.explore__nav__bottom--container{
+    position: relative;
+    display: flex;
+    gap: 20px;
+}
+/* Main section*/
+main{
+    position: relative;
+    top: 134px;
+    left: 277px;
+    width: 847px;
+    height: 100%;
+}
+.explore__main--discoverThemeSection{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.explore__main--discoverThemeSection--title,
+.explore__main--discoverRoomSection--title{
+    font: 500 30px "Outfit", Helvetica, Arial, serif;
+}
+.explore__main--discoverThemeSection--subtitle{
+    font: 300 20px "Outfit", Helvetica, Arial, serif;
+}
+.explore__main--discoverThemeSection--themeList{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 100%;
+    height: 274px;
+}
+.explore__main--discoverThemeSection--themeBox{
+    position: relative;
+    display: flex;
+    height: 100%;
+    width: 204px;
+}
+.explore__main--discoverThemeSection--themeBoxImg{
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.explore__main--discoverThemeSection--heartImg{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.explore__main--discoverThemeSection--heartImg:hover{
+    filter: brightness(1.5);
+}
+/* Discover room section*/
+.explore__main--discoverRoomSection{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    width: 100%;
+    height: 1040px;
+    overflow-y: auto;
+}
+/* Show room section*/
+.explore__main--discoverRoomSection--roomList{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 274px;
+    gap: 40px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+.explore__main--discoverRoomSection--roomBox{
+    position: relative;
+    display: flex;
+    height: 100%;
+    width: 204px;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.pageNumber{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 702px;
+    font: 300 16px "Outfit", Helvetica, Arial, serif;
+}
+.page{
+    position: relative;
+    width: fit-content;
+    top: 670px;
+}
+.pageButton{
+    border-radius: 10px;
+    padding: 4px;
+    border: none;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    background-color: #C26565;
+    color: #FFEFE9;
+    cursor: pointer;
+}
+.pageButton:hover{
+    transform: scale(1.1);
+}
+
+/* Room custom*/
+.roomBox-top{
+    position: relative;
+    height: 50%;
+}
+.roomBoxImg{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.roomBox-middleUser{
+    position: absolute;
+    top: 43%;
+    right: 10px;
+    z-index: 1;
+}
+.roomUserImg{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+.roomBox-bottom{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+    padding-left: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    gap: 10px;
+    height: 50%;
+    color: #FFEFE9;
+    background-color: #242730;
+}
+.roomName{
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+}
+.roomDescription{
+    font: 300 16px "Outfit", Helvetica, Arial, serif;
+}
+.roomMembers-container{
+    position: absolute;
+    height: fit-content;
+    width: fit-content;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 10px;
+    background-color: #C26565;
+    padding: 4px;
+}
+.roomMembers{
+    font: 400 12px "Outfit", Helvetica, Arial, serif;
+}
+/* Room Infomation*/
+.roomInformation{
+    position: absolute;
+    right: 30px;
+    top: 120px;
+    height: 50px;
+    width: 50px;
+    background-color: grey;
+}

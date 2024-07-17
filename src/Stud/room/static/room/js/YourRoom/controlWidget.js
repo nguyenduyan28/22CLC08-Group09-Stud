@@ -469,7 +469,6 @@ document.getElementById('noteInput').addEventListener('keydown', function(event)
   }
 });
 
-
 //Drag and drop
 function makeDraggable(draggableElement) {
   let isDragging = false;
