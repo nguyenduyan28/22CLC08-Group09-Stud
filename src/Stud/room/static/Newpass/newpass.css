@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: 0;
+}
+
+body {
+  background: url("img1.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  border: 2px solid #fff;
+  backdrop-filter: blur (2px0);
+  height: 350px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #c26565;
+  border-radius: 20px;
+}
+
+.box h1 {
+  text-align: center;
+  font: 32px "Outfit", Helvetica, Arial, serif;
+}
+
+.box .input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 24px 0;
+}
+
+.input-box input {
+  width: 210px;
+  height: 20%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+  color: #fff;
+}
+
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+#forgot {
+  width: 275px;
+  height: 34px;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+  margin-top: 12px;
+  font: 20px "Outfit", Helvetica, Arial, serif;
+}
+/*
+p {
+  font-size: 18px;
+  color: #fff;
+  margin-top: 11px;
+  text-align: center;
+  font: 16px "Outfit", Helvetica, Arial, serif;
+}*/
+.log {
+  font-weight: 500;
+  color: #fff;
+}
+
+.log:hover {
+  text-decoration: underline;
+}
+
+/* Styles for error messages */
+.messages {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffdddd;
+  color: #d8000c;
+  border: 1px solid #d8000c;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 350px;
+  list-style: none;
+  text-align: left;
+  margin-top: 4%;
+}
+
+.messages .error {
+  margin: 5px 0;
+}
+
+.messages .error::before {
+  content: "• ";
+}
