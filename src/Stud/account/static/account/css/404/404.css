@@ -26,7 +26,7 @@ body {
 h1 {
   font-size: 96px;
   font-weight: 700 !important;
-  background: url("oops.jpg");
+  background: url("/static/account/images/404/oops.jpg") no-repeat;
   background-size: cover;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
