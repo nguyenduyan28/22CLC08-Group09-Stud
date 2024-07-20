@@ -96,8 +96,8 @@ document.getElementById('resetButton').addEventListener('click', function() {
 });
 
 // Calendar widget
-const CLIENT_ID = '1010364015261-tuoislk4e7dbre5j624354i45elegbgf.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyBwk6Rs9OCLA3DkH522I7QWAgIkSJLvAFg';
+const CLIENT_ID = '775438645625-14ljqeu8juek64ei8vtdmo829cmguqbm.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyDED6NWjqvO-_fO3lX64PRCzzpwuQR7_9Y';
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
 const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
 
@@ -112,6 +112,23 @@ document.getElementById('signout_button').style.visibility = 'hidden';
 function gapiLoaded() {
     gapi.load('client', initializeGapiClient);
 }
+function gisLoaded() {
+  tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      callback: (resp) => {
+          if (resp.error) {
+              console.error('Error during authentication:', resp.error);
+              return;
+          }
+          document.getElementById('signout_button').style.visibility = 'visible';
+          document.getElementById('authorize_button').innerText = 'Refresh';
+          listUpcomingEvents(); // Fetch and display calendar events
+      },
+  });
+  gisInited = true;
+  maybeEnableButtons();
+}
 
 async function initializeGapiClient() {
     await gapi.client.init({
@@ -120,18 +137,17 @@ async function initializeGapiClient() {
     });
     gapiInited = true;
     maybeEnableButtons();
-    listUpcomingEvents();
 }
 
-function gisLoaded() {
-    tokenClient = google.accounts.oauth2.initTokenClient({
-        client_id: CLIENT_ID,
-        scope: SCOPES,
-        callback: '', // defined later
-    });
-    gisInited = true;
-    maybeEnableButtons();
-}
+// function gisLoaded() {
+//     tokenClient = google.accounts.oauth2.initTokenClient({
+//         client_id: CLIENT_ID,
+//         scope: SCOPES,
+//         callback: '', // defined later
+//     });
+//     gisInited = true;
+//     maybeEnableButtons();
+// }
 
 function maybeEnableButtons() {
     if (gapiInited && gisInited) {
@@ -146,7 +162,7 @@ function handleAuthClick() {
         }
         document.getElementById('signout_button').style.visibility = 'visible';
         document.getElementById('authorize_button').innerText = 'Refresh';
-        await listUpcomingEvents();
+        listUpcomingEvents();
     };
 
     if (gapi.client.getToken() === null) {

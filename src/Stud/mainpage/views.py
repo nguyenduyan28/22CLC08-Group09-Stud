@@ -4,10 +4,9 @@ from django.template import loader
 
 # Create your views here.
 
-
 def home(request):
   return render(request, "mainpage/Home.html")
 
-
+@login_required
 def yourroom(request):
   return render(request, "mainpage/YourRoom.html")
