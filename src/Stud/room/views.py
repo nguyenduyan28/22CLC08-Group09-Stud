@@ -33,6 +33,3 @@ def delete_image(request, image_id):
         return redirect('image_list')
     return render(request, 'confirm_delete.html', {'image': image})
 
-
-def login(request):
-  return render(request, "room/Login.html")

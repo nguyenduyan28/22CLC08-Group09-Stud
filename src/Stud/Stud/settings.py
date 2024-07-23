@@ -91,8 +91,7 @@ WSGI_APPLICATION = 'Stud.wsgi.app'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 from dotenv import load_dotenv
-env_path = Path('.') / '.env'
-load_dotenv(dotenv_path=env_path)
+load_dotenv()
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
@@ -144,7 +143,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_ROOT = os.path.join(BASE_DIR, "resources/staticfiles")
+STATIC_ROOT = os.path.join(BASE_DIR, "sroom/staticfiles")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "account/static"),
