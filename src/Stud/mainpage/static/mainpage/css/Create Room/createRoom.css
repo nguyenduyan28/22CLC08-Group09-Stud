@@ -1,0 +1,164 @@
+body, html{
+  /* background-image: linear-gradient(to right, #FDFCFB, #E2D1C3); */
+  background-image: linear-gradient( 109.6deg,  rgba(254,253,205,1) 11.2%, rgba(163,230,255,1) 91.1% );
+  margin: 0px;
+  height: 100%;
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+.welcomeText{
+  position: absolute;
+  margin-bottom: 600px;
+  z-index: 1;
+  font: 500 36px "Outfit", Helvetica, Arial, serif;
+}
+/* Form*/
+#roomForm{
+  position: relative;
+  background-color: #fff;
+  border-radius: 20px;
+  height: 450px;
+  width: 700px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+/* Form Box*/
+/* Form Room Name*/
+#form__roomName{
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.form__box__top{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  width: 100%;
+}
+.form__box__top--title{
+  font: 400 30px "Outfit", Helvetica, Arial, serif;
+}
+.form__box__middle{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  bottom: 40px;
+  height: 50%;
+  width: 100%;
+}
+#input{
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  font: 400 20px "Outfit", Helvetica, Arial, serif;
+
+}
+.form__box__bottom{
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #000;
+  height: 20%;
+  width: 100%;
+}
+.nextButton{
+  position: absolute;
+  right: 10px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10px;
+  border: 0.5px solid #000;
+  background-color: #C26565;
+  color: #fff;
+  font: 500 20px "Outfit", Helvetica, Arial, serif;
+  cursor: pointer;
+}
+.prevButton{
+  position: absolute;
+  left: 10px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 10px;
+  border: 0.5px solid #000;
+  background-color: #C26565;
+  color: #fff;
+  font: 500 20px "Outfit", Helvetica, Arial, serif;
+  cursor: pointer;
+}
+.nextButton:hover,
+.prevButton:hover,
+.startButton:hover{
+  transform: scale(1.1);
+}
+.nextButton:active,
+.prevButton:active,
+.startButton:active{
+  transform: scale(0.9);
+}
+.image{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 270px;
+  right: -330px;
+}
+/* Form Room Description*/
+#form__roomDescription{
+  position:relative;
+  height: 100%;
+  width: 100%;
+}
+#form__roomType{
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+#form_roomStatus{
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+/* Form welcome*/
+#form__welcome{
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.form__welcome--title{
+  font: 500 44px "Outfit", Helvetica, Arial, serif;
+}
+.form__boxWelcome__top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+}
+.form__boxWelcome__bottom{
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-top: 0.5px solid #000;
+  height: 20%;
+}
+.startButton{
+  position: absolute;
+  left: 45%;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  border: 0.5px solid #000;
+  background-color: #C26565;
+  color: #fff;
+  font: 500 24px "Outfit", Helvetica, Arial, serif;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
