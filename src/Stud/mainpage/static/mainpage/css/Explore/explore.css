@@ -281,7 +281,6 @@ main{
     width: 204px;
     border-radius: 25px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    cursor: pointer;
 }
 .pageNumber{
     position: relative;
@@ -407,7 +406,8 @@ main{
     width: 200px;
     height: 200px;  
 }
-.modalInfoContent{
+.modalInfoContent {
+    background-color: lightpink;
     position: relative;
     width: 100%;
     height: fit-content;
@@ -420,11 +420,11 @@ main{
     flex-direction: row;
 }
 .modalInfoContent-top-left{
+
     position: relative;
     display: flex;
     align-items: center;
     flex-direction: row;
-    margin-left: 10px;
     gap: 20px;
 }
 #modalRoomName{
@@ -440,60 +440,18 @@ main{
     display: flex;
     align-items: center;
     margin-right: 10px;
+    background-color: yellow;
 }
 .modalRoomMembers-container{
+    background-color: lightblue;
     position: relative;
     display: flex;
     align-items: center;
     width: fit-content;
     height: fit-content;
-    padding: 4px;
-    /* border: 0.01px solid #422320; */
-    border-radius: 15px;
-    background-color: #FFEFE9;
-    color: #422320;
+    padding: 4px;   
+    border-radius: 5px;
 }
 #modalRoomMembers{
     font: 500 16px "Outfit", Helvetica, Arial, serif;
-}
-#modalRoomDescription {
-    position: relative;
-    display: inline-block;
-    margin-left: 10px;
-    max-height: 120px;
-    width: 100%;
-    overflow-y: auto;
-    word-wrap: break-word;
-    font: 400 20px "Outfit", Helvetica, Arial, serif;
-}
-.modalInfoContent-bottom{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 50px;
-}
-.joinRoom-button{
-    position: relative;
-    width: fit-content;
-    height: fit-content;
-    border-radius: 45px;
-    border: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: #FFEFE9;
-    color: #000;
-    font: 500 20px "Outfit", Helvetica, Arial, serif;
-    padding: 10px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-.joinRoom-button:hover{
-    background-color: #FFEFE9;
-    color: #C26565;
-    transform: scale(1.1);
-}
-.joinRoom-button:active{
-    transform: scale(0.9);
 }
