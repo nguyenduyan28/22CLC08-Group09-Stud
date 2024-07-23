@@ -7,30 +7,20 @@
 
 body {
   display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
   background: url("img1.jpg") no-repeat;
   background-size: cover;
   background-position: center;
 }
-.movable {
-  width: 100px;
-  height: 100px;
-  background-color: lightblue;
-  text-align: center;
-  line-height: 100px;
-  border-radius: 10px;
-  position: absolute;
-  cursor: move;
-}
 
 .User {
-  position: absolute;
-  border-radius: 20px;
-  padding: 40px;
   width: 80%;
-  border: 5px;
-  border-radius: 10px;
-  border-color: #0f66b3;
+  max-width: 1200px;
+  border-radius: 20px;
+  padding: 50px;
+  border: 5px solid #333f4923;
 }
 /* General Container and Layout */
 .container {
