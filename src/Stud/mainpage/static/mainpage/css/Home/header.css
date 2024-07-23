@@ -67,7 +67,7 @@ body{
 }
 .right-header{
     height: 72px;
-    width: fit-content;
+    width: 247px;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -82,10 +82,9 @@ body{
     font: 500 16px/1.25 "Outfit", Helvetica, Arial, serif;
     color: #422320;
     position: relative;
-    display: inline-block;
+    display: inline-flex;
     min-width: 0px;
     cursor: pointer;
-    white-space: nowrap;
     text-decoration: none;
 }
 .Signup-text:hover{
@@ -97,7 +96,6 @@ body{
     height: 49px;
     font-size: 16px;
     font-weight: 500;
-    position: relative;
     background-color: #C26565;
     color: white;
     font-weight: 500;

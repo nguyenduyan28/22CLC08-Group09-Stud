@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: 0;
+}
+
+body {
+  background-image: url("img1.jpg");
+}
+
+input {
+  display: block;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.box {
+  border: 2px solid #fff;
+  backdrop-filter: blur (2px0);
+  height: 300px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #c26565;
+  border-radius: 20px;
+}
+
+h1 {
+  text-align: center;
+  font: 32px "Outfit", Helvetica, Arial, serif;
+  transform: translateY(-20px);
+}
+
+#email,
+#password {
+  width: 275px;
+  height: 25px;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid black;
+  margin: 10px;
+  margin-bottom: 20px;
+  color: white;
+  font: 16px "Outfit", Helvetica, Arial, serif;
+}
+
+input::placeholder {
+  color: white;
+  font-size: 14px;
+}
+
+#forgot {
+  width: 275px;
+  height: 34px;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+  margin-top: 12px;
+  font: 20px "Outfit", Helvetica, Arial, serif;
+}
+
+p {
+  /*position: absolute;*/
+  font-size: 18px;
+  color: #fff;
+  margin-top: 11px;
+  text-align: center;
+  font: 16px "Outfit", Helvetica, Arial, serif;
+}
+
+.log {
+  font-weight: 500;
+  color: #fff;
+}
+
+.log:hover {
+  text-decoration: underline;
+}
