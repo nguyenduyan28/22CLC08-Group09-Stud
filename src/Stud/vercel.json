@@ -6,24 +6,12 @@
       "src": "Stud/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.11" }
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "resources/staticfiles"
-      }
     }
   ],
   "routes": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "Stud/wsgi.py"
     }
-  ],
-  "outputDirectory": "resources/staticfiles"
+  ]
 }
