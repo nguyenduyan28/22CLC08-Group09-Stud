@@ -15,3 +15,6 @@ def yourroom(request):
 
 def contact(request):
   return render(request, "mainpage/Contact.html")
+
+def explore(request):
+  return render(request, "mainpage/Explore.html")

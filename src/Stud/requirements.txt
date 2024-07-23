@@ -125,6 +125,7 @@ imagecodecs @ file:///work/perseverance-python-buildout/croot/imagecodecs_169885
 imageio @ file:///croot/imageio_1707247282708/work
 imagesize @ file:///work/perseverance-python-buildout/croot/imagesize_1698864514488/work
 imbalanced-learn @ file:///croot/imbalanced-learn_1718132237102/work
+immutabledict==4.2.0
 importlib-metadata @ file:///croot/importlib_metadata-suite_1704813515092/work
 incremental @ file:///croot/incremental_1708639938299/work
 inflection @ file:///work/perseverance-python-buildout/croot/inflection_1698869084799/work
@@ -234,6 +235,7 @@ opencv-python==4.10.0.84
 openpyxl @ file:///croot/openpyxl_1714158863747/work
 opt-einsum==3.3.0
 optree==0.12.1
+ortools==9.10.4067
 overrides @ file:///work/perseverance-python-buildout/croot/overrides_1701732220415/work
 packaging @ file:///croot/packaging_1710807400464/work
 pandas @ file:///croot/pandas_1718308974269/work/dist/pandas-2.2.2-cp312-cp312-linux_x86_64.whl#sha256=92c518f7e09edd50b5caa5862636c51d6a29391803f3ada62f68aa52f27d8f92
@@ -258,7 +260,7 @@ progressbar2==4.4.2
 prometheus-client @ file:///work/perseverance-python-buildout/croot/prometheus_client_1698865353814/work
 prompt-toolkit @ file:///croot/prompt-toolkit_1704404351921/work
 Protego @ file:///tmp/build/80754af9/protego_1598657180827/work
-protobuf==4.21.12
+protobuf==5.27.2
 psutil @ file:///work/perseverance-python-buildout/croot/psutil_1698863411559/work
 psycopg2==2.9.9
 psycopg2-binary==2.9.9
