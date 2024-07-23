@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from Stud import settings
+from django.urls import reverse
 from django.core.mail import send_mail, EmailMessage
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
@@ -16,6 +17,7 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 
 from . tokens import generate_token
+from . models import  Profile
 
 def index(request):
     return render(request, 'account/index.html')
@@ -96,7 +98,7 @@ def signin(request):
 def signout(request):
     logout(request)
     #messages.success(request, "Loged out successfully!")
-    return redirect('home')
+    return redirect('../../')
 # Create your views here.
 
 def activate(request, uidb64, token):
@@ -111,7 +113,7 @@ def activate(request, uidb64, token):
         myuser.save()
         login(request,myuser)
         messages.success(request, "Your Account has been activated.")
-        return redirect('home')
+        return redirect('/')
     else:
         return render(request,'activation_failed.html')
 

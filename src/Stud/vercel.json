@@ -1,8 +1,9 @@
+
 {
   "version": 2,
   "builds": [
     {
-      "src": "Stud/asgi.py",
+      "src": "<projectname>/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     },
@@ -10,14 +11,19 @@
       "src": "build_files.sh",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "ui/staticfiles"
+        "distDir": "room/staticfiles"
       }
     }
   ],
   "routes": [
     {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "Stud/asgi.py"
+      "dest": "<projectname>/wsgi.py"
     }
-  ]
+  ],
+  "outputDirectory": "room/staticfiles"
 }
