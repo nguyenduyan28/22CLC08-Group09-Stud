@@ -1,13 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ImageForm
 from .models import Image
-from django.contrib.auth.decorators import login_required
 # Create your views here.
-@login_required
 def yourroom(request):
-    
-    images = Image.objects.all()
-    return render(request, "room/YourRoom.html", {'images': images})
+  images = Image.objects.all()
+  return render(request, "room/YourRoom.html", {'images': images})
 
 def upload_image(request):
     if request.method == 'POST':
@@ -33,3 +30,6 @@ def delete_image(request, image_id):
         return redirect('image_list')
     return render(request, 'confirm_delete.html', {'image': image})
 
+
+def login(request):
+  return render(request, "room/Login.html")
