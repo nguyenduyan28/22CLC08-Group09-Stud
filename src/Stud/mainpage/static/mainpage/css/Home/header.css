@@ -108,26 +108,17 @@ body{
 .group-header-intro{
     position: absolute;
     display: flex;
-    top: 175px;
-    justify-content: center;
-    width: 100%;
+    flex-direction: column;
     gap: 84px 0px;
 }
-.container-header-intro-item{
-    display: flex;
-    flex-direction: row;
-}
-.left-group-header-intro{
-    display: flex;
-    position: relative;
-    flex-direction: column;
-}
+
 .header-intro-Title{
     position: relative;
     display: flex;
+    top: 200px;
+    left: 250px;
     width: 510px;
     align-items: center;
-    top: -5%;
     font: 500 53px/1.5 "Outfit", Helvetica, Arial, serif;
     color: #422320;
 }
@@ -135,7 +126,7 @@ body{
     text-decoration: none;
 }
 .intro-startnow-button{
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,18 +139,20 @@ body{
     border-radius: 27px 27px 27px 27px;
     padding: 11px 28px 11px 28px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
-    left: 21%;
     border: none;
+    top: 200px;
+    left: 300px;
     cursor: pointer;
 }
 :root{
     --color: #F9B399;
 }
 .intro-image{
-    position: relative;
-    left: -5%;
+    position: absolute;
     width: 760px;
     height: 400px;
+    top: 250px;
+    left: 650px;
     filter: drop-shadow(0px 0px 50px var(--color));
 }
 /*Mid element*/
@@ -404,13 +397,11 @@ body{
     color: #422320;
     cursor: pointer;
     text-decoration: none;
-    white-space: nowrap;
 }
 .footer-social-text{
     font: 500 26px/1.5 "Outfit", Helvetica, Arial, serif;
     color: #422320;
     cursor: pointer;
-    white-space: nowrap;
 }
 .footer-social-icons{
     position: relative;
