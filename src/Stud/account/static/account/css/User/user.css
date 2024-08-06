@@ -7,8 +7,6 @@
 
 body {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
   background: url("img1.jpg") no-repeat;
   background-size: cover;
@@ -75,7 +73,6 @@ body {
 
 /* General Tab Content */
 .profile-img {
-  height: 80px;
   width: 80px;
 }
 
@@ -101,7 +98,6 @@ body {
 
 .btn-outline-primary {
   margin-right: 10px;
-  background-size: cover;
 }
 
 .md-btn-flat {
