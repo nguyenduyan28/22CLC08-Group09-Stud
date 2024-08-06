@@ -5,9 +5,9 @@
         <link rel="web icon" type="icon" href="/static/mainpage/css/images/Stud-logo.png"/>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link rel="stylesheet" href="/static/mainpage/css/header.css"/>
-        <link rel="stylesheet" href="/static/mainpage/css/fonts.css" />
-        <link rel="stylesheet" href="/static/mainpage/css/animation.css" />
+        <link rel="stylesheet" href="../static/mainpage/css/header.css"/>
+        <link rel="stylesheet" href="../static/mainpage/css/fonts.css" />
+        <link rel="stylesheet" href="../static/mainpage/css/animation.css" />
     </head>
     <body>
         <div class="top-element">
@@ -44,10 +44,10 @@
                             </div>
                             {% if user.is_authenticated %}
                                 <span>{{ user.username }}</span>
-                                <a href="/account/logout">Logout</a>
+                                <a href="/accounts/logout">Logout</a>
                             {% else %}
-                                <a class="Signup-text" href="/account/signup">Sign up</a>
-                                <a href = "/account/signin">
+                                <a class="Signup-text" href="/accounts/signup">Sign up</a>
+                                <a href = "/accounts/login">
                                     <button class="Login-button">Login</button>
                                 </a>
                             {% endif %}
