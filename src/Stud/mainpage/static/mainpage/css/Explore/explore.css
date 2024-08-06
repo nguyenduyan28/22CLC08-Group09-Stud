@@ -127,7 +127,8 @@ body{
     width: 173px;
     border-top-right-radius: 17px;
     border-bottom-right-radius: 17px;
-    height: 585px;
+    /* height: 585px; */
+    height: fit-content;
     background-color: #C26565;
 }
 .explore__nav--container{
@@ -144,7 +145,10 @@ body{
     flex-direction: column;
     gap: 15px;
     width: 100%;
-    height: 273px;
+    /* height: 273px; */
+    height: fit-content;
+    padding-top: 20px;
+    padding-bottom: 20px;
     border-bottom: 0.01px solid #fff;
 }
 .explore__nav__top--title{
@@ -181,8 +185,10 @@ body{
     flex-direction: column;
     gap: 15px;
     width: 100%;
-    height: 250px;
-    padding-top: 10px;
+    /* height: 250px; */
+    height: fit-content;
+    padding-top: 20px;
+    padding-bottom: 20px;
     border-bottom: 0.01px solid #fff;
 }
 .explore__nav__middle--categoriesText{
