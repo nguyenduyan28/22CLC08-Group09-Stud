@@ -31,6 +31,10 @@ function setupWidget(openButton, widget, closeButton) {
 const openThemeButton = document.querySelector('.theme');
 const closeThemeWidget = document.querySelector('.closeThemeWidget');
 const themeWidget = document.querySelector('.themeWidget');
+// Upload image
+const openUploadButton = document.querySelector('.uploadImageButton');
+const closeUpload = document.querySelector('.closeUploadWidget');
+const UploadButton = document.querySelector('.formUploadImage');
 
 // Music widget
 const openMusicButton = document.querySelector('.music');
@@ -54,6 +58,7 @@ const closeNoteWidget = document.querySelector('.closeNoteWidget');
 
 // Setup widget
 setupWidget(openThemeButton, themeWidget, closeThemeWidget);
+setupWidget(openUploadButton, UploadButton, closeUpload);
 setupWidget(openMusicButton, musicWidget, closeMusicWidget);
 setupWidget(openCalendarButton, calendarWidget, closeCalendarWidget);
 setupWidget(openClockButton, clockWidget, closeClockWidget);
@@ -535,3 +540,12 @@ makeDraggable(musicWidget);
 makeDraggable(calendarWidget);
 makeDraggable(clockWidget);
 makeDraggable(noteWidget);
+
+// Upload section
+const actualBtn = document.getElementById('actual-btn');
+
+const fileChosen = document.getElementById('file-chosen');
+
+actualBtn.addEventListener('change', function(){
+  fileChosen.textContent = this.files[0].name
+})
