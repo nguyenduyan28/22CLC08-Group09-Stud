@@ -7,27 +7,15 @@
 
 body {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
   background: url("img1.jpg") no-repeat;
   background-size: cover;
   background-position: center;
 }
 
-.User {
-  width: 80%;
-  max-width: 1200px;
-  border-radius: 20px;
-  padding: 50px;
-  border: 5px solid #333f4923;
-}
 /* General Container and Layout */
 .container {
-  position: relative;
   background: #ffffff;
-  border-radius: 20px;
-  padding: 40px;
 }
 
 .light-style {
@@ -75,7 +63,6 @@ body {
 
 /* General Tab Content */
 .profile-img {
-  height: 80px;
   width: 80px;
 }
 
@@ -101,7 +88,6 @@ body {
 
 .btn-outline-primary {
   margin-right: 10px;
-  background-size: cover;
 }
 
 .md-btn-flat {

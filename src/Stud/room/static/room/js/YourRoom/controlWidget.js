@@ -204,6 +204,61 @@ startBtn.addEventListener('click', () => {
 });
 resetBtn.addEventListener('click', resetPomodoro);
 
+// Note Widget
+document.getElementById('addTodoButton').addEventListener('click', function() {
+  const todoItem = document.createElement('div');
+  todoItem.className = 'todoItem';
+
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+
+  const todoTextInput = document.createElement('input');
+  todoTextInput.type = 'text';
+  todoTextInput.placeholder = 'Enter your todo...';
+
+  todoTextInput.addEventListener('keydown', function(event) {
+      if (event.key === 'Backspace' && todoTextInput.value === '') {
+          todoItem.remove();
+
+          if (document.getElementById('todoContainer').children.length === 0) {
+              document.getElementById('noteInput').placeholder = 'Write your note here...';
+          }
+      }
+  });
+
+  checkbox.addEventListener('change', function() {
+      if (checkbox.checked) {
+          todoTextInput.style.textDecoration = 'line-through';
+      } else {
+          todoTextInput.style.textDecoration = 'none';
+      }
+  });
+
+  todoItem.appendChild(checkbox);
+  todoItem.appendChild(todoTextInput);
+  document.getElementById('todoContainer').appendChild(todoItem);
+
+  document.getElementById('noteInput').placeholder = '';
+});
+
+document.getElementById('noteInput').addEventListener('keydown', function(event) {
+  if (event.key === 'Backspace' && this.selectionStart === 0) {
+      const todoContainer = document.getElementById('todoContainer');
+      const lastTodoItem = todoContainer.lastElementChild;
+
+      if (lastTodoItem) {
+          todoContainer.removeChild(lastTodoItem);
+
+          if (todoContainer.children.length === 0) {
+              document.getElementById('noteInput').placeholder = 'Write your note here...';
+          }
+
+          event.preventDefault();
+      }
+  }
+});
+
+
 //Drag and drop
 function makeDraggable(draggableElement) {
   let isDragging = false;

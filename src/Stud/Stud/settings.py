@@ -88,7 +88,9 @@ ASGI_APPLICATION = 'Stud.asgi.app'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+from dotenv import load_dotenv
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -137,7 +139,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "resources/staticfiles")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "account/static"),
