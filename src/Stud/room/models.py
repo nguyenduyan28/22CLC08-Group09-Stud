@@ -1,5 +1,4 @@
 from django.db import models
-from account.models import Profile
 
 # Create your models here.
 class Image(models.Model):
@@ -9,15 +8,3 @@ class Image(models.Model):
 
   def __str__ (self):
     return self.title
-
-
-class Room(models.Model):
-  PRIVATE = "PR"
-  PUBLIC = "PB"
-  ROOM_CHOICES = {
-    (PRIVATE , "private"),
-    (PUBLIC , "public")
-  }
-  roomName = models.CharField(max_length=100)
-  hostId = models.ForeignKey(Profile, on_delete=models.CASCADE)
-  roomPrivacy = models.CharField(max_length=10, choices=ROOM_CHOICES, default=PUBLIC,)

@@ -94,6 +94,7 @@ body {
   border: none;
   background: none;
   color: #007bff;
+  transform: translateY(-4px);
 }
 
 /* Form Groups and Inputs */

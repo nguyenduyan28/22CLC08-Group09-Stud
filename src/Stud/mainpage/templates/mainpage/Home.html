@@ -2,12 +2,12 @@
 <html> 
     <head>
         <title>Stud</title>
-        <link rel="web icon" type="icon" href="../../static/mainpage/images/Home/Stud-logo.png"/>
+        <link rel="web icon" type="icon" href="/static/mainpage/css/images/Stud-logo.png"/>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link rel="stylesheet" href="../../static/mainpage/css/Home/header.css"/>
-        <link rel="stylesheet" href="../../static/mainpage/css/Home/fonts.css" />
-        <link rel="stylesheet" href="../../static/mainpage/css/Home/animation.css" />
+        <link rel="stylesheet" href="/static/mainpage/css/header.css"/>
+        <link rel="stylesheet" href="/static/mainpage/css/fonts.css" />
+        <link rel="stylesheet" href="/static/mainpage/css/animation.css" />
     </head>
     <body>
         <div class="top-element">
@@ -18,8 +18,8 @@
                 <div class="container-header">
                     <header class="header">
                         <div class="left-header">
-                            <a href="../mainpage/Home.html">
-                                <img class="Stud-logo" src="../../static/mainpage/images/Home/Stud-logo.png"/>  
+                            <a href="/">
+                                <img class="Stud-logo" src="/static/mainpage/css/images/Stud-logo.png"/>  
                             </a>
                         </div>
                         <nav class="middle-header">
@@ -40,61 +40,60 @@
                         </nav>
                         <div class="right-header">
                             <div class="notification-icon-container">
-                                <img class="notification-icon" src="../../static/mainpage/images/Home/Bell.svg"/>
+                                <img class="notification-icon" src="/static/mainpage/css/images/Bell.svg"/>
                             </div>
-                            <a class="Signup-text" href="../mainpage/Home.html">
-                                Sign up
-                            </a>
-                            <a href="../accounts/login">
-                                <button class="Login-button" >Login</button>
-                            </a>
+                            {% if user.is_authenticated %}
+                                <span>{{ user.username }}</span>
+                                <a href="/account/logout">Logout</a>
+                            {% else %}
+                                <a class="Signup-text" href="/account/signup">Sign up</a>
+                                <a href = "/account/signin">
+                                    <button class="Login-button">Login</button>
+                                </a>
+                            {% endif %}
                         </div>
                     </header>
                 </div>
             </div>
             <!--Header introduction-->
             <div class="group-header-intro">
-                <div class="container-header-intro-item">
-                    <div class="left-group-header-intro">
-                        <h1 class="header-intro-Title">
-                            Find out the best environment to focus and productivity
-                        </h1>
-                        <a class="buttonStyle" href="../mainpage/Home.html">
-                            <button class="intro-startnow-button">Start now</button>
-                        </a>
-                    </div>
-                    <img class="intro-image" src="../../static/mainpage/images/Home/intro-image.png">
-                </div>
+                <h1 class="header-intro-Title">
+                    Find out the best environment to focus and productivity
+                </h1>
+                <a class="buttonStyle" href="/">
+                    <button class="intro-startnow-button">Start now</button>
+                </a>
             </div>
+            <img class="intro-image" src="/static/mainpage/css/images/intro-image.png">
         </div>
         <div class="mid-element" id="mid-element">
             <div class="featuresGrid">
                 <div class="featureItem">
-                    <img class="featureIcon" src="../../static/mainpage/images/Home/community.png" alt="alt text" />
+                    <img class="featureIcon" src="/static/mainpage/css/images/community.png" alt="alt text" />
                     <h1 class="featureTitle">Community</h1>
                 </div>
                 <div class="featureItem1">
-                    <img class="featureIcon" src="../../static/mainpage/images/Home/focus.png" alt="alt text" />
+                    <img class="featureIcon" src="/static/mainpage/css/images/focus.png" alt="alt text" />
                     <h1 class="featureTitle">Focus</h1>
                 </div>
                 <div class="featureItem2">
-                    <img class="featureIcon1" src="../../static/mainpage/images/Home/soundsandthemes.png" alt="alt text" />
+                    <img class="featureIcon1" src="/static/mainpage/css/images/soundsandthemes.png" alt="alt text" />
                     <h1 class="featureTitle">Sounds and themes</h1>
                 </div>
                 <div class="featureItem3">
-                    <img class="featureIcon" src="../../static/mainpage/images/Home/notes.png" alt="alt text" />
+                    <img class="featureIcon" src="/static/mainpage/css/images/notes.png" alt="alt text" />
                     <h1 class="featureTitle">Notes</h1>
                 </div>
             </div>
         </div>
         <div class="location-section" id="location-section">
-            <img class="location" src="../../static/mainpage/images/Home/location.png"/>
+            <img class="location" src="/static/mainpage/css/images/location.png"/>
         </div>
         <div class="prepare-section" id="prepare-section">
             <div class="prepare-container">
                 <h1 class="prepare-title">Prepare Yourself And Start Exploring With Us.</h1>
                 <h1 class="prepare-subtitle">Join now</h1>
-                <a class="buttonStyle" href="/templates/mainpage/Explore.html"><button class="prepare-button">Get started</button></a>
+                <a class="buttonStyle" href="/explore"><button class="prepare-button">Get started</button></a>
             </div>
         </div>
         <div class="subcribe-section" id="subcribe-section">
@@ -102,7 +101,7 @@
             <div class="subcribe-container">
                 <div class="subcribe-form">
                     <div class="email">Yourmail@mail.com</div>
-                    <a class="buttonStyle" href="/templates/mainpage/Home.html">
+                    <a class="buttonStyle" href="/">
                         <div class="subcribe-button">Subcribe</div>
                     </a>
                 </div>
@@ -110,30 +109,30 @@
         </div>
         <footer class="footer-section">
             <div class="footer-container">
-                <a href="/templates/mainpage/Home.html">
-                    <img class="Stud-logo-footer" src="../../static/mainpage/images/Home/Stud-logo.png"/>  
+                <a href="/">
+                    <img class="Stud-logo-footer" src="/static/mainpage/css/images/Stud-logo.png"/>  
                 </a>
                 <nav class="footer-nav">
-                    <a class="nav-item" href="../mainpage/Home.html">Home</a>
-                    <a class="nav-item" href="../../../room/templates/room/YourRoom.html">Your Room</a>
-                    <a class="nav-item" href="../../templates/mainpage/Explore.html">Explore</a>
-                    <a class="nav-item" href="../../templates/mainpage/Contact.html">Contact</a>
+                    <a class="nav-item" href="/">Home</a>
+                    <a class="nav-item" href="/room/yourroom">Your Room</a>
+                    <a class="nav-item" href="/explore">Explore</a>
+                    <a class="nav-item" href="/contact">Contact</a>
                 </nav>
                 <div class="footer-link">
                     <div class="footer-link-item">Policy privacy</div>
-                    <div class="footer-link-item">Term and condition</div>
+                    <div class="footer-link-item">Term and codition</div>
                 </div>
                 <div class="footer-social">
                     <div class="footer-social-text">Find us on social media :</div>
                     <div class="footer-social-icons">
-                        <img class="social-icon" src="../../static/mainpage/images/Home/facebook-logo.svg">
-                        <img class="social-icon" src="../../static/mainpage/images/Home/youtube-logo.svg">
-                        <img class="social-icon1" src="../../static/mainpage/images/Home/instagram-logo.svg">
+                        <img class="social-icon" src="/static/mainpage/css/images/facebook-logo.svg">
+                        <img class="social-icon" src="/static/mainpage/css/images/youtube-logo.svg">
+                        <img class="social-icon1" src="/static/mainpage/css/images/instagram-logo.svg">
                     </div>
                 </div>
             </div>
         </footer>
     </body>
-    <script src="../../static/mainpage/js/Home/eventHandle.js"></script>
-    <script src="../../static/mainpage/js/Home/animation.js"></script>
+    <script src="/static/mainpage/js/animation.js"></script>
+    <script src="/static/mainpage/js/eventHandle.js"></script>
 </html>
