@@ -35,7 +35,7 @@
 }
 @keyframes loadAnimationImg{
     0%{
-        transform: translateX(25%);
+        transform: translateX(15%);
         filter: blur(10px);
     }
     80%{
