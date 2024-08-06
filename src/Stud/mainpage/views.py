@@ -6,10 +6,11 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+
 def home(request):
   return render(request, "mainpage/Home.html")
 
-@login_required
+
 def yourroom(request):
   return render(request, "mainpage/YourRoom.html")
 
