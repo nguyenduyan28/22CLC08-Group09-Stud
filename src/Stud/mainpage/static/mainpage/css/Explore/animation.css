@@ -1,0 +1,84 @@
+@keyframes loadAnimation{
+  0%{
+      transform: scale(0);
+  }
+  100%{
+      transform: scale(1);
+  }
+}
+@keyframes loadAnimationImg{
+  0%{
+      transform: translateX(5%);
+      filter: blur(2px);
+  }
+  80%{
+      transform: translate(-3%);
+  }
+  100%{
+      transform: translate(0%);
+  }
+}
+@keyframes loadNavAnimation{
+  0%{
+      transform: translateX(-15%);
+      filter: blur(2px);
+  }
+  80%{
+      transform: translate(1%);
+  }
+  100%{
+      transform: translate(0%);
+  }
+}
+@keyframes loadDiscoverSection{
+  0%{
+      transform: translateX(0);
+      filter: blur(7px);
+  }
+  80%{
+      transform: translate(0%);
+  }
+  100%{
+      transform: translate(0%);
+  }
+}
+@keyframes loadTextAnimation{
+  0%{
+      transform: translateY(-5px);
+      filter: blur(7px);
+  }
+  80%{
+      transform: translate(0%);
+  }
+  100%{
+      transform: translate(0%);
+  }
+}
+.explore__header--left,
+.explore__header--createRoomButton,
+.explore__header--noti,
+.explore__header--userInfo{
+  animation: loadAnimation 1s ease forwards;
+  transform: scale(0);
+  animation-delay: 0.2s;
+}
+.explore__header--middle,
+.explore__header--right{
+  animation: loadAnimationImg 1s ease forwards;
+  transform: scale(0);
+}
+.explore__nav{
+  animation: loadNavAnimation 1s ease forwards;
+  transform: scale(0);
+}
+.explore__main--discoverThemeSection,
+.explore__main--discoverRoomSection{
+  animation: loadDiscoverSection 1s ease forwards;
+  transform: scale(0);
+}
+.explore__main--discoverThemeSection--title,
+.explore__main--discoverThemeSection--subtitle,
+.explore__main--discoverRoomSection--title{
+  animation: loadTextAnimation 1s ease forwards;
+  transform: scale(0);
+}

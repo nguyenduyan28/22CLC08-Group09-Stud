@@ -1,0 +1,17 @@
+@keyframes loadAnimation{
+  0%{
+      transform: scale(0);
+  }
+  100%{
+      transform: scale(1);
+  }
+}
+.left-header,
+.logout,
+.setting,
+.zoomOut,
+.container-nav,
+.messageIcon{
+  animation: loadAnimation 1s ease forwards;
+  transform: scale(0);
+}
