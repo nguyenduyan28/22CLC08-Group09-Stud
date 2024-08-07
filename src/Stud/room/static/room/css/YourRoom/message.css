@@ -32,6 +32,7 @@ nav ul li:hover {
     width: fit-content;
     position: fixed;
     display: none;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
 }
 /* nav ul li a {
     text-decoration: none;
@@ -112,7 +113,11 @@ nav ul li:hover {
 
 .message {
     max-height: 400px;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
     overflow-y: auto;
+}
+textarea{
+  font: 400 14px "Outfit", Helvetica, Arial, serif;
 }
 
 .chat-body .message .receive, .send {
@@ -160,7 +165,9 @@ form button {
     background-color: #FFEFE9;
     border-radius: 5px;
     border: none;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
     color: #000;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {
