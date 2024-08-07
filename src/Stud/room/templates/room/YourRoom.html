@@ -6,6 +6,7 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="stylesheet" href="../../static/room/css/YourRoom/header.css"/>
+        <link rel="stylesheet" href="../../static/room/css/YourRoom/message.css"/>
         <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
         <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
         <link rel="stylesheet" href="../../../static/mainpage/css/Home/fonts.css" />
@@ -56,7 +57,7 @@
                         <img class="navImage" src="../../static/room/images/YourRoom/participate.svg"/>
                     </div>
                 </div>
-            <div class="message">
+            <div class="messageIcon">
                 <img class="messageImage" src="../../static/room/images/YourRoom/message.svg"/>
             </div>
         </nav>
@@ -200,6 +201,38 @@
             <div id="noteSection">
                 <div id="todoContainer"></div>
                 <textarea id="noteInput" placeholder="Write your note here..."></textarea>
+            </div>
+        </div>
+        <!-- Message widget -->
+        <div class="messageWidget">
+            <div class="containerMessage">
+                <center><h2>Chats</h2></center><hr>
+                <div class="chat-body-parent">
+                    <div class="chat-body" id="tasks">
+                        <div class="message" id="chatContainer">
+                            <!-- message chat-->
+                            {% for i in messages %}
+                                {% if i.sender != user %}
+                                    <div class="receive">
+                                        <p><strong>{{i.sender}}</strong></p>
+                                        <p style="color: #000;"> {{i.message}}</p>
+                                    </div>
+                                {% else %}
+                                    <div class="send">
+                                        <p style="color: #000;">{{i.message}}</p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="form">
+                            <form action="" id="message-form" method="POST">
+                                {% csrf_token %}
+                                <textarea id="msg" cols="30" name="message" rows="10" placeholder="Enter your message" required></textarea>
+                                <button class="submit" type="submit">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

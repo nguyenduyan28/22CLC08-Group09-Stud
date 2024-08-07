@@ -71,7 +71,7 @@ header{
 .logout:hover,
 .setting:hover,
 .zoomOut:hover,
-.message:hover{
+.messageIcon:hover{
     transform: scale(1.05);
 }
 .nav{
@@ -117,7 +117,7 @@ header{
 .clock:hover,
 .notebook:hover,
 .participate:hover,
-.message:hover
+.messageIcon:hover
 {
     background-color: #1A0602;
     transform: scale(1.1);    
@@ -129,7 +129,7 @@ header{
     height: 24px;
     display: flex;
 }
-.message{
+.messageIcon{
     width: 48px;
     height: 48px;
     display: flex;
