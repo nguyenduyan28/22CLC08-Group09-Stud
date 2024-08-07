@@ -308,9 +308,9 @@
 }
 .content h3 {
   color: #222;
-  letter-spacing: 1px;
+  /* letter-spacing: 1px; */
   text-align: justify;
-  font: 16px "Outfit", Helvetica, Arial, serif;
+  font: 24px "Outfit", Helvetica, Arial, serif;
 }
 .content .button {
   margin-top: 40px;
@@ -338,6 +338,8 @@
 .image-section img {
   max-width: 100%;
   height: auto;
+  position: relative;
+  top: -150px;
 }
 /* Footer section */
 .footer-section {
