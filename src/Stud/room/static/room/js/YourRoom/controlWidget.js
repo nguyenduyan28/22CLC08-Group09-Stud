@@ -26,11 +26,24 @@ function setupWidget(openButton, widget, closeButton) {
       });
   }
 }
+// Header yourrom
+// Your room
+const openYourRoomInfo = document.querySelector('.yourroom-header');
+const closeYourRoominfo = document.querySelector('.yourroom-header-popup-top-close');
+const yourRoomInfo = document.querySelector('.yourroom-header-popup');
+// Invite link
+const openInviteLink = document.querySelector('.invite-header');
+const closeInviteLink = document.querySelector('.invite-header-popup-top-close');
+const inviteLink = document.querySelector('.invite-header-popup');
 
 // Theme widget
 const openThemeButton = document.querySelector('.theme');
 const closeThemeWidget = document.querySelector('.closeThemeWidget');
 const themeWidget = document.querySelector('.themeWidget');
+// Upload image
+const openUploadButton = document.querySelector('.uploadImageButton');
+const closeUpload = document.querySelector('.closeUploadWidget');
+const UploadButton = document.querySelector('.formUploadImage');
 
 // Music widget
 const openMusicButton = document.querySelector('.music');
@@ -52,12 +65,27 @@ const openNoteButton = document.querySelector('.notebook');
 const noteWidget = document.querySelector('.noteWidget');
 const closeNoteWidget = document.querySelector('.closeNoteWidget');
 
+// Message Widget
+const openMessageButton = document.querySelector('.messageIcon');
+const messageWidget = document.querySelector('.messageWidget');
+const closeMessage = document.querySelector('.closeMessageWidget');
+
+// Member Widget
+const openMemberWidget = document.querySelector('.participate');
+const memberWidget = document.querySelector('.memberWidget');
+const closeMemberWidget = document.querySelector('.closeMessageWidget');
+
 // Setup widget
 setupWidget(openThemeButton, themeWidget, closeThemeWidget);
+setupWidget(openUploadButton, UploadButton, closeUpload);
 setupWidget(openMusicButton, musicWidget, closeMusicWidget);
 setupWidget(openCalendarButton, calendarWidget, closeCalendarWidget);
 setupWidget(openClockButton, clockWidget, closeClockWidget);
 setupWidget(openNoteButton, noteWidget, closeNoteWidget);
+setupWidget(openMessageButton, messageWidget, closeMessage);
+setupWidget(openYourRoomInfo, yourRoomInfo, closeYourRoominfo);
+setupWidget(openInviteLink, inviteLink, closeInviteLink);
+setupWidget(openMemberWidget, memberWidget, closeMemberWidget);
 
 // INTERACT SECTION
 // Theme widget
@@ -485,6 +513,7 @@ document.getElementById('noteInput').addEventListener('keydown', function(event)
   }
 });
 
+
 //Drag and drop
 function makeDraggable(draggableElement) {
   let isDragging = false;
@@ -534,3 +563,16 @@ makeDraggable(musicWidget);
 makeDraggable(calendarWidget);
 makeDraggable(clockWidget);
 makeDraggable(noteWidget);
+makeDraggable(messageWidget);
+makeDraggable(yourRoomInfo);
+makeDraggable(inviteLink);
+makeDraggable(memberWidget);
+
+// Upload section
+const actualBtn = document.getElementById('id_image');
+
+const fileChosen = document.getElementById('file-chosen');
+
+actualBtn.addEventListener('change', function(){
+  fileChosen.textContent = this.files[0].name
+})

@@ -6,9 +6,11 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link rel="stylesheet" href="../../static/room/css/YourRoom/header.css"/>
+        <link rel="stylesheet" href="../../static/room/css/YourRoom/message.css"/>
+        <link rel="stylesheet" href="../../static/room/css/YourRoom/animation.css"/>
         <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
         <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
-        <link rel="stylesheet" href="../../../mainpage/static/mainpage/css/Home/fonts.css" />
+        <link rel="stylesheet" href="../../../static/mainpage/css/Home/fonts.css" />
         <link rel="stylesheet" href="../../static/room/css/YourRoom/widget.css" />
     </head>
     <body>
@@ -22,8 +24,8 @@
                     </div>
                 </div>
                 <div class="right-header">
-                    <div class="logout">
-                        <img class="logoutImage" src="../../static/room/images/YourRoom/logout.svg"/>
+                    <div class="logout" >
+                        <a href="../"><img class="logoutImage" src="../../static/room/images/YourRoom/logout.svg"/></a>
                     </div>
                     <div class="setting">
                         <img class="logoutImage" src="../../static/room/images/YourRoom/setting.svg"/>
@@ -56,7 +58,7 @@
                         <img class="navImage" src="../../static/room/images/YourRoom/participate.svg"/>
                     </div>
                 </div>
-            <div class="message">
+            <div class="messageIcon">
                 <img class="messageImage" src="../../static/room/images/YourRoom/message.svg"/>
             </div>
         </nav>
@@ -86,11 +88,40 @@
                         <img class="imageBox" src="../../static/room/images/YourRoom/themes/background.jpg"></img>
                         <img class="imageBox" src="../../static/room/images/YourRoom/themes/background.jpg"></img>
                         <img class="imageBox" src="../../static/room/images/YourRoom/themes/background.jpg"></img>
+                        <img class="imageBox" src="../../static/room/images/YourRoom/themes/background.jpg"></img>
+                        <img class="imageBox" src="../../static/room/images/YourRoom/themes/background.jpg"></img>
                         <img class="imageBox" src="../../static/room/images/YourRoom/themes/background.jpg"></img> -->
                         {% for image in images %}
                         <img src="{{image.image.url}}" alt="{{image.title}}" class="imageBox">
                         {% endfor %}
                     </div>
+                </div>
+            </div>
+            <div class="containerUploadImage">
+                <div class="uploadImageButton">
+                    <button class="buttonUploadImage">Upload</button>
+                </div>
+                <div class="formUploadImage">
+                    <form class="formUploadImage-container" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                         <!--{{ form.as_p }} -->
+                         <p>
+                            <label for="id_title">Title:</label>
+                            <input type="text" name="title" class="title-field" required="" id="id_title">
+                          </p>
+                          <p>
+                            <label for="id_image" class="image-field">Image:</label>
+                            <input type="file" name="image" class="image-field" accept="image/*" required="" id="id_image">
+                        </p>
+<div class="formUploadImage-top">
+                            <input type="file" id="id_image" hidden/>
+                            <label class="chooseFileButton" for="id_image">Choose File</label>
+                            <span id="file-chosen">No file chosen</span>
+                        </div>
+                        <div class="formUploadImage-bottom">
+                            <button class="formUploadImage-bottom-button" type="submit">Upload</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -187,8 +218,70 @@
                 <textarea id="noteInput" placeholder="Write your note here..."></textarea>
             </div>
         </div>
+        <!-- Message widget -->
+        <div class="messageWidget">
+            <div class="containerMessage">
+                <center><h2>Chats</h2></center><hr>
+                <div class="chat-body-parent">
+                    <div class="chat-body" id="tasks">
+                        <div class="message" id="chatContainer">
+                            <!-- message chat-->
+                            {% for i in messages %}
+                                {% if i.sender != user %}
+                                    <div class="receive">
+                                        <p><strong>{{i.sender}}</strong></p>
+                                        <p style="color: #000;"> {{i.message}}</p>
+                                    </div>
+                                {% else %}
+                                    <div class="send">
+                                        <p style="color: #000;">{{i.message}}</p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="form">
+                            <form action="" id="message-form" method="POST">
+                                {% csrf_token %}
+                                <textarea id="msg" cols="30" name="message" rows="10" placeholder="Enter your message" required></textarea>
+                                <button class="submit" type="submit">Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Participate widget-->
+        <div class="memberWidget">
+            <div class="memberWidget-top">
+                <div class="memberWidget-top-text">Members</div>
+            </div>
+            <div class="memberWidget-bottom">
+                <div class="memberWidget-bottom-member">10/20</div>
+            </div>
+            </div>
+        </div>
+        <!-- Header information-->
+         <div class="yourroom-header-popup">
+            <div class="yourroom-header-popup-top">
+                <div class="yourroom-header-popup-top-text">Your room</div>
+                <img class="yourroom-header-popup-top-close" src="../../static/room/images/YourRoom/closeWidget.svg">
+            </div>
+            <div class="yourroom-header-popup-bottom">
+                <div class="yourroom-header-bottom-name">Room's name</div>
+                <div class="yourroom-header-bottom-description"> Room description</div>
+            </div>
+        </div>
+        <div class="invite-header-popup">
+            <div class="invite-header-popup-top">
+                <div class="invite-header-popup-top-text">Invite link</div>
+                <img class="invite-header-popup-top-close" src="../../static/room/images/YourRoom/closeWidget.svg">
+            </div>
+            <div class="invite-header-popup-bottom">
+                <div class="invite-header-popup-bottom-text">Link</div>
+            </div>
+        </div>
     </body>
-    <script src=”https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../../static/room/js/YourRoom/controlWidget.js"></script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>

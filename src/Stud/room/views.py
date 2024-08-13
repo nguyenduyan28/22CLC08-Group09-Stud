@@ -3,11 +3,17 @@ from .forms import ImageForm
 from .models import Image
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-@login_required
+# @login_required
 def yourroom(request):
-    
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('yourroom')
+    elif request.method == 'GET':
+        form = ImageForm()
     images = Image.objects.all()
-    return render(request, "room/YourRoom.html", {'images': images})
+    return render(request, "room/YourRoom.html", {'images': images, 'form': form})
 
 def upload_image(request):
     if request.method == 'POST':
@@ -17,7 +23,9 @@ def upload_image(request):
             return redirect('image_list')
     elif request.method == 'GET':
         form = ImageForm()
+    # sua cho nay
     return render(request, 'room/upload_image.html', {'form': form})
+    return render(request, 'room/YourRoom.html', {'form': form})
 
 def image_list(request):
     if request.method == 'POST':
@@ -33,3 +41,6 @@ def delete_image(request, image_id):
         return redirect('image_list')
     return render(request, 'confirm_delete.html', {'image': image})
 
+
+def login(request):
+  return render(request, "room/Login.html")
