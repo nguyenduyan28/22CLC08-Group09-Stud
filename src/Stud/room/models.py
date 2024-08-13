@@ -8,9 +8,6 @@ class Image(models.Model):
 
   def __str__ (self):
     return self.title
-  def save(self, *args, **kwargs):
-    if not self.title:
-      self.title = f"{self.upload_at}image3232aa"
         
 
 class Room(models.Model):
