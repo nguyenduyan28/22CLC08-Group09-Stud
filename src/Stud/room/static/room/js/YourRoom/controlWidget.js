@@ -56,6 +56,11 @@ const openNoteButton = document.querySelector('.notebook');
 const noteWidget = document.querySelector('.noteWidget');
 const closeNoteWidget = document.querySelector('.closeNoteWidget');
 
+// Message Widget
+const openMessageButton = document.querySelector('.messageIcon');
+const messageWidget = document.querySelector('.messageWidget');
+const closeMessage = document.querySelector('.closeMessageWidget');
+
 // Setup widget
 setupWidget(openThemeButton, themeWidget, closeThemeWidget);
 setupWidget(openUploadButton, UploadButton, closeUpload);
@@ -63,6 +68,7 @@ setupWidget(openMusicButton, musicWidget, closeMusicWidget);
 setupWidget(openCalendarButton, calendarWidget, closeCalendarWidget);
 setupWidget(openClockButton, clockWidget, closeClockWidget);
 setupWidget(openNoteButton, noteWidget, closeNoteWidget);
+setupWidget(openMessageButton, messageWidget, closeMessage);
 
 // INTERACT SECTION
 // Theme widget
@@ -540,6 +546,7 @@ makeDraggable(musicWidget);
 makeDraggable(calendarWidget);
 makeDraggable(clockWidget);
 makeDraggable(noteWidget);
+makeDraggable(messageWidget);
 
 // Upload section
 const actualBtn = document.getElementById('actual-btn');
