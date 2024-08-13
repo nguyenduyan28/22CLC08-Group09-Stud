@@ -160,7 +160,7 @@ form textarea {
 }
 
 form button {
-    width: 25%;
+    width: fit-content;
     padding: 10px;
     background-color: #FFEFE9;
     border-radius: 5px;

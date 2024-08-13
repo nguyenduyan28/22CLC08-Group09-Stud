@@ -55,7 +55,7 @@
                         <img class="navImage" src="../../static/room/images/YourRoom/notebook.svg"/>
                     </div>
                     <div class="participate">
-<img class="navImage" src="../../static/room/images/YourRoom/participate.svg"/>
+                        <img class="navImage" src="../../static/room/images/YourRoom/participate.svg"/>
                     </div>
                 </div>
             <div class="messageIcon">
@@ -102,14 +102,17 @@
                     <button class="buttonUploadImage">Upload</button>
                 </div>
                 <div class="formUploadImage">
-                    <form method="post" enctype="multipart/form-data">
-
-                        {% csrf_token %}
-                        {{ form.as_ul}}
-                        <button type="submit">Upload</button>
-                        {% comment %} <input type="file" id="actual-btn" hidden/>
-                        <label class="chooseFileButton" for="actual-btn">Choose File</label>
-                        <span id="file-chosen">No file chosen</span> {% endcomment %}
+                    <form class="formUploadImage-container" method="post" enctype="multipart/form-data">
+                        <!-- {% csrf_token %}
+                        {{ form.as_p }} -->
+                        <div class="formUploadImage-top">
+                            <input type="file" id="actual-btn" hidden/>
+                            <label class="chooseFileButton" for="actual-btn">Choose File</label>
+                            <span id="file-chosen">No file chosen</span>
+                        </div>
+                        <div class="formUploadImage-bottom">
+                            <button class="formUploadImage-bottom-button" type="submit">Upload</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -162,7 +165,7 @@
                 <div class="containerPomodoro">
                     <h1 class="textPomodoro">Pomodoro</h1>
                     <div class="pomodoroSection">
-<span class="pomodoro">00:00</span>
+                        <span class="pomodoro">00:00</span>
                     </div>
                     <div class="timeSection">
                         <div class="minutesSection">
@@ -237,6 +240,36 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Participate widget-->
+        <div class="memberWidget">
+            <div class="memberWidget-top">
+                <div class="memberWidget-top-text">Members</div>
+            </div>
+            <div class="memberWidget-bottom">
+                <div class="memberWidget-bottom-member">10/20</div>
+            </div>
+            </div>
+        </div>
+        <!-- Header information-->
+         <div class="yourroom-header-popup">
+            <div class="yourroom-header-popup-top">
+                <div class="yourroom-header-popup-top-text">Your room</div>
+                <img class="yourroom-header-popup-top-close" src="../../static/room/images/YourRoom/closeWidget.svg">
+            </div>
+            <div class="yourroom-header-popup-bottom">
+                <div class="yourroom-header-bottom-name">Room's name</div>
+                <div class="yourroom-header-bottom-description"> Room description</div>
+            </div>
+        </div>
+        <div class="invite-header-popup">
+            <div class="invite-header-popup-top">
+                <div class="invite-header-popup-top-text">Invite link</div>
+                <img class="invite-header-popup-top-close" src="../../static/room/images/YourRoom/closeWidget.svg">
+            </div>
+            <div class="invite-header-popup-bottom">
+                <div class="invite-header-popup-bottom-text">Link</div>
             </div>
         </div>
     </body>
