@@ -12,8 +12,8 @@ def yourroom(request):
             return redirect('yourroom')
     elif request.method == 'GET':
         form = ImageForm()
-    image = Image.objects.all()
-    return render(request, "room/YourRoom.html", {'images': image, 'form': form})
+    images = Image.objects.all()
+    return render(request, "room/YourRoom.html", {'images': images, 'form': form})
 
 def upload_image(request):
     if request.method == 'POST':
@@ -24,7 +24,7 @@ def upload_image(request):
     elif request.method == 'GET':
         form = ImageForm()
     # sua cho nay
-    # return render(request, 'room/upload_image.html', {'form': form})
+    return render(request, 'room/upload_image.html', {'form': form})
     return render(request, 'room/YourRoom.html', {'form': form})
 
 def image_list(request):

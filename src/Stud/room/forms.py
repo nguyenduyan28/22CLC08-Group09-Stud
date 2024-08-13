@@ -9,5 +9,4 @@ class ImageForm(forms.ModelForm):
     fields = ['title', 'image']
     widgets = {
         'title': forms.TextInput(attrs={'class': 'title-field'}),
-        'image': forms.ClearableFileInput(attrs={'class': 'image-field'}),
     }
