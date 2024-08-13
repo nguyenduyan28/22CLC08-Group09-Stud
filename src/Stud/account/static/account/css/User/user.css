@@ -13,9 +13,19 @@ body {
   background-position: center;
 }
 
+.User {
+  width: 80%;
+  max-width: 1200px;
+  border-radius: 20px;
+  padding: 50px;
+  border: 5p solid #333f4923;
+}
 /* General Container and Layout */
 .container {
+  position: relative;
   background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
 }
 
 .light-style {
@@ -94,6 +104,7 @@ body {
   border: none;
   background: none;
   color: #007bff;
+  transform: translateY(-4px);
 }
 
 /* Form Groups and Inputs */
