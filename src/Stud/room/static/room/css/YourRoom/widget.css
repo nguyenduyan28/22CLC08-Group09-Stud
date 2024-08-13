@@ -129,6 +129,10 @@ body{
 label{
     font: 500 16px "Outfit", Helvetica, Arial, serif;
     color: #fff;
+    display: inline-block;
+}
+label #id_image{
+    display: none;
 }
 .title-field {
     font: 300 12px "Outfit", Helvetica, Arial, serif;
@@ -136,20 +140,23 @@ label{
     font-weight: bold;
     margin-bottom: 10px;
 }
-
+.image_title{
+    display: none;
+}
 .image-field {
     border: 2px solid #ccc;
     padding: 5px;
     margin-bottom: 10px;
+    display: none;
 }
 #file-chosen{
     margin-left: 0.3rem;
     color : white;
     font-family: sans-serif;
 }
-input[type="file"] {
+/* input[type="file"] {
     display: none;
-}
+} */
 .chooseFileButton{
     position: relative;
     display: inline-block;
