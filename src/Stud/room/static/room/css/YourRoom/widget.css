@@ -113,6 +113,7 @@ body{
 .uploadImageButton{
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
 }
 .buttonUploadImage{
     height: 40px;
@@ -124,7 +125,7 @@ body{
     color: white;
     cursor: pointer;
 }
-
+/* Upload popup*/
 label{
     font: 500 16px "Outfit", Helvetica, Arial, serif;
     color: #fff;
@@ -145,10 +146,12 @@ label{
     margin-left: 0.3rem;
     font-family: sans-serif;
 }
-/* input[type="file"] {
+input[type="file"] {
     display: none;
-} */
+}
 .chooseFileButton{
+    position: relative;
+    display: inline-block;
     background-color: indigo;
     color: white;
     padding: 0.5rem;
@@ -156,6 +159,35 @@ label{
     border-radius: 0.3rem;
     cursor: pointer;
     margin-top: 1rem;
+}
+ .formUploadImage{
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+ }
+ .formUploadImage-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+ }
+ .formUploadImage-bottom{
+    height: fit-content;
+    width: fit-content;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.formUploadImage-bottom-button{
+    height: 40px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffefe9;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: black;
 }
 /*Music Widget*/
 .musicContainer {
