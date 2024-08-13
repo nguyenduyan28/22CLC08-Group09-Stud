@@ -26,11 +26,24 @@ function setupWidget(openButton, widget, closeButton) {
       });
   }
 }
+// Header yourrom
+// Your room
+const openYourRoomInfo = document.querySelector('.yourroom-header');
+const closeYourRoominfo = document.querySelector('.yourroom-header-popup-top-close');
+const yourRoomInfo = document.querySelector('.yourroom-header-popup');
+// Invite link
+const openInviteLink = document.querySelector('.invite-header');
+const closeInviteLink = document.querySelector('.invite-header-popup-top-close');
+const inviteLink = document.querySelector('.invite-header-popup');
 
 // Theme widget
 const openThemeButton = document.querySelector('.theme');
 const closeThemeWidget = document.querySelector('.closeThemeWidget');
 const themeWidget = document.querySelector('.themeWidget');
+// Upload image
+const openUploadButton = document.querySelector('.uploadImageButton');
+const closeUpload = document.querySelector('.closeUploadWidget');
+const UploadButton = document.querySelector('.formUploadImage');
 
 // Music widget
 const openMusicButton = document.querySelector('.music');
@@ -39,7 +52,7 @@ const closeMusicWidget = document.querySelector('.closeMusicWidget');
 
 // Calendar
 const openCalendarButton = document.querySelector('.calendar');
-const calendarWidget = document.querySelector('.calendarContainer');
+const calendarWidget = document.querySelector('.calendarWidget');
 const closeCalendarWidget = document.querySelector('.closeCalendarWidget');
 
 // Clock Widget
@@ -47,11 +60,32 @@ const openClockButton = document.querySelector('.clock');
 const clockWidget = document.querySelector('.clockWidget');
 const closeClockWidget = document.querySelector('.closeClockWidget');
 
+// Note Widget
+const openNoteButton = document.querySelector('.notebook');
+const noteWidget = document.querySelector('.noteWidget');
+const closeNoteWidget = document.querySelector('.closeNoteWidget');
+
+// Message Widget
+const openMessageButton = document.querySelector('.messageIcon');
+const messageWidget = document.querySelector('.messageWidget');
+const closeMessage = document.querySelector('.closeMessageWidget');
+
+// Member Widget
+const openMemberWidget = document.querySelector('.participate');
+const memberWidget = document.querySelector('.memberWidget');
+const closeMemberWidget = document.querySelector('.closeMessageWidget');
+
 // Setup widget
 setupWidget(openThemeButton, themeWidget, closeThemeWidget);
+setupWidget(openUploadButton, UploadButton, closeUpload);
 setupWidget(openMusicButton, musicWidget, closeMusicWidget);
 setupWidget(openCalendarButton, calendarWidget, closeCalendarWidget);
 setupWidget(openClockButton, clockWidget, closeClockWidget);
+setupWidget(openNoteButton, noteWidget, closeNoteWidget);
+setupWidget(openMessageButton, messageWidget, closeMessage);
+setupWidget(openYourRoomInfo, yourRoomInfo, closeYourRoominfo);
+setupWidget(openInviteLink, inviteLink, closeInviteLink);
+setupWidget(openMemberWidget, memberWidget, closeMemberWidget);
 
 // INTERACT SECTION
 // Theme widget
@@ -64,9 +98,217 @@ document.querySelectorAll('.imageBox').forEach(function(img) {
     });
 });
 
+// Music widget
+document.getElementById('playMusicButton').addEventListener('click', function() {
+  const url = document.getElementById('urlInput').value;
+  const musicWidget = document.getElementById('musicWidget');
+
+  if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      const videoId = url.split('v=')[1] || url.split('/').pop();
+      const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      musicWidget.src = embedUrl;
+  } else if (url.includes('spotify.com')) {
+      const embedUrl = url.replace('/track/', '/embed/track/').replace('/album/', '/embed/album/').replace('/playlist/', '/embed/playlist/');
+      musicWidget.src = embedUrl;
+  } else if (url.includes('music.apple.com')) {
+      const embedUrl = url.replace('music.apple.com', 'embed.music.apple.com');
+      musicWidget.src = embedUrl;
+  } else {
+      alert('Unsupported URL');
+  }
+});
+
+document.getElementById('resetButton').addEventListener('click', function() {
+  const defaultUrl = 'https://open.spotify.com/embed/album/6s84u2TUpR3wdUv4NgKA2j?utm_source=generator';
+  document.getElementById('musicWidget').src = defaultUrl;
+});
+
 // Calendar widget
-const timeElement = document.querySelector(".time");
-const dateElement = document.querySelector(".date");
+const CLIENT_ID = '775438645625-14ljqeu8juek64ei8vtdmo829cmguqbm.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyDED6NWjqvO-_fO3lX64PRCzzpwuQR7_9Y';
+const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
+
+let tokenClient;
+let gapiInited = false;
+let gisInited = false;
+let currentDate = new Date();
+
+document.getElementById('authorize_button').style.visibility = 'hidden';
+document.getElementById('signout_button').style.visibility = 'hidden';
+
+function gapiLoaded() {
+    gapi.load('client', initializeGapiClient);
+}
+function gisLoaded() {
+  tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      callback: (resp) => {
+          if (resp.error) {
+              console.error('Error during authentication:', resp.error);
+              return;
+          }
+          document.getElementById('signout_button').style.visibility = 'visible';
+          document.getElementById('authorize_button').innerText = 'Refresh';
+          listUpcomingEvents(); // Fetch and display calendar events
+      },
+  });
+  gisInited = true;
+  maybeEnableButtons();
+}
+
+async function initializeGapiClient() {
+    await gapi.client.init({
+        apiKey: API_KEY,
+        discoveryDocs: [DISCOVERY_DOC],
+    });
+    gapiInited = true;
+    maybeEnableButtons();
+}
+
+// function gisLoaded() {
+//     tokenClient = google.accounts.oauth2.initTokenClient({
+//         client_id: CLIENT_ID,
+//         scope: SCOPES,
+//         callback: '', // defined later
+//     });
+//     gisInited = true;
+//     maybeEnableButtons();
+// }
+
+function maybeEnableButtons() {
+    if (gapiInited && gisInited) {
+        document.getElementById('authorize_button').style.visibility = 'visible';
+    }
+}
+
+function handleAuthClick() {
+    tokenClient.callback = async (resp) => {
+        if (resp.error !== undefined) {
+            throw (resp);
+        }
+        document.getElementById('signout_button').style.visibility = 'visible';
+        document.getElementById('authorize_button').innerText = 'Refresh';
+        listUpcomingEvents();
+    };
+
+    if (gapi.client.getToken() === null) {
+        tokenClient.requestAccessToken({prompt: 'consent'});
+    } else {
+        tokenClient.requestAccessToken({prompt: ''});
+    }
+}
+
+function handleSignoutClick() {
+    const token = gapi.client.getToken();
+    if (token !== null) {
+        google.accounts.oauth2.revoke(token.access_token);
+        gapi.client.setToken('');
+        document.getElementById('content').innerText = '';
+        document.getElementById('authorize_button').innerText = 'Authorize';
+        document.getElementById('signout_button').style.visibility = 'hidden';
+    }
+}
+
+async function listUpcomingEvents() {
+    const calendarElement = document.getElementById('calendarSection');
+    calendarElement.innerHTML = '';
+
+    for (let i = 0; i < 24; i++) {
+        const hourElement = document.createElement('div');
+        hourElement.className = 'hour';
+        const timeElement = document.createElement('div');
+        timeElement.className = 'time';
+        timeElement.innerText = formatHour(i);
+        const eventsElement = document.createElement('div');
+        eventsElement.className = 'events';
+        hourElement.appendChild(timeElement);
+        hourElement.appendChild(eventsElement);
+        calendarElement.appendChild(hourElement);
+    }
+
+    let response;
+    try {
+        const timeMin = new Date(currentDate);
+        timeMin.setHours(0, 0, 0, 0);
+        const timeMax = new Date(currentDate);
+        timeMax.setHours(23, 59, 59, 999);
+
+        const request = {
+            'calendarId': 'primary',
+            'timeMin': timeMin.toISOString(),
+            'timeMax': timeMax.toISOString(),
+            'showDeleted': false,
+            'singleEvents': true,
+            'orderBy': 'startTime',
+        };
+        response = await gapi.client.calendar.events.list(request);
+    } catch (err) {
+        // send message 'underfined'
+        //document.getElementById('content').innerText = err.message;
+        return;
+    }
+
+    const events = response.result.items;
+    if (!events || events.length == 0) {
+        document.getElementById('content').innerText = '';
+    } else {
+        events.forEach(event => {
+            const start = new Date(event.start.dateTime || event.start.date);
+            const end = new Date(event.end.dateTime || event.end.date);
+            const startHour = start.getHours();
+            const startMinute = start.getMinutes();
+            const endHour = end.getHours();
+            const endMinute = end.getMinutes();
+            const duration = ((end - start) / 60000); // Duration in minutes
+
+            const eventElement = document.createElement('div');
+            eventElement.className = 'event';
+            eventElement.style.top = `${(startMinute / 60) * 100}%`;
+            eventElement.style.height = `${(duration / 60) * 100}%`;
+            eventElement.innerText = event.summary;
+
+            const hourElement = document.querySelector(`.hour:nth-child(${startHour + 1}) .events`);
+            if (hourElement) {
+                hourElement.appendChild(eventElement);
+            }
+        });
+
+        const output = events.reduce(
+            (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
+            'Events:\n'
+        );
+        //document.getElementById('content').innerText = output;
+    }
+
+    document.getElementById('currentDate').innerText = formatDate(currentDate);
+}
+
+function formatDate(date) {
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+}
+
+function formatHour(hour) {
+    const period = hour < 12 ? 'AM' : 'PM';
+    const formattedHour = hour % 12 || 12; // Convert to AM PM hour
+    return `${formattedHour} ${period}`;
+}
+
+function prevDay() {
+    currentDate.setDate(currentDate.getDate() - 1);
+    listUpcomingEvents();
+}
+
+function nextDay() {
+    currentDate.setDate(currentDate.getDate() + 1);
+    listUpcomingEvents();
+}
+
+// Calendar widget
+const timeElement = document.querySelector(".timeClock");
+const dateElement = document.querySelector(".dateClock");
 
 /**
  * @param {Date} date
@@ -118,64 +360,77 @@ let intervalId;
 let trackingIntervalId;
 let isPomodoroRunning = false;
 let isTrackingRunning = false;
+minutesInput.addEventListener('blur', () => {
+  if (minutesInput.value.trim() === '') {
+    minutesInput.value = 0;
+  }
+});
 
+secondsInput.addEventListener('blur', () => {
+  if (secondsInput.value.trim() === '') {
+    secondsInput.value = 0;
+  }
+});
 let totalSeconds = 0;
 let trackingSeconds = 0;
 // Pomodoro
 function formatTimePomodoro(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
 
-    const formattedMinutes = minutes.toString().padStart(2, '0');
-    const formattedSeconds = remainingSeconds.toString().padStart(2, '0');
+  const formattedMinutes = minutes.toString().padStart(2, '0');
+  const formattedSeconds = remainingSeconds.toString().padStart(2, '0');
 
-    return `${formattedMinutes}:${formattedSeconds}`;
+  return `${formattedMinutes}:${formattedSeconds}`;
 }
 function playAudio() {
-  const audioElement = new Audio("/static/room/css/images/YourRoom/music/doneSound.mp3");
+  const audioElement = new Audio("../../static/room/images/YourRoom/music/doneSound.mp3");
   audioElement.play();
 }
 function startPomodoro() {
-    const minutes = parseInt(minutesInput.value);
-    const seconds = parseInt(secondsInput.value);
+  const minutes = parseInt(minutesInput.value);
+  const seconds = parseInt(secondsInput.value);
+  totalSeconds = minutes * 60 + seconds;
+    // Check if totalSeconds is zero
+  if (totalSeconds === 0) {
+    return;
+  }
+  timerDisplay.textContent = formatTimePomodoro(totalSeconds);
 
-    totalSeconds = minutes * 60 + seconds;
+  intervalId = setInterval(() => {
+    totalSeconds--;
+
     timerDisplay.textContent = formatTimePomodoro(totalSeconds);
 
-    intervalId = setInterval(() => {
-        totalSeconds--;
+    // check timeout
+    if (totalSeconds === 0) {
+        clearInterval(intervalId);
+        isPomodoroRunning = false;
 
-        timerDisplay.textContent = formatTimePomodoro(totalSeconds);
-
-        // check timeout
         if (totalSeconds === 0) {
             clearInterval(intervalId);
             isPomodoroRunning = false;
-
-            if (totalSeconds === 0) {
-                clearInterval(intervalId);
-                isPomodoroRunning = false;
-                playAudio();
-            }
-            minutesInput.value = 25;
-            secondsInput.value = 0;
+            playAudio();
         }
-    }, 1000);
+        minutesInput.value = 25;
+        secondsInput.value = 0;
+    }
+  }, 1000);
 
-    startBtn.disabled = true;
-    resetBtn.disabled = false;
-    isPomodoroRunning = true;
+  startBtn.disabled = true;
+  resetBtn.disabled = false;
+  isPomodoroRunning = true;
 }
 
 function resetPomodoro() {
-    clearInterval(intervalId);
-    totalSeconds = 0;
+  clearInterval(intervalId);
+  totalSeconds = 0;
 
-    timerDisplay.textContent = formatTimePomodoro(totalSeconds);
+  timerDisplay.textContent = formatTimePomodoro(totalSeconds);
 
-    startBtn.disabled = false;
-    resetBtn.disabled = true;
-    isPomodoroRunning = false;
+  startBtn.disabled = false;
+  resetBtn.disabled = true;
+  isPomodoroRunning = false;
 }
 // Tracking
 function startTracking() {
@@ -191,11 +446,11 @@ function stopTracking() {
     isTrackingRunning = false;
 }
 toggleSwitch.addEventListener('change', () => {
-    if (toggleSwitch.checked) {
-        startTracking();
-    } else {
-        stopTracking();
-    }
+  if (toggleSwitch.checked) {
+      startTracking();
+  } else {
+      stopTracking();
+  }
 });
 
 startBtn.addEventListener('click', () => {
@@ -307,3 +562,17 @@ makeDraggable(themeWidget);
 makeDraggable(musicWidget);
 makeDraggable(calendarWidget);
 makeDraggable(clockWidget);
+makeDraggable(noteWidget);
+makeDraggable(messageWidget);
+makeDraggable(yourRoomInfo);
+makeDraggable(inviteLink);
+makeDraggable(memberWidget);
+
+// Upload section
+const actualBtn = document.getElementById('id_image');
+
+const fileChosen = document.getElementById('file-chosen');
+
+actualBtn.addEventListener('change', function(){
+  fileChosen.textContent = this.files[0].name
+})

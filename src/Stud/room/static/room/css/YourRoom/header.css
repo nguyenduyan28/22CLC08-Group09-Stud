@@ -1,6 +1,5 @@
 body{
     margin: 20px 0px 0px 0px;
-    cursor: pointer;
 }
 header{
     height: 80px;
@@ -22,6 +21,7 @@ header{
     border-radius: 10px;
     display: flex;
     flex-direction: row;
+    cursor: pointer;
 }
 .yourroom-header{
     width: 164px;
@@ -31,7 +31,6 @@ header{
     align-items: center;
     font: 500 20px "Outfit", Helvetica, Arial, serif;
     border-right: 1px solid white;
-    
 }
 .invite-header{
     width: 73px;
@@ -55,6 +54,7 @@ header{
     height: 48px;
     width: 192px;
     gap: 24px;
+    cursor: pointer;
 }
 .logout,
 .setting,
@@ -68,13 +68,12 @@ header{
     background-color: #282322;
     border-radius: 10px;
 }
-.logout:hover,
+/* .logout:hover,
 .setting:hover,
 .zoomOut:hover,
-.message:hover{
+.messageIcon:hover{
     transform: scale(1.05);
-}
-
+} */
 .nav{
     width: 100%;
     height: 72px;
@@ -82,6 +81,7 @@ header{
     position: fixed;
     bottom: 20px;
     transition: bottom 0.3s;
+    cursor: pointer;
 }
 .container-nav{
     width: 454px;
@@ -116,9 +116,7 @@ header{
 .calendar:hover,
 .clock:hover,
 .notebook:hover,
-.participate:hover,
-.message:hover
-{
+.participate:hover{
     background-color: #1A0602;
     transform: scale(1.1);    
 }
@@ -129,7 +127,7 @@ header{
     height: 24px;
     display: flex;
 }
-.message{
+.messageIcon{
     width: 48px;
     height: 48px;
     display: flex;

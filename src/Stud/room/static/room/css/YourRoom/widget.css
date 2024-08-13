@@ -1,6 +1,7 @@
 .themeWidget{
     width: 268px;
-    height: 342px;
+    /* height: 342px; */
+    height: fit-content;
     background-color: #282322;
     border-radius: 10px;
     position: fixed;
@@ -13,7 +14,7 @@ body{
 .headerTheme{
     height: 40px;
     width: 100%;
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: center;
     top: 10px;
@@ -64,19 +65,21 @@ body{
 .textTheme{
     font: 200 14px "Outfit", Helvetica, Arial, serif;
     font-weight: light;
-    position: absolute;
-    top: 50px;
+    position: relative;
     left: 20px;
     color: white;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .containerThemeList{
     width: 100%;
-    height: 237px;
-    position: absolute;
-    top: 80px;
+    /* height: 237px; */
+    height: fit-content;
+    position: relative;
     display: flex;
     justify-content: center;
     height: fit-content;
+    margin-bottom: 10px;
 }
 .themeHolder{
     width: 237px;
@@ -103,7 +106,91 @@ body{
 .imageBox:hover{
     filter: brightness(1.2);
 }
-
+/* Upload section*/
+.uploadImageButton{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.buttonUploadImage{
+    height: 40px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #C26565;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: white;
+    cursor: pointer;
+}
+/* Upload popup*/
+label{
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: #fff;
+    display: inline-block;
+}
+.title-field {
+    font: 300 12px "Outfit", Helvetica, Arial, serif;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.image_title{
+    display: none;
+}
+.image-field {
+    border: 2px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    display: none;
+}
+#file-chosen{
+    margin-left: 0.3rem;
+    color : white;
+    font-family: sans-serif;
+}
+/* input[type="file"] {
+    display: none;
+} */
+.chooseFileButton{
+    position: relative;
+    display: inline-block;
+    background-color: indigo;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+ .formUploadImage{
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+ }
+ .formUploadImage-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+ }
+ .formUploadImage-bottom{
+    height: fit-content;
+    width: fit-content;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.formUploadImage-bottom-button{
+    height: 40px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffefe9;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: black;
+}
 /*Music Widget*/
 .musicContainer{
     width: 500px;
