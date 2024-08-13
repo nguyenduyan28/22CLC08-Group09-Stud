@@ -12,6 +12,23 @@
 body{
     background-size: 100%;
 }
+
+input[type="file"]{
+    /* display: none; */
+    background-color: blue;
+    background-color: indigo;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+.upload{
+    background-color: red;
+
+
+}
 .headerTheme{
     height: 40px;
     width: 100%;
@@ -138,14 +155,13 @@ label{
 .image-field {
     border: 2px solid #ccc;
     padding: 5px;
+    background-color: red;
     margin-bottom: 10px;
+    /* display: none; */
 }
 #file-chosen{
     margin-left: 0.3rem;
     font-family: sans-serif;
-}
-input[type="file"] {
-    display: none;
 }
 .chooseFileButton{
     background-color: indigo;
@@ -155,6 +171,7 @@ input[type="file"] {
     border-radius: 0.3rem;
     cursor: pointer;
     margin-top: 1rem;
+
 }
 /*Music Widget*/
 .musicContainer {
