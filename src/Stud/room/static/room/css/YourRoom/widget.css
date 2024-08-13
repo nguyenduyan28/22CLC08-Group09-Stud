@@ -145,9 +145,9 @@ label{
     margin-left: 0.3rem;
     font-family: sans-serif;
 }
-input[type="file"] {
+/* input[type="file"] {
     display: none;
-}
+} */
 .chooseFileButton{
     background-color: indigo;
     color: white;
@@ -691,8 +691,110 @@ display: none;
     border-radius: 10px;
     color: #fff;
 }
-
 .todoItem input[type="text"]:focus {
     outline: none;
     border: 1px solid #fff;
+}
+/* Members widget*/
+.memberWidget{
+    position: fixed;
+    /* display: none; */
+    height: fit-content;
+    width: fit-content;
+    background-color: #282322;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.memberWidget-top{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 300px;
+    border-bottom: 1px solid #fff;
+    padding: 10px;
+}
+.memberWidget-top-text{
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: white;
+}
+.memberWidget-bottom{
+    position: relative;
+    height: fit-content;
+    width: 300px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin : 20px 0px 20px 0px;
+}
+.memberWidget-bottom-member{
+    font: 500 30px "Outfit", Helvetica, Arial, serif;
+    color: white;
+}
+/* Your room header*/
+.yourroom-header-popup{
+    position: fixed;
+    display: none;
+    height: fit-content;
+    width: fit-content;
+    background-color: #282322;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.yourroom-header-popup-top{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 300px;
+    border-bottom: 1px solid #fff;
+    padding: 10px;
+}
+.yourroom-header-popup-top-text{
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    color: white;
+}
+.yourroom-header-popup-bottom{
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    color: white;
+    margin: 5px 30px 10px 30px;
+}
+.yourroom-header-bottom-name{
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    margin-bottom: 10px;
+}
+.yourroom-header-bottom-description{
+    font: 400 12px "Outfit", Helvetica, Arial, serif;
+}
+
+.invite-header-popup{
+    position: fixed;
+    /* display: none; */
+    height: fit-content;
+    width: fit-content;
+    background-color: #282322;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.invite-header-popup-top{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 300px;
+    border-bottom: 1px solid #fff;
+    padding: 10px;
+}
+.invite-header-popup-top-text{
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    color: white;
+}
+.invite-header-popup-bottom{
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    color: white;
+    margin: 5px 30px 10px 30px;
 }

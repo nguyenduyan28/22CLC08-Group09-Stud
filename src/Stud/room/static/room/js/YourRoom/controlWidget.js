@@ -26,6 +26,15 @@ function setupWidget(openButton, widget, closeButton) {
       });
   }
 }
+// Header yourrom
+// Your room
+const openYourRoomInfo = document.querySelector('.yourroom-header');
+const closeYourRoominfo = document.querySelector('.yourroom-header-popup-top-close');
+const yourRoomInfo = document.querySelector('.yourroom-header-popup');
+// Invite link
+const openInviteLink = document.querySelector('.invite-header');
+const closeInviteLink = document.querySelector('.invite-header-popup-top-close');
+const inviteLink = document.querySelector('.invite-header-popup');
 
 // Theme widget
 const openThemeButton = document.querySelector('.theme');
@@ -61,6 +70,11 @@ const openMessageButton = document.querySelector('.messageIcon');
 const messageWidget = document.querySelector('.messageWidget');
 const closeMessage = document.querySelector('.closeMessageWidget');
 
+// Member Widget
+const openMemberWidget = document.querySelector('.participate');
+const memberWidget = document.querySelector('.memberWidget');
+const closeMemberWidget = document.querySelector('.closeMessageWidget');
+
 // Setup widget
 setupWidget(openThemeButton, themeWidget, closeThemeWidget);
 setupWidget(openUploadButton, UploadButton, closeUpload);
@@ -69,6 +83,9 @@ setupWidget(openCalendarButton, calendarWidget, closeCalendarWidget);
 setupWidget(openClockButton, clockWidget, closeClockWidget);
 setupWidget(openNoteButton, noteWidget, closeNoteWidget);
 setupWidget(openMessageButton, messageWidget, closeMessage);
+setupWidget(openYourRoomInfo, yourRoomInfo, closeYourRoominfo);
+setupWidget(openInviteLink, inviteLink, closeInviteLink);
+setupWidget(openMemberWidget, memberWidget, closeMemberWidget);
 
 // INTERACT SECTION
 // Theme widget
@@ -547,6 +564,9 @@ makeDraggable(calendarWidget);
 makeDraggable(clockWidget);
 makeDraggable(noteWidget);
 makeDraggable(messageWidget);
+makeDraggable(yourRoomInfo);
+makeDraggable(inviteLink);
+makeDraggable(memberWidget);
 
 // Upload section
 const actualBtn = document.getElementById('actual-btn');
