@@ -1,3 +1,16 @@
+.logout:hover,
+.setting:hover,
+.zoomOut:hover,
+.messageIcon:hover{
+    transform: scale(1.05);
+}
+.left-header,
+.right-header,
+.container-nav,
+.messageIcon{
+  animation: loadAnimation 1s ease forwards;
+  transform: scale(0);
+}
 @keyframes loadAnimation{
   0%{
       transform: scale(0);
@@ -5,13 +18,4 @@
   100%{
       transform: scale(1);
   }
-}
-.left-header,
-.logout,
-.setting,
-.zoomOut,
-.container-nav,
-.messageIcon{
-  animation: loadAnimation 1s ease forwards;
-  transform: scale(0);
 }

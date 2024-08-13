@@ -80,16 +80,17 @@ body{
     display: flex;
     justify-content: center;
     height: fit-content;
-    background-color: lightblue;
     margin-bottom: 10px;
 }
 .themeHolder{
-    width: 237px;
+    width: 257px;
     height: 237px;
     display: flex;
     flex-direction: column;
     gap: 21px;
     overflow-y: auto;
+    margin-left: 7px;
+    margin-top: 2px;
 }
 .itemList{
     height: 65px;
