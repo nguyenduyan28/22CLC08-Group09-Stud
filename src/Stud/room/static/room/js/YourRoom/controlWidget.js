@@ -569,7 +569,7 @@ makeDraggable(inviteLink);
 makeDraggable(memberWidget);
 
 // Upload section
-const actualBtn = document.getElementById('actual-btn');
+const actualBtn = document.getElementById('id_image');
 
 const fileChosen = document.getElementById('file-chosen');
 

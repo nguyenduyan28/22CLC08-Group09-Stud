@@ -81,7 +81,6 @@ body{
     display: flex;
     justify-content: center;
     height: fit-content;
-    background-color: lightblue;
     margin-bottom: 10px;
 }
 .themeHolder{
@@ -130,9 +129,6 @@ label{
     font: 500 16px "Outfit", Helvetica, Arial, serif;
     color: #fff;
     display: inline-block;
-}
-label #id_image{
-    display: none;
 }
 .title-field {
     font: 300 12px "Outfit", Helvetica, Arial, serif;
