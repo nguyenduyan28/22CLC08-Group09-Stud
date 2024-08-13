@@ -9,7 +9,7 @@ header{
     align-items: center;
 }
 .container-header{
-    width: 1320px;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -38,7 +38,6 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-        
     font: 500 20px "Outfit", Helvetica, Arial, serif;
     border-right: 1px solid white;
 }
@@ -79,6 +78,8 @@ header{
     height: 72px;
     display: flex;
     position: fixed;
+    align-items: center;
+    justify-content: center;
     bottom: 20px;
     transition: bottom 0.3s;
     cursor: pointer;
@@ -93,7 +94,6 @@ header{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-left: 550px;
 }
 .navItem,
 .theme,
@@ -107,7 +107,6 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    
     border-radius: 10px;
 }
 .navItem:hover,
@@ -133,8 +132,8 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    
     border-radius: 10px;
     background-color: #282322;
-    margin: 12px 0px 12px 400px;
+    position: absolute;
+    right: 40px;
 }
