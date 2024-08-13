@@ -144,6 +144,7 @@ label{
 }
 #file-chosen{
     margin-left: 0.3rem;
+    color : white;
     font-family: sans-serif;
 }
 input[type="file"] {
