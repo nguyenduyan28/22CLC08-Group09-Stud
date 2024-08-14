@@ -89,7 +89,7 @@ def signin(request):
             #return render(request, "account/index.html")
             print(request.path_info)
             if ("?next=" in request.get_full_path()):
-                return redirect('../../' + request.get_full_path().split('/?next=/')[1])
+                return redirect('../../' + request.get_full_path().split('/?next=')[1])
             else:
                 return redirect('../../')
         else:
