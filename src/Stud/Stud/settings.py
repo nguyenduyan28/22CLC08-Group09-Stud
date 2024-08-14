@@ -94,13 +94,13 @@ from dotenv import load_dotenv
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "studdb",
-        "USER": "duyan",
-        "PASSWORD": "1",
-        "HOST": "localhost",
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
+        'NAME': 'postgres',
+        'USER': 'postgres.ijjrxossgxaryhbbetsk',
+        'PORT': '6543',
+        'PASSWORD': 'stud@database22clc08',
     }
 }
 
