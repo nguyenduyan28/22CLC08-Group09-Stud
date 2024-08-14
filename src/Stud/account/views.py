@@ -12,6 +12,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
+from urllib import unquote
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 
@@ -89,7 +90,7 @@ def signin(request):
             #return render(request, "account/index.html")
             print(request.path_info)
             if ("?next=" in request.get_full_path()):
-                return redirect('../../' + request.get_full_path().split('/?next=')[1])
+                return redirect('../../' + unquote(request.get_full_path().split('/?next=')[1]).decode('utf8'))
             else:
                 return redirect('../../')
         else:
