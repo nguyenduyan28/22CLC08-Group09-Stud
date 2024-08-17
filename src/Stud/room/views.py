@@ -3,7 +3,7 @@ from .forms import ImageForm
 from .models import Image
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-# @login_required
+@login_required
 def yourroom(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
