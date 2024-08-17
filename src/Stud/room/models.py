@@ -8,3 +8,11 @@ class Image(models.Model):
 
   def __str__ (self):
     return self.title
+
+class Room(models.Model):
+  roomName = models.TextField(max_length=50)
+  roomDesc = models.TextField(max_length=300)
+  roomHost = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return self.roomName

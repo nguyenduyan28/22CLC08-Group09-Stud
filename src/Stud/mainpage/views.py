@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
+from .forms import RoomForm
 # Create your views here.
 
 
@@ -19,3 +20,15 @@ def contact(request):
 
 def explore(request):
   return render(request, "mainpage/Explore.html")
+
+
+def createroom(request):
+  if (request.method == 'POST'):
+    form = RoomForm(request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('home')
+  elif request.method == 'GET':
+    form = RoomForm()
+  
+  return render(request, "mainpage/CreateRoom.html", {'form': form})

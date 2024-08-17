@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Room</title>
+    <link rel="web icon" type="icon" href="../../static/mainpage/images/Explore/Stud-logo.png"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="../../static/mainpage/css/Create Room/createRoom.css"/>
+    <link rel="stylesheet" href="../../static/mainpage/css/Home/fonts.css" />
+</head>
+  <body>
+    <div class="container">
+      <h1 class="welcomeText">👋Welcome to Stud! Tell us about your room!</h1>
+      <form id="roomForm" method="post"  onsubmit="return false;">
+        {% csrf_token %}
+        <div id="form__roomName">
+              <div class="form__box__top">
+                <div class="form__box__top--title">What's your room name📚:</div>
+              </div>
+              <div class="form__box__middle">
+                <input type="text" id="input" required id ="id_roomName">
+                <input type="text"  required id ="id_roomName">
+              </div>
+              <div class="form__box__bottom">
+                <button class="nextButton" type ="submit"  onclick="nextStep('form__roomName')">Next</button>
+              </div>
+              <img class="image" src="../../static/mainpage/images/Create Room/createRoom-image.svg">
+        </div>
+        <div id="form__roomDescription" class="hidden">
+          <div class="form__box__top">
+            <div class="form__box__top--title">What's your room description📚:</div>
+          </div>
+          <div class="form__box__middle">
+            <input type="text" id="input" required id="id_roomDesc">
+            <input type="text"required id="id_roomDesc">
+          </div>
+          <div class="form__box__bottom">
+            <button class="nextButton" type="submit" onclick="nextStep('form__roomDescription')">Next</button>
+            <button class="prevButton" onclick="prevStep('form__roomDescription')">Previous</button>
+          </div>
+          <img class="image" src="../../static/mainpage/images/Create Room/createRoom2-image.svg">
+        </div>
+        <div id="form__roomType" class="hidden">
+          <div class="form__box__top">
+            <div class="form__box__top--title">Your room types:</div>
+          </div>
+          <div class="form__box__middle">
+            <input type="text" id="input">
+            <input type="text" id="input">
+          </div>
+          <div class="form__box__bottom">
+            <button class="nextButton" onclick="nextStep('form__roomType')">Next</button>
+            <button class="prevButton" onclick="prevStep('form__roomType')">Previous</button>
+          </div>
+          <img class="image" src="../../static/mainpage/images/Create Room/createRoom-image.svg">
+        </div>
+        <div id="form_roomStatus" class="hidden">
+          <div class="form__box__top">
+            <div class="form__box__top--title">Your room's status:</div>
+          </div>
+          <div class="form__box__middle">
+            <input type="text" id="input">
+            <input type="text" id="input">
+          </div>
+          <div class="form__box__bottom">
+            <button class="nextButton" onclick="nextStep('form__roomStatus')">Next</button>
+            <button class="prevButton" onclick="prevStep('form__roomStatus')">Previous</button>
+          </div>
+          <img class="image" src="../../static/mainpage/images/Create Room/createRoom2-image.svg">
+        </div>
+        <div id="form__welcome" class="hidden">
+          <div class="form__boxWelcome__top">
+            <div class="form__welcome--title">Welcome!!!</div>
+          </div>
+          <div class="form__boxWelcome__bottom">
+            <button class="prevButton" onclick="prevStep('form__welcome')">Previous</button>
+            <button class="startButton" >Start</button>
+          </div>
+          <img class="image" src="../../static/mainpage/images/Create Room/createRoom1-image.svg">
+        </div>
+      </div>
+      </form>
+  </body>
+  <script src="../../static/mainpage/js/Create Room/createRoom.js"></script>
+</html>
