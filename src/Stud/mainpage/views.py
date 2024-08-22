@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from .forms import RoomForm
+from account.models import  Profile
 # Create your views here.
 
 
@@ -24,10 +25,17 @@ def explore(request):
 
 def createroom(request):
   if (request.method == 'POST'):
+    if not request.user.is_authenticated:
+      return redirect('login')
     form = RoomForm(request.POST)
     if form.is_valid():
-      form.save()
+      room = form.save(commit=False)
+      profileHost = Profile.objects.get(id=request.user.id)
+      room.roomHost = profileHost
+      room.save()
+      print("Success")
       return redirect('home')
+    else : print(form)
   elif request.method == 'GET':
     form = RoomForm()
   

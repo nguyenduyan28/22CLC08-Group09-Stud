@@ -11,18 +11,18 @@
   <body>
     <div class="container">
       <h1 class="welcomeText">👋Welcome to Stud! Tell us about your room!</h1>
-      <form id="roomForm" method="post"  onsubmit="return false;">
+      <form id="roomForm" method="post">
         {% csrf_token %}
         <div id="form__roomName">
               <div class="form__box__top">
                 <div class="form__box__top--title">What's your room name📚:</div>
               </div>
               <div class="form__box__middle">
-                <input type="text" id="input" required id ="id_roomName">
-                <input type="text"  required id ="id_roomName">
+                <p><label for="id_roomName">RoomName:</label> <input name="roomName" cols="40" rows="10" maxlength="50" required id="id_roomName">
+                </input></p>
               </div>
               <div class="form__box__bottom">
-                <button class="nextButton" type ="submit"  onclick="nextStep('form__roomName')">Next</button>
+                <button class="nextButton"  onclick="nextStep('form__roomName')">Next</button>
               </div>
               <img class="image" src="../../static/mainpage/images/Create Room/createRoom-image.svg">
         </div>
@@ -31,13 +31,15 @@
             <div class="form__box__top--title">What's your room description📚:</div>
           </div>
           <div class="form__box__middle">
-            <input type="text" id="input" required id="id_roomDesc">
-            <input type="text"required id="id_roomDesc">
+            <!-- <input type="text"required id="id_roomDesc"> -->
+              <p><label for="id_roomDesc">RoomDesc:</label> <input name="roomDesc" cols="40" rows="10" maxlength="300" required id="id_roomDesc">
+              </input></p>
           </div>
           <div class="form__box__bottom">
             <button class="nextButton" type="submit" onclick="nextStep('form__roomDescription')">Next</button>
             <button class="prevButton" onclick="prevStep('form__roomDescription')">Previous</button>
           </div>
+
           <img class="image" src="../../static/mainpage/images/Create Room/createRoom2-image.svg">
         </div>
         <div id="form__roomType" class="hidden">
@@ -74,7 +76,7 @@
           </div>
           <div class="form__boxWelcome__bottom">
             <button class="prevButton" onclick="prevStep('form__welcome')">Previous</button>
-            <button class="startButton" >Start</button>
+            <button class="startButton" type="submit" >Start</button>
           </div>
           <img class="image" src="../../static/mainpage/images/Create Room/createRoom1-image.svg">
         </div>

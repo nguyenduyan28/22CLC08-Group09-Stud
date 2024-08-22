@@ -17,6 +17,7 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 
 from . tokens import generate_token
+from .models import Profile
 
 def index(request):
     return render(request, 'account/index.html')
@@ -124,7 +125,7 @@ def forgot(request):
     return render(request, 'account/Forgot.html')
 @login_required
 def me(request):
-  user = request.user
+  user =  request.user
   if request.method == 'POST':
     # Handle form submission
     if 'update-info' in request.POST:
