@@ -31,10 +31,12 @@ def createroom(request):
     if form.is_valid():
       room = form.save(commit=False)
       profileHost = Profile.objects.get(id=request.user.id)
+      profileHost.role = Profile.HOST
+      profileHost.save()
       room.roomHost = profileHost
       room.save()
       print("Success")
-      return redirect('home')
+      return redirect('/')
     else : print(form)
   elif request.method == 'GET':
     form = RoomForm()

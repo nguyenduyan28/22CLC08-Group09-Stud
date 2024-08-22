@@ -70,6 +70,13 @@ body, html{
   font: 400 20px "Outfit", Helvetica, Arial, serif;
 
 }
+#id_roomDesc{
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  font: 400 20px "Outfit", Helvetica, Arial, serif;
+
+}
 .form__box__bottom{
   position: relative;
   display: flex;
