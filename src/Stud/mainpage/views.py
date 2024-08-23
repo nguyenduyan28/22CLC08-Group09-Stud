@@ -6,6 +6,7 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 from .forms import RoomForm
 from account.models import  Profile
+from room.views import generate_invite_link
 # Create your views here.
 
 
@@ -35,6 +36,8 @@ def createroom(request):
       profileHost.save()
       room.roomHost = profileHost
       room.save()
+      invite_link = generate_invite_link(room)
+      print(f"Invite link: {invite_link}") 
       print("Success")
       return redirect('/')
     else : print(form)

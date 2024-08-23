@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ImageForm
 from .models import Image
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+from django.contrib.sites.shortcuts import get_current_site
+from .models import Room
 # Create your views here.
 @login_required
 def yourroom(request):
@@ -41,6 +44,18 @@ def delete_image(request, image_id):
         return redirect('image_list')
     return render(request, 'confirm_delete.html', {'image': image})
 
+from django.urls import reverse
+
+def generate_invite_link(request, room):
+    base_url =  get_current_site(request).domain
+
+    invite_url = reverse('join_room', args=[room.invite_token])
+    return f"{base_url}{invite_url}"
+
+def joinroom(request, invite_token):
+    room = get_object_or_404(Room, invite_token=invite_token)
+    if request.user.is_authenticated:
+        return (redirect('yourroom'))
 
 def login(request):
   return render(request, "room/Login.html")
