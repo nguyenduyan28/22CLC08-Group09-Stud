@@ -65,11 +65,34 @@ def generate_invite_link(request, room):
 
     invite_url = reverse('join_room', args=[room.invite_token])
     return f"{base_url}{invite_url}"
-
-def joinroom(request, invite_token):
+def join_room(request, invite_token):
     room = get_object_or_404(Room, invite_token=invite_token)
-    if request.user.is_authenticated:
-        return (redirect('yourroom'))
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image  = form.save(commit=False)
+            image.room = room
+            image.save()
+            return redirect('yourroom')
+    elif request.method == 'GET':
+        form = ImageForm()
+    # Additional logic to allow full interaction
+    images = room.image_set.all()
+    return render(request, 'room/YourRoom.html', {'form': form, 'mode': 'view' , 'image' : images})
 
+def view_room(request, invite_token):
+    room = get_object_or_404(Room, invite_token=invite_token)
+
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image  = form.save(commit=False)
+            image.room = room
+            image.save()
+            return redirect('yourroom')
+    elif request.method == 'GET':
+        form = ImageForm()
+    images = room.image_set.all()
+    return render(request, 'room/YourRoom.html', {'form': form, 'mode': 'view' , 'image' : images})
 def login(request):
   return render(request, "room/Login.html")

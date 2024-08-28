@@ -14,6 +14,24 @@
         <link rel="stylesheet" href="/static/room/css/YourRoom/widget.css" />
     </head>
     <body>
+        {% if mode == 'view' %}
+        <!-- Full interactive content here -->
+        <!-- View-only content here -->
+        <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('.container-nav div').forEach((element) => {
+                element.style.pointerEvents = 'none';
+                element.style.opacity = '0.5';  // Optional: Make the buttons look disabled
+            });
+        });
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('.theme div').forEach((element) => {
+                element.style.pointerEvents = 'yes';
+                element.style.opacity = '0.5';  // Optional: Make the buttons look disabled
+            });
+        });
+        </script>
+      {% endif %}
         <header>
             <div class="container-header">
                 <div class="left-header">
