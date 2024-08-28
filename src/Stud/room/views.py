@@ -40,6 +40,7 @@ def upload_image(request):
     elif request.method == 'GET':
         form = ImageForm()
     # sua cho nay
+    #
     return render(request, 'room/upload_image.html', {'form': form})
     return render(request, 'room/YourRoom.html', {'form': form})
 

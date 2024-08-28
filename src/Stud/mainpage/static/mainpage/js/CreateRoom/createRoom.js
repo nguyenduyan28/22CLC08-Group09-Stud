@@ -8,7 +8,7 @@ function nextStep(currentStep) {
       document.getElementById('form__welcome').classList.remove('hidden');
     }
   }
-  
+
   function prevStep(currentStep) {
     document.getElementById(currentStep).classList.add('hidden');
     if (currentStep === 'form__roomDescription') {
