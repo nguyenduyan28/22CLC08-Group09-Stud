@@ -26,11 +26,24 @@ function setupWidget(openButton, widget, closeButton) {
       });
   }
 }
+// Header yourrom
+// Your room
+const openYourRoomInfo = document.querySelector('.yourroom-header');
+const closeYourRoominfo = document.querySelector('.yourroom-header-popup-top-close');
+const yourRoomInfo = document.querySelector('.yourroom-header-popup');
+// Invite link
+const openInviteLink = document.querySelector('.invite-header');
+const closeInviteLink = document.querySelector('.invite-header-popup-top-close');
+const inviteLink = document.querySelector('.invite-header-popup');
 
 // Theme widget
 const openThemeButton = document.querySelector('.theme');
 const closeThemeWidget = document.querySelector('.closeThemeWidget');
 const themeWidget = document.querySelector('.themeWidget');
+// Upload image
+const openUploadButton = document.querySelector('.uploadImageButton');
+const closeUpload = document.querySelector('.closeUploadWidget');
+const UploadButton = document.querySelector('.formUploadImage');
 
 // Music widget
 const openMusicButton = document.querySelector('.music');
@@ -52,12 +65,27 @@ const openNoteButton = document.querySelector('.notebook');
 const noteWidget = document.querySelector('.noteWidget');
 const closeNoteWidget = document.querySelector('.closeNoteWidget');
 
+// Message Widget
+const openMessageButton = document.querySelector('.messageIcon');
+const messageWidget = document.querySelector('.messageWidget');
+const closeMessage = document.querySelector('.closeMessageWidget');
+
+// Member Widget
+const openMemberWidget = document.querySelector('.participate');
+const memberWidget = document.querySelector('.memberWidget');
+const closeMemberWidget = document.querySelector('.closeMessageWidget');
+
 // Setup widget
 setupWidget(openThemeButton, themeWidget, closeThemeWidget);
+setupWidget(openUploadButton, UploadButton, closeUpload);
 setupWidget(openMusicButton, musicWidget, closeMusicWidget);
 setupWidget(openCalendarButton, calendarWidget, closeCalendarWidget);
 setupWidget(openClockButton, clockWidget, closeClockWidget);
 setupWidget(openNoteButton, noteWidget, closeNoteWidget);
+setupWidget(openMessageButton, messageWidget, closeMessage);
+setupWidget(openYourRoomInfo, yourRoomInfo, closeYourRoominfo);
+setupWidget(openInviteLink, inviteLink, closeInviteLink);
+setupWidget(openMemberWidget, memberWidget, closeMemberWidget);
 
 // INTERACT SECTION
 // Theme widget
@@ -96,8 +124,8 @@ document.getElementById('resetButton').addEventListener('click', function() {
 });
 
 // Calendar widget
-const CLIENT_ID = '1010364015261-tuoislk4e7dbre5j624354i45elegbgf.apps.googleusercontent.com';
-const API_KEY = 'AIzaSyBwk6Rs9OCLA3DkH522I7QWAgIkSJLvAFg';
+const CLIENT_ID = '775438645625-14ljqeu8juek64ei8vtdmo829cmguqbm.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyDED6NWjqvO-_fO3lX64PRCzzpwuQR7_9Y';
 const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
 const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
 
@@ -112,6 +140,23 @@ document.getElementById('signout_button').style.visibility = 'hidden';
 function gapiLoaded() {
     gapi.load('client', initializeGapiClient);
 }
+function gisLoaded() {
+  tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      callback: (resp) => {
+          if (resp.error) {
+              console.error('Error during authentication:', resp.error);
+              return;
+          }
+          document.getElementById('signout_button').style.visibility = 'visible';
+          document.getElementById('authorize_button').innerText = 'Refresh';
+          listUpcomingEvents(); // Fetch and display calendar events
+      },
+  });
+  gisInited = true;
+  maybeEnableButtons();
+}
 
 async function initializeGapiClient() {
     await gapi.client.init({
@@ -120,18 +165,17 @@ async function initializeGapiClient() {
     });
     gapiInited = true;
     maybeEnableButtons();
-    listUpcomingEvents();
 }
 
-function gisLoaded() {
-    tokenClient = google.accounts.oauth2.initTokenClient({
-        client_id: CLIENT_ID,
-        scope: SCOPES,
-        callback: '', // defined later
-    });
-    gisInited = true;
-    maybeEnableButtons();
-}
+// function gisLoaded() {
+//     tokenClient = google.accounts.oauth2.initTokenClient({
+//         client_id: CLIENT_ID,
+//         scope: SCOPES,
+//         callback: '', // defined later
+//     });
+//     gisInited = true;
+//     maybeEnableButtons();
+// }
 
 function maybeEnableButtons() {
     if (gapiInited && gisInited) {
@@ -146,7 +190,7 @@ function handleAuthClick() {
         }
         document.getElementById('signout_button').style.visibility = 'visible';
         document.getElementById('authorize_button').innerText = 'Refresh';
-        await listUpcomingEvents();
+        listUpcomingEvents();
     };
 
     if (gapi.client.getToken() === null) {
@@ -519,3 +563,16 @@ makeDraggable(musicWidget);
 makeDraggable(calendarWidget);
 makeDraggable(clockWidget);
 makeDraggable(noteWidget);
+makeDraggable(messageWidget);
+makeDraggable(yourRoomInfo);
+makeDraggable(inviteLink);
+makeDraggable(memberWidget);
+
+// Upload section
+const actualBtn = document.getElementById('id_image');
+
+const fileChosen = document.getElementById('file-chosen');
+
+actualBtn.addEventListener('change', function(){
+  fileChosen.textContent = this.files[0].name
+})

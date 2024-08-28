@@ -5,6 +5,7 @@
 }
 .middle-header-Nav,
 .Signup-text,
+
 .Login-button,
 .notification-icon-container{
     animation: loadAnimation 1s ease forwards;

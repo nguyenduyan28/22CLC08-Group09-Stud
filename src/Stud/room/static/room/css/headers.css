@@ -1,430 +1,139 @@
 body{
-    margin: 0px;
+    margin: 20px 0px 0px 0px;
 }
-.top-element{
-    position: relative;
-    display: flex;
-}
-.cover{
-    position: relative;
-    display: flex;
+header{
+    height: 80px;
     width: 100%;
-}
-.group-header{
-    position: absolute;
-    width: 100%;
-    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .container-header{
-    height: 72px;
-    position: flex;
+    width: 90%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #FFEFE9;
-}
-.header{
-    height: 72px;
-    width: 1252px;
-    position: relative;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
     flex-direction: row;
 }
 .left-header{
+    background-color: #282322;
+    width: 287px;
+    height: 49px;
+    border-radius: 10px;
     display: flex;
-}
-.Stud-logo{
-    height: 60px;
-    width: 82px;
-    cursor: pointer;
-}
-.middle-list{
-    height: 72px;
-    width: 490px;
-    display: flex;
-    align-items: center;
     flex-direction: row;
-    justify-content: space-between;
-    text-decoration: none;
-    list-style: none;
-    gap: 20px;
-}
-.middle-header-Nav{
-    display: inline-flex;
-    font: 500 28px/1.5 "Outfit", Helvetica, Arial, serif;
-    color: #422320;
-    align-items: center;
     cursor: pointer;
-    text-decoration: none;
 }
-.middle-item{
-    text-decoration: none;
+.yourroom-header{
+    width: 164px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    border-right: 1px solid white;
 }
-.middle-header-Nav:hover{
-    text-decoration: underline;
+.invite-header{
+    width: 73px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    border-right: 1px solid white;
+}
+.bellNoti{
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .right-header{
-    height: 72px;
-    width: 247px;
     display: flex;
-    align-items: center;
     flex-direction: row;
-    gap: 20px;
-}
-.notification-icon{
-    height: 30px;
-    display: inline-flex;
+    height: 48px;
+    width: 192px;
+    gap: 24px;
     cursor: pointer;
 }
-.Signup-text{
-    font: 500 16px/1.25 "Outfit", Helvetica, Arial, serif;
-    color: #422320;
-    position: relative;
-    display: inline-flex;
-    min-width: 0px;
-    cursor: pointer;
-    text-decoration: none;
-}
-.Signup-text:hover{
-    text-decoration: underline;
-}
-.Login-button{
-    border-radius: 27px;
-    width: 128px;
-    height: 49px;
-    font-size: 16px;
-    font-weight: 500;
-    background-color: #C26565;
-    color: white;
-    font-weight: 500;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-    font: 500 16px/1.25 "Outfit", Helvetica, Arial, serif;
-}
-/*Header introduction*/
-.group-header-intro{
-    position: absolute;
+.logout,
+.setting,
+.zoomOut{
+    width: 48px;
+    height: 48px;
     display: flex;
-    flex-direction: column;
-    gap: 84px 0px;
-}
-
-.header-intro-Title{
-    position: relative;
-    display: flex;
-    top: 200px;
-    left: 250px;
-    width: 510px;
+    flex-direction: row;
     align-items: center;
-    font: 500 53px/1.5 "Outfit", Helvetica, Arial, serif;
-    color: #422320;
-}
-.buttonStyle{
-    text-decoration: none;
-}
-.intro-startnow-button{
-    position: relative;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    width: 197px;
-    max-width: 100%;
-    font: 500 32px/1.5 "Outfit", Helvetica, Arial, serif;
-    color: white;
-    text-align: center;
-    background-color: #c26565;
-    border-radius: 27px 27px 27px 27px;
-    padding: 11px 28px 11px 28px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
-    border: none;
-    top: 200px;
-    left: 300px;
-    cursor: pointer;
+    background-color: #282322;
+    border-radius: 10px;
 }
-:root{
-    --color: #F9B399;
-}
-.intro-image{
-    position: absolute;
-    width: 760px;
-    height: 400px;
-    top: 250px;
-    left: 650px;
-    filter: drop-shadow(0px 0px 50px var(--color));
-}
-/*Mid element*/
-.mid-element{
-    display: flex;
-    flex-direction: column;
-    margin: 120px 120px 0px 120px;
-    width: 86.11%;
-    background-color: #ffefe9;
-    border-radius: 60px 60px 60px 60px;
-}
-    
-.mid-element .featuresSection {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin: 120px 0px 0px;
-    width: 86.11%;
-    background-color: #ffefe9;
-    border-radius: 60px 60px 60px 60px;
-}
-.mid-element .featuresGrid {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    gap: 0px 10px;
-    margin: 77px auto 92px;
-    width: 86.85%;
-}
-.mid-element .featureItem {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px 0px;
-    width: 173px;
-    min-width: 0px;
-}
-.mid-element .featureIcon {
-    position: relative;
+/* .logout:hover,
+.setting:hover,
+.zoomOut:hover,
+.messageIcon:hover{
+    transform: scale(1.05);
+} */
+.nav{
     width: 100%;
-}
-.mid-element .featureTitle {
-    position: relative;
-    font: 400 32px/1.25 "Outfit", Helvetica, Arial, serif;
-    color: #422320;
-}
-.mid-element .featureItem1 {
-    position: relative;
+    height: 72px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px 0px;
-    width: 176px;
-    min-width: 0px;
-}
-.mid-element .featureItem2 {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px 0px;
-    width: 280px;
-    min-width: 0px;
-}
-.mid-element .featureIcon1 {
-    position: relative;
-    width: 73.45%;
-}
-.mid-element .featureItem3 {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1px 0px;
-    width: 147px;
-    min-width: 0px;
-}
-/*Location section*/
-.location-section{
-    width: 100%;
-    height: 574px;
-    background-color: #F5F7EE;
-    display: flex;
-    justify-content: center;
-    margin-top: 120px;
-}
-/*Prepare section*/
-.prepare-section{
-    height: 563px;
-    width: 100%;
-    margin-top: 120px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+    position: fixed;
     align-items: center;
     justify-content: center;
-}
-.prepare-container{
-    background-color: #F5F7EE;
-    height: 100%;
-    width: 1236px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 60px;
-    box-shadow: grey 0px 7px 29px 0px;
-}
-.prepare-title{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    font: 500 44px/1.25 "Outfit", Helvetica, Arial, serif;
-    color: #422320;
-    width: 500px;
-    text-align: center;
-}
-.prepare-subtitle{
-    margin-top: 78px;
-    margin-bottom: 78px;
-    opacity: 0.5;
-    font: 400 28px/1.25 "Outfit", Helvetica, Arial, serif;
-    color: #422320;
-}
-.prepare-button{
-    position: relative;
-    display: flex;
-    justify-self: center;
-    align-items: center;
-    width: 225px;
-    height: 70px;
-    max-width: 100%;
-    font: 500 32px/1.5 "Outfit", Helvetica, Arial, serif;
-    color: #f5f7ee;
-    text-align: center;
-    border-radius: 27px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
-    border: none;
-    background-color: #c26565;
-    padding: 11px 28px 11px 28px;
+    bottom: 20px;
+    transition: bottom 0.3s;
     cursor: pointer;
 }
-/*subcribe section*/
-.subcribe-section{
-    height: 350px;
-    width: 100%;
-    margin-top: 120px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 82px;
-}
-.subcribe-title{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    font: 600 56px/1.26 "Outfit", Helvetica, Arial, serif;
-    color: #422320;
-    width: 456px;
-}
-.subcribe-container{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(255, 239, 233, 0.615);
+.container-nav{
+    width: 454px;
+    height: 72px;
+    background-color: #282322;
     border-radius: 20px;
-    width: 705px;
-    box-shadow: grey 0px 7px 29px 0px;
-}
-.subcribe-form{
-    position: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0px 10px;
-    margin: 16px 12px;
-}
-.email{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    min-width: 0px;
-    font: 500 24px/1.25 "Outfit", Helvetica, Arial, serif;
-    color: #0f1f1c;
-    text-align: center;
-    opacity: 0.5;
-}
-.subcribe-button{
-    position: relative;
-    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    min-width: 227px;
-    font: 500 32px/1.5 "Outfit", Helvetica, Arial, serif;
-    color: white;
-    text-align: center;
-    background-color: #c26565;
-    border-radius: 27px 27px 27px 27px;
-    padding: 10px 8px 10px 8px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.247);
-    cursor: pointer;
-}
-/*footer section*/
-.footer-section{
-    height: 298px;
-    width: 100%;
-    background-color: #FFEFE9;
-    margin-top: 120px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.footer-container{
-    height: 228px;
-    width: 1192px;
-    display: flex;
-    gap: 140px;
-    margin: 35px 124px 35px 124px;
-}
-.Stud-logo-footer{
-    height: 99px;
-    width: 130px;
-    cursor: pointer;
-}
-.footer-nav,
-.footer-link,
-.footer-social{
-    position: relative;
-    display: flex;
-    flex-direction: column;
     gap: 20px;
 }
-.nav-item,
-.footer-link-item{
-    font: 500 28px/1.5 "Outfit", Helvetica, Arial, serif;
-    color: #422320;
-    cursor: pointer;
-    text-decoration: none;
-}
-.footer-social-text{
-    font: 500 26px/1.5 "Outfit", Helvetica, Arial, serif;
-    color: #422320;
-    cursor: pointer;
-}
-.footer-social-icons{
-    position: relative;
+.navItem,
+.theme,
+.music,
+.calendar,
+.clock,
+.notebook,
+.participate{
+    width: 48px;
+    height: 48px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 36px;
-    margin-left: 48px;
-    width: 178px;
-    cursor: pointer;
+    align-items: center;
+    border-radius: 10px;
 }
-.social-icon{
-    position: relative;
-    width: 40px;
-    min-width: 0px;
-    height: 40px;
-    cursor: pointer;
+.navItem:hover,
+.theme:hover,
+.music:hover,
+.calendar:hover,
+.clock:hover,
+.notebook:hover,
+.participate:hover{
+    background-color: #1A0602;
+    transform: scale(1.1);    
 }
-.social-icon1{
-    position: relative;
-    margin: 3px 0px;
-    width: 34px;
-    min-width: 0px;
-    height: 34px;
-    cursor: pointer;
+.navImage,
+.themeImage,
+.musicImage{
+    width: 24px;
+    height: 24px;
+    display: flex;
+}
+.messageIcon{
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #282322;
+    position: absolute;
+    right: 40px;
 }

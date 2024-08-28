@@ -11,11 +11,13 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
+import urllib.parse
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 
 from . tokens import generate_token
+from .models import Profile
 
 def index(request):
     return render(request, 'account/index.html')
@@ -97,7 +99,11 @@ def signin(request):
             return render(request, "mainpage/Home.html")
 
             #return render(request, "account/index.html")
-            return redirect('../../')
+            print(request.path_info)
+            if ("?next=" in request.get_full_path()):
+                return redirect('../..' + urllib.parse.unquote(request.get_full_path().split('/?next=')[1]))
+            else:
+                return redirect('../../')
         else:
             messages.error(request, "Wrong username/password")
             return redirect('signin')
@@ -106,7 +112,7 @@ def signin(request):
 def signout(request):
     logout(request)
     #messages.success(request, "Loged out successfully!")
-    return redirect('home')
+    return redirect('../../')
 # Create your views here.
 
 def activate(request, uidb64, token):
@@ -141,7 +147,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     return render(request, 'account/Forgot.html')'''
 @login_required
 def me(request):
-  user = request.user
+  user =  request.user
   if request.method == 'POST':
     # Handle form submission
     if 'update-info' in request.POST:

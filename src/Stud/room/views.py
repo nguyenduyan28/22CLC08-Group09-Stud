@@ -1,10 +1,22 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ImageForm
 from .models import Image
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+from django.contrib.sites.shortcuts import get_current_site
+from .models import Room
 # Create your views here.
+@login_required
 def yourroom(request):
-  images = Image.objects.all()
-  return render(request, "room/YourRoom.html", {'images': images})
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('yourroom')
+    elif request.method == 'GET':
+        form = ImageForm()
+    images = Image.objects.all()
+    return render(request, "room/YourRoom.html", {'images': images, 'form': form})
 
 def upload_image(request):
     if request.method == 'POST':
@@ -14,7 +26,9 @@ def upload_image(request):
             return redirect('image_list')
     elif request.method == 'GET':
         form = ImageForm()
+    # sua cho nay
     return render(request, 'room/upload_image.html', {'form': form})
+    return render(request, 'room/YourRoom.html', {'form': form})
 
 def image_list(request):
     if request.method == 'POST':
@@ -30,6 +44,18 @@ def delete_image(request, image_id):
         return redirect('image_list')
     return render(request, 'confirm_delete.html', {'image': image})
 
+from django.urls import reverse
+
+def generate_invite_link(request, room):
+    base_url =  get_current_site(request).domain
+
+    invite_url = reverse('join_room', args=[room.invite_token])
+    return f"{base_url}{invite_url}"
+
+def joinroom(request, invite_token):
+    room = get_object_or_404(Room, invite_token=invite_token)
+    if request.user.is_authenticated:
+        return (redirect('yourroom'))
 
 def login(request):
   return render(request, "room/Login.html")

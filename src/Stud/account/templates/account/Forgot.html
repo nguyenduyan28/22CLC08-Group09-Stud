@@ -1,35 +1,25 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Password Reset</title>
-    <link rel="stylesheet" href="{% static 'account/css/Forgot/forgot.css' %}" />
+    <title>Document</title>
   </head>
+  <link rel="stylesheet" href="/static/account/css/Forgot/forgot.css" />
   <body>
-    <form action="" method="post">
-      {% csrf_token %}
+    <form action="">
       <div class="main">
         <div class="box">
           <h1>Forgot password</h1>
-          <!-- Manually render the email input field -->
-          <input type="email" name="email" id="email" placeholder="Email" value="{{ form.email.value }}" />
+          <input type="email" name="" id="email" placeholder="Email" />
           <input type="submit" value="Submit" id="forgot" />
           <p>
             Already have an account?
-            <a href="{% url 'signin' %}" class="log">Login</a>
+            <a href="Login.html" class="log"> Login</a>
+            <!--href = "login.html"-->
           </p>
         </div>
       </div>
     </form>
-
-    {% if messages %}
-      <ul class="messages">
-        {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
   </body>
 </html>
