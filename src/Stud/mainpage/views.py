@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import RoomForm
 from account.models import  Profile
 from room.views import generate_invite_link
+from room.models import Room
+import uuid
 # Create your views here.
 
 
@@ -30,18 +32,36 @@ def createroom(request):
       return redirect('login')
     form = RoomForm(request.POST)
     if form.is_valid():
-      room = form.save(commit=False)
+      room = Room()
+      room.roomName = form.cleaned_data['roomName']
+      room.roomDesc = form.cleaned_data['roomDesc']
       profileHost = Profile.objects.get(id=request.user.id)
       profileHost.role = Profile.HOST
       profileHost.save()
       room.roomHost = profileHost
-      room.save()
-      invite_link = generate_invite_link(room)
+      invite_link = generate_invite_link(request, room)
+      room.invite_token = uuid.uuid4()
+      print(room.invite_token)
       print(f"Invite link: {invite_link}") 
+      room.save()
       print("Success")
-      return redirect('/')
+      return redirect(f'../room/yourroom/{room.invite_token}')
     else : print(form)
   elif request.method == 'GET':
     form = RoomForm()
   
   return render(request, "mainpage/CreateRoom.html", {'form': form})
+
+
+
+
+
+
+
+
+
+
+
+
+
+

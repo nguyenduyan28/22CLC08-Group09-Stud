@@ -7,17 +7,30 @@ from django.contrib.sites.shortcuts import get_current_site
 from .models import Room
 # Create your views here.
 @login_required
-def yourroom(request):
+def yourroom(request, invite_token):
+    room = get_object_or_404(Room, invite_token=invite_token)
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            image  = form.save(commit=False)
+            image.room = room
+            image.save()
+            return redirect('yourroom')
+    elif request.method == 'GET':
+        form = ImageForm()
+    images = room.image_set.all()
+    return render(request, "room/YourRoom.html", {'images': images, 'form': form})
+def yourroom1(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image  = form.save(commit=False)
+            image.save()
             return redirect('yourroom')
     elif request.method == 'GET':
         form = ImageForm()
     images = Image.objects.all()
     return render(request, "room/YourRoom.html", {'images': images, 'form': form})
-
 def upload_image(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
