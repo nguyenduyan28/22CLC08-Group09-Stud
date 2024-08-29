@@ -9,6 +9,7 @@ from account.models import Profile
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+#
 @login_required
 @csrf_exempt
 def yourroom(request, invite_token):
