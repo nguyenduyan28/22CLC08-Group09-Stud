@@ -32,13 +32,14 @@ def createroom(request):
       return redirect('login')
     form = RoomForm(request.POST)
     if form.is_valid():
-      room = Room()
-      room.roomName = form.cleaned_data['roomName']
-      room.roomDesc = form.cleaned_data['roomDesc']
       profileHost = Profile.objects.get(id=request.user.id)
       profileHost.role = Profile.HOST
       profileHost.save()
+      room = Room.objects.create(roomName = form.cleaned_data['roomName'], roomDesc = form.cleaned_data['roomDesc'], roomHost=profileHost)
+      room.roomName = form.cleaned_data['roomName']
+      room.roomDesc = form.cleaned_data['roomDesc']
       room.roomHost = profileHost
+      room.members.add(profileHost)
       invite_link = generate_invite_link(request, room)
       room.invite_token = uuid.uuid4()
       print(room.invite_token)
