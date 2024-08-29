@@ -13,6 +13,7 @@ urlpatterns = [
   path("yourroom/", views.listroom, name='yr'),
   path('room_access_view/<str:invite_token>/', views.room_access_view, name='room_access_view'),
   path('room_access_view/<str:invite_token>/manage_requests/', views.manage_join_requests, name='manage_join_requests'),
+  path('get_messages/<str:invite_token>', views.get_messages, name='get_messages'),
   # path('listroom/', views.listroom, name='listroom')
   path('join-room/<str:invite_token>/', views.joinroom, name='join_room'),
   path('start_timer/', views.start_timer, name='start_timer'),

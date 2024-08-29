@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ImageForm
+from .forms import ImageForm, MessageForm
 from .models import Image
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
@@ -15,8 +15,12 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import note
 
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+#
 @login_required
+@csrf_exempt
 def yourroom(request, invite_token):
     room = get_object_or_404(Room, invite_token=invite_token)
     profile = request.user.profile
@@ -28,22 +32,31 @@ def yourroom(request, invite_token):
         return redirect(f'../../room_access_view/{invite_token}')
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
+        messageForm = MessageForm(request.POST)
         if form.is_valid():
             image  = form.save(commit=False)
             image.room = room
             image.save()
-            return redirect(f'../{invite_token}')
+        if messageForm.is_valid():
+            message = messageForm.save(commit=False)
+            message.room = room
+            message.sender = request.user.username
+            message.save()
+            return JsonResponse({'status': 'success'}, status=200)
     elif request.method == 'GET':
         form = ImageForm()
+        messageForm = MessageForm()
     images = room.image_set.all()
     joinRequest = JoinRequest.objects.filter(room=room)
     # get_room = get_object_or_404(Room, id=room_id, room_name=room_name)
     get_messages = Message.objects.filter(room=room)
+
     context = {
         "messages": get_messages,
         "user": request.user.username,
         "room_name": room.roomName,
-        'images': images, 'form': form, 'host' :  host, 'room': room
+        'images': images, 'form': form, 'host' :  host, 'room': room,
+        'messageForm' : messageForm
     }
     if joinRequest:
         joinRequest = JoinRequest.objects.get(room=room)
@@ -122,6 +135,15 @@ def view_room(request, invite_token):
 def login(request):
   return render(request, "room/Login.html")
 
+
+def get_messages(request, invite_token):
+    room = Room.objects.get(invite_token = invite_token)
+    messages = Message.objects.get(room=room).order_by('created_at')
+    messages_data = [
+        {'sender': msg.sender.username, 'message': msg.message, 'timestamp': msg.created_at.strftime('%Y-%m-%d %H:%M:%S')}
+        for msg in messages
+    ]
+    return JsonResponse({'messages': messages_data})
 @login_required
 def listroom(request):
     profile = Profile.objects.get(user=request.user)

@@ -13,13 +13,7 @@ from django.core.asgi import get_asgi_application
 from room import routing
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Stud.settings')
-django_asgi_app = get_asgi_application()
+application = get_asgi_application()
 
-application = ProtocolTypeRouter({
-    "http": django_asgi_app,
-    "websocket": URLRouter(
-        routing.websocket_urlpatterns
-    )
-})
 app = application
 #
