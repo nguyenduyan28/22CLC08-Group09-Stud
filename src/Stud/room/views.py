@@ -5,6 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.sites.shortcuts import get_current_site
 from .models import Room
+from django.http import JsonResponse
+import logging
+from django.utils import timezone
+from .models import tracking_time
+from datetime import timedelta
 # Create your views here.
 @login_required
 def yourroom(request):
@@ -59,3 +64,45 @@ def joinroom(request, invite_token):
 
 def login(request):
   return render(request, "room/Login.html")
+
+
+
+logger = logging.getLogger(__name__)
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from .models import Profile 
+@login_required
+@csrf_exempt
+def start_timer(request):
+    if request.method == 'GET':
+        user_profile = get_object_or_404(Profile, user=request.user)
+        logger.info("start_timer function called")
+        entry = tracking_time.objects.create(user=user_profile, start_time=timezone.now())
+        return JsonResponse({'entry_id': entry.id, 'start_time': entry.start_time})
+        
+def end_timer(request):
+    if request.method == 'GET':
+        entry_id = request.GET.get('entry_id')
+        if entry_id:
+            entry = get_object_or_404(tracking_time, id = entry_id)
+            #user_profile = get_object_or_404(Profile, user=request.user)
+            #entry = tracking_time.objects.get(id=entry_id, user=user_profile)
+            entry.end_time = timezone.now()
+            entry.save()
+            return JsonResponse({'entry_id': entry.id, 'end_time': entry.end_time})
+        else:
+            return JsonResponse({'error': 'entry_id not provided'}, status=400)
+        
+def view_achievement(request):
+    if request.method == 'GET':
+        user_profile = get_object_or_404(Profile, user=request.user)
+        sessions = tracking_time.objects.filter(user=user_profile)
+
+        total_time = sum((session.duration() for session in sessions if session.duration()), timedelta())
+        num_sessions = sessions.count()
+
+        return JsonResponse({
+            'total_time': str(total_time),
+            'num_sessions': num_sessions
+        })

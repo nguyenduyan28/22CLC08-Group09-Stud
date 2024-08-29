@@ -395,6 +395,27 @@ function startPomodoro() {
   if (totalSeconds === 0) {
     return;
   }
+
+  $.ajax({
+    type: "GET",
+    url: "start_timer",
+    data: {
+      //csrfmiddlewaretoken: csrfToken
+    },
+    success: function(response) {
+      console.log("Timer started successfully");
+      entryId = response.entry_id;
+      console.log("entry id= ", entryId)
+
+    },
+    error: (error) => {
+      console.log(JSON.stringify(error));
+    }
+    //error: function(error) {
+     // console.log("Error starting timer", error);
+   // }
+  });
+
   timerDisplay.textContent = formatTimePomodoro(totalSeconds);
 
   intervalId = setInterval(() => {
@@ -425,6 +446,26 @@ function startPomodoro() {
 function resetPomodoro() {
   clearInterval(intervalId);
   totalSeconds = 0;
+
+  $.ajax({
+    type: "GET",
+    url: "end_timer",
+    data: {
+      //csrfmiddlewaretoken: csrfToken
+      entry_id: entryId
+    },
+    success: function(data) {
+      console.log("Timer ended successfully");
+      console.log("entry id=", entryId)
+      entryId = null
+    },
+    error: (error) => {
+      console.log(JSON.stringify(error));
+    }
+    /*error: function(error) {
+      console.log("Error ended timer", error);
+    }*/
+  });
 
   timerDisplay.textContent = formatTimePomodoro(totalSeconds);
 
@@ -458,6 +499,35 @@ startBtn.addEventListener('click', () => {
   startPomodoro();
 });
 resetBtn.addEventListener('click', resetPomodoro);
+
+// view achievement
+function viewAchievement() {
+  $.ajax({
+      type: "GET",
+      url: "view_achievement",
+      success: function(data) {
+          console.log("Achievement data fetched successfully:", data);
+          document.getElementById("totalTime").textContent = data.total_time;
+          document.getElementById("numSessions").textContent = data.num_sessions;
+          document.getElementById("achievementPopup").style.display = "block";
+      },
+      error: function(xhr, status, error) {
+          console.log("Error fetching achievement data:");
+          console.log("Status:", status);
+          console.log("Error:", error);
+          console.log("Response Text:", xhr.responseText);
+      }
+  });
+}
+
+document.getElementById("viewAchievementBtn").addEventListener("click", function(event) {
+  event.preventDefault(); // Prevent default form submission
+  viewAchievement();
+});
+
+document.getElementById("closePopupBtn").addEventListener("click", function() {
+  document.getElementById("achievementPopup").style.display = "none";
+});
 
 // Note Widget
 document.getElementById('addTodoButton').addEventListener('click', function() {

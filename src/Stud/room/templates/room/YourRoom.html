@@ -12,6 +12,7 @@
         <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
         <link rel="stylesheet" href="../../../static/mainpage/css/Home/fonts.css" />
         <link rel="stylesheet" href="../../static/room/css/YourRoom/widget.css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
         <header>
@@ -186,8 +187,24 @@
                         </div>
                     </div>
                     <div class="startResetSection">
-                        <button class="startButton" id="startButton">Start</button>
-                        <button class="resetButton" id="resetButton">Reset</button>
+                        <!-- achievement btn-->
+                        <button id="viewAchievementBtn">View Achievement</button>
+                        <div id="achievementPopup" style="display: none;">
+                            <p>Total Time Studied: <span id="totalTime"></span></p>
+                            <p>Number of Sessions: <span id="numSessions"></span></p>
+                            <button id="closePopupBtn">Close</button>
+                        </div>
+                        <!-- achievement btn-->
+                        <form method="post">
+                            {% csrf_token %}
+                            <button class="startButton" id="startButton" action="/start_timer" >Start</button>
+                            
+                        </form>
+
+                        <form method="post">
+                            {% csrf_token %}
+                            <button class="resetButton" id="resetButton" action="/end_timer">Reset</button>
+                        </form>
                     </div>
                 </div>
                 <div class="containerTracking">
@@ -202,6 +219,9 @@
                         </div>
                     </div>
                 </div>
+                
+                
+
             </div>
         </div>
         <!--Note widget-->

@@ -96,8 +96,6 @@ def signin(request):
             login(request, user)
             name = user.first_name
             #messages.success(request, "Sign in successfully!")
-            return render(request, "mainpage/Home.html")
-
             #return render(request, "account/index.html")
             print(request.path_info)
             if ("?next=" in request.get_full_path()):
