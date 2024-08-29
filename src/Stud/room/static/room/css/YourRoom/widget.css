@@ -400,7 +400,9 @@ label{
     width: 564px;
     height: 254px;
     background-color: #282322;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
     position: fixed;
     display: none;
     color: white;
@@ -541,19 +543,58 @@ label{
     font: 400 64px "Outfit", Helvetica, Arial, serif;
 }
 .trackingToggleSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: relative;
     top: 80px;
+    left: 100px;
+    gap: 10px;
     display: flex;
-    justify-content: center;
 }
 
-.trackingButton {
+.trackingButton,
+.trackingResetButton {
     width: 50px;
     height: 25px;
     position: relative;
     background: #000;
+    color: white;
+    font: 500 12px "Outfit", Helvetica, Arial, serif;
     border-radius: 50px;
-  }
+    cursor: pointer;
+}
+.trackingHistoryText{
+    font: 600 12px "Outfit", Helvetica, Arial, serif;
+    margin-left: 5px;
+}
+.trackingListSection {
+    position: relative;
+    height: 226px;
+    width: 120px;
+    overflow-y: auto;
+    top: -124px;
+    left: 282px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #282322;
+    border-top: 0.5px solid white;
+    border-left: 0.5px solid white;
+}
+
+.trackingList {
+    position: relative;
+    margin-left: 5px;
+    list-style-type: none; 
+    padding: 5px;
+    font: 500 8px "Outfit", Helvetica, Arial, serif;
+    margin: 0;
+}
+
+.trackingList li {
+    padding: 5px 0;
+    font-size: 14px;
+}
   
 .toggle-input {
 display: none;
