@@ -9,7 +9,7 @@ document.querySelector('.zoomOut').addEventListener('click', function() {
 });
 
 // SETUP SECTION
-function setupWidget(openButton, widget, closeButton) {
+function setupWidget(openButton, widget, closeButton, load) {
   openButton.addEventListener('click', function() {
       if (widget.style.display === 'block') {
           widget.style.display = 'none';
@@ -17,6 +17,10 @@ function setupWidget(openButton, widget, closeButton) {
       } else {
           widget.style.display = 'block';
           widget.classList.add('open');
+
+          if (load){
+            load();
+          }
       }
   });
 
@@ -81,7 +85,7 @@ setupWidget(openUploadButton, UploadButton, closeUpload);
 setupWidget(openMusicButton, musicWidget, closeMusicWidget);
 setupWidget(openCalendarButton, calendarWidget, closeCalendarWidget);
 setupWidget(openClockButton, clockWidget, closeClockWidget);
-setupWidget(openNoteButton, noteWidget, closeNoteWidget);
+setupWidget(openNoteButton, noteWidget, closeNoteWidget, loadNoteAndTodos);
 setupWidget(openMessageButton, messageWidget, closeMessage);
 setupWidget(openYourRoomInfo, yourRoomInfo, closeYourRoominfo);
 setupWidget(openInviteLink, inviteLink, closeInviteLink);
@@ -405,7 +409,6 @@ function startPomodoro() {
     type: "GET",
     url: "start_timer",
     data: {
-      //csrfmiddlewaretoken: csrfToken
     },
     success: function(response) {
       console.log("Timer started successfully");
@@ -454,7 +457,6 @@ function resetPomodoro() {
     type: "GET",
     url: "end_timer",
     data: {
-      //csrfmiddlewaretoken: csrfToken
       entry_id: entryId
     },
     success: function(data) {
@@ -530,23 +532,7 @@ document.getElementById("closePopupBtn").addEventListener("click", function() {
 
 function resetTracking() {
   if (trackingSeconds > 0) { 
-    /*console.log("tracking time:", trackingSeconds)
-    $.ajax({
-      type: 'POST',
-      url: "{{% 'update_tracking/' %}}",
-      //url: 'update_tracking',  
-      data: {
-        tracking_seconds: trackingSeconds,
-        'csrfmiddlewaretoken': '{{ csrf_token }}',
-      },
-      success: function(response) {
-        console.log("Total time updated successfully:", response.total_time);
-      },
-      error: (error) => {
-        console.log(JSON.stringify(error));
-      }
-    });
-  }*/
+    
     console.log("tracking time:", trackingSeconds)
     $.ajax({
       type: 'GET',
@@ -625,7 +611,104 @@ document.getElementById('noteInput').addEventListener('keydown', function(event)
   }
 });
 
+// ----------------------------------- save note
+let typingTimer;
+const typingInterval = 2000; // 2 seconds
+const noteInput = document.getElementById('noteInput');
+const todoContainer = document.getElementById('todoContainer');
 
+// Save function to send data to the server
+function saveNoteAndTodo() {
+    const todos = [];
+    document.querySelectorAll('.todoItem').forEach(item => {
+        const todoText = item.querySelector('input[type="text"]').value;
+        const isChecked = item.querySelector('input[type="checkbox"]').checked;
+        todos.push({ text: todoText, completed: isChecked });
+    });
+
+    const noteContent = noteInput.value;
+
+    $.ajax({
+        type: 'GET',
+        url: 'save_note_and_todo',
+        data: {
+            todos: JSON.stringify(todos),
+            note: noteContent,
+        },
+        success: function(response) {
+            console.log('Note and todo saved successfully.');
+        },
+        error: function(error) {
+            console.error('Error saving note and todo:', error);
+        }
+    });
+}
+
+noteInput.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(saveNoteAndTodo, typingInterval);
+});
+
+noteInput.addEventListener('keydown', () => {
+    clearTimeout(typingTimer);
+});
+
+todoContainer.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(saveNoteAndTodo, typingInterval);
+});
+
+todoContainer.addEventListener('keydown', () => {
+    clearTimeout(typingTimer);
+});
+
+// ------------------------- load note
+//function loadNoteAndTodos() {}
+function loadNoteAndTodos() {
+  $.ajax({
+      type: 'GET',
+      url: 'get_note_and_todo',
+      success: function(response) {
+          if (response.status === 'error') {
+              console.error('Error fetching note and todos:', response.message);
+              return;
+          }
+
+          document.getElementById('noteInput').value = response.note;
+
+          const todoContainer = document.getElementById('todoContainer');
+          todoContainer.innerHTML = ''; 
+
+          response.todos.forEach(item => { 
+            const todoItem = document.createElement('div');
+            todoItem.className = 'todoItem';
+          
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+          
+            const todoTextInput = document.createElement('input');
+            todoTextInput.type = 'text';
+            todoTextInput.value = item.text; 
+            
+            checkbox.addEventListener('change', function() {
+                if (checkbox.checked) {
+                    todoTextInput.style.textDecoration = 'line-through';
+                } else {
+                    todoTextInput.style.textDecoration = 'none';
+                }
+            });
+          
+            todoItem.appendChild(checkbox);
+            todoItem.appendChild(todoTextInput);
+            todoContainer.appendChild(todoItem);
+          
+          });
+      },
+      error: function(error) {
+          console.error('Error fetching note and todos:', error);
+      }
+  });
+}
 //Drag and drop
 function makeDraggable(draggableElement) {
   let isDragging = false;

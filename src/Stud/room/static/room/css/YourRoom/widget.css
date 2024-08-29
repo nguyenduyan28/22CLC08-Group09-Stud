@@ -553,8 +553,8 @@ label{
     display: flex;
 }
 
-.trackingButton,
-.trackingResetButton {
+.trackingButton
+{
     width: 50px;
     height: 25px;
     position: relative;
@@ -564,14 +564,27 @@ label{
     border-radius: 50px;
     cursor: pointer;
 }
+.trackingResetButton {
+    width: 50px;
+    height: 25px;
+    left: -115px;
+    position: relative;
+    background: #000;
+    color: white;
+    font: 500 12px "Outfit", Helvetica, Arial, serif;
+    border-radius: 50px;
+    cursor: pointer;
+    
+}
 .trackingHistoryText{
     font: 600 12px "Outfit", Helvetica, Arial, serif;
     margin-left: 5px;
+    
 }
 .trackingListSection {
     position: relative;
     height: 226px;
-    width: 120px;
+    width: 150px;
     overflow-y: auto;
     top: -124px;
     left: 282px;
@@ -596,6 +609,11 @@ label{
     font-size: 14px;
 }
   
+#viewAchievementBtn {
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+  }
 .toggle-input {
 display: none;
 }
