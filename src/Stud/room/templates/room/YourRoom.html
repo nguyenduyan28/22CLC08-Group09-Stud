@@ -113,7 +113,7 @@
                             <label for="id_image" class="image-field">Image:</label>
                             <input type="file" name="image" class="image-field" accept="image/*" required="" id="id_image">
                         </p>
-<div class="formUploadImage-top">
+                        <div class="formUploadImage-top">
                             <input type="file" id="id_image" hidden/>
                             <label class="chooseFileButton" for="id_image">Choose File</label>
                             <span id="file-chosen">No file chosen</span>
@@ -200,8 +200,16 @@
                             <input type="checkbox" id="toggle-switch" class="toggle-input">
                             <label for="toggle-switch" class="toggle-label"></label>
                         </div>
+                        <!-- Add Reset Button -->
+                        <button class="trackingResetButton" id="trackingResetButton">Reset</button>
+                    </div>
+                    <div class="trackingListSection">
+                        <!-- Display tracked time list -->
+                         <h1 class="trackingHistoryText">Tracking history</h1>
+                        <ul class="trackingList" id="trackingList"></ul>
                     </div>
                 </div>
+                
             </div>
         </div>
         <!--Note widget-->
