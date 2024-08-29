@@ -11,11 +11,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='room',
-            name='invite_token',
-            field=models.CharField(blank=True, default=uuid.UUID('d173770e-97e8-4d47-bc02-48226b811bc8'), max_length=36, null=True, unique=True),
-        ),
         migrations.AlterField(
             model_name='image',
             name='title',

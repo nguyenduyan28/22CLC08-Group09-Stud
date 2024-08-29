@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, render
-#from .forms import LoginForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -17,7 +16,7 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 
 from . tokens import generate_token
-from .models import Profile
+from .models import Profile, traceActivity
 
 def index(request):
     return render(request, 'account/index.html')
@@ -49,6 +48,14 @@ def signup(request):
         if not username.isalnum():
             messages.error(request, "Username must be letter or number only.")
             return redirect('signup')
+        
+        if password.isnumeric():
+            messages.error(request, "Your password can't be entirely nuumeric.")
+            return redirect('signup')
+        
+        if len(password) < 8:
+            messages.error(request, "Your password must contain at least 8 characters.")
+            return redirect('signup')
         myuser = User.objects.create_user(username, email, password)
         myuser.first_name = name
 
@@ -57,7 +64,7 @@ def signup(request):
         myuser.save()
 
         messages.success(request, "Your account has been successfuly created. Please active your account via email.")
-
+        traceActivity.log_user_action(myuser, 'Sign up')
         current_site = get_current_site(request)
         email_subject = "Confirm Email!!"
         message2 = render_to_string('account/email_confirmation.html',{
@@ -86,6 +93,7 @@ def signin(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
+            traceActivity.log_user_action(request.user, 'Log in')
             name = user.first_name
             #messages.success(request, "Sign in successfully!")
             #return render(request, "account/index.html")
@@ -100,6 +108,7 @@ def signin(request):
     else:
         return render(request, 'account/Login.html')
 def signout(request):
+    traceActivity.log_user_action(request.user, 'Sign out')
     logout(request)
     #messages.success(request, "Loged out successfully!")
     return redirect('../../')
@@ -115,14 +124,26 @@ def activate(request, uidb64, token):
     if myuser is not None and generate_token.check_token(myuser,token):
         myuser.is_active = True
         myuser.save()
-        login(request,myuser)
+        #login(request,myuser)
         messages.success(request, "Your Account has been activated.")
-        return redirect('home')
+        return redirect('signin')
     else:
         return render(request,'activation_failed.html')
+    
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'account/password_reset_form.html'
+    email_template_name = 'account/password_reset_email.html'
+    subject_template_name = 'account/password_reset_subject.txt'
+    success_message = "We've sent you an email with instructions on how to reset your password. Please check your mail." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('signin')
 
-def forgot(request):
-    return render(request, 'account/Forgot.html')
+'''def forgot(request):
+    return render(request, 'account/Forgot.html')'''
 @login_required
 def me(request):
   user =  request.user

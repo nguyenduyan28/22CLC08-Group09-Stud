@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 class Profile(models.Model):
   LEARNER = "LN"
@@ -18,3 +19,15 @@ class Profile(models.Model):
   
   def __str__(self):
     return self.user.username
+  
+
+class traceActivity(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  action = models.CharField(max_length=255)
+  timestamp = models.DateTimeField(auto_now_add=True)
+
+  def __str__(self):
+      return f'{self.user.username} {self.action} at {self.timestamp}'
+  def log_user_action(user, action):
+    traceActivity.objects.create(user=user, action=action)
+

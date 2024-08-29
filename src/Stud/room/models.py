@@ -1,6 +1,10 @@
 from django.db import models
 from account.models import Profile
 import uuid 
+from django.db.models import JSONField
+from datetime import timedelta
+from django.utils import timezone
+import uuid
 # Create your models here.
 class Room(models.Model):
   roomName = models.TextField(max_length=50)
@@ -35,3 +39,22 @@ class Message(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     sender = models.CharField(max_length=255)
     message = models.TextField()
+
+
+class tracking_time(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    start_time = models.DateTimeField(default=timezone.now) 
+    total_time = models.DurationField(default=timedelta(0)) 
+    num_sessions = models.IntegerField(default=0) 
+
+    def __str__(self):
+        return f"User: {self.user.username}, Total Time: {self.total_time}, Sessions: {self.num_sessions}"
+    
+
+
+class note(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    note_content = models.TextField(blank=True, null=True)
+    todos = JSONField(default=list)  
+
+

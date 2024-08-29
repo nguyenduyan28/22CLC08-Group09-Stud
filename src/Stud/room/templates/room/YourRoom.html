@@ -144,7 +144,7 @@
                             <label for="id_image" class="image-field">Image:</label>
                             <input type="file" name="image" class="image-field" accept="image/*" required="" id="id_image">
                         </p>
-<div class="formUploadImage-top">
+                        <div class="formUploadImage-top">
                             <input type="file" id="id_image" hidden/>
                             <label class="chooseFileButton" for="id_image">Choose File</label>
                             <span id="file-chosen">No file chosen</span>
@@ -217,8 +217,17 @@
                         </div>
                     </div>
                     <div class="startResetSection">
-                        <button class="startButton" id="startButton">Start</button>
-                        <button class="resetButton" id="resetButton">Reset</button>
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            <button class="startButton" id="startButton" action="/start_timer" >Start</button>
+                            
+                        </form>
+
+                        <form method="post">
+                            {% csrf_token %}
+                            <button class="resetButton" id="resetButton" action="/end_timer">Reset</button>
+                        </form>
                     </div>
                 </div>
                 <div class="containerTracking">
@@ -231,8 +240,27 @@
                             <input type="checkbox" id="toggle-switch" class="toggle-input">
                             <label for="toggle-switch" class="toggle-label"></label>
                         </div>
+                        <!-- Add Reset Button -->
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="button"class="trackingResetButton" id="trackingResetButton" action="/update_tracking">Reset</button>
+                        </form>
+                        
                     </div>
+
+                    <div class="trackingListSection">
+                        <button id="viewAchievementBtn">View Achievement</button>
+                        <div id="achievementPopup" style="display: none;">
+                            <p>Total Time Studied: <span id="totalTime"></span></p>
+                            <p>Number of Sessions: <span id="numSessions"></span></p>
+                            <button id="closePopupBtn">Close</button>
+                        </div>
+                    </div>
+                    <!-- achievement btn-->
                 </div>
+                
+                
+
             </div>
         </div>
         <!--Note widget-->

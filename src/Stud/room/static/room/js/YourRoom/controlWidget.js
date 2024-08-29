@@ -9,7 +9,7 @@ document.querySelector('.zoomOut').addEventListener('click', function() {
 });
 
 // SETUP SECTION
-function setupWidget(openButton, widget, closeButton) {
+function setupWidget(openButton, widget, closeButton, load) {
   openButton.addEventListener('click', function() {
       if (widget.style.display === 'block') {
           widget.style.display = 'none';
@@ -17,6 +17,10 @@ function setupWidget(openButton, widget, closeButton) {
       } else {
           widget.style.display = 'block';
           widget.classList.add('open');
+
+          if (load){
+            load();
+          }
       }
   });
 
@@ -81,7 +85,7 @@ setupWidget(openUploadButton, UploadButton, closeUpload);
 setupWidget(openMusicButton, musicWidget, closeMusicWidget);
 setupWidget(openCalendarButton, calendarWidget, closeCalendarWidget);
 setupWidget(openClockButton, clockWidget, closeClockWidget);
-setupWidget(openNoteButton, noteWidget, closeNoteWidget);
+setupWidget(openNoteButton, noteWidget, closeNoteWidget, loadNoteAndTodos);
 setupWidget(openMessageButton, messageWidget, closeMessage);
 setupWidget(openYourRoomInfo, yourRoomInfo, closeYourRoominfo);
 setupWidget(openInviteLink, inviteLink, closeInviteLink);
@@ -356,6 +360,11 @@ const timerDisplay = document.querySelector('.pomodoro');
 const toggleSwitch = document.getElementById('toggle-switch');
 const trackingDisplay = document.getElementById('tracking');
 
+const trackingResetBtn = document.getElementById('trackingResetButton');
+const lastTrackedDisplay = document.getElementById('lastTracked');
+const trackingList = document.getElementById('trackingList');
+
+
 let intervalId;
 let trackingIntervalId;
 let isPomodoroRunning = false;
@@ -395,6 +404,24 @@ function startPomodoro() {
   if (totalSeconds === 0) {
     return;
   }
+
+  $.ajax({
+    type: "GET",
+    url: "start_timer",
+    data: {
+    },
+    success: function(response) {
+      console.log("Timer started successfully");
+      entryId = response.entry_id;
+      console.log("entry id= ", entryId)
+
+    },
+    error: (error) => {
+      console.log(JSON.stringify(error));
+    }
+
+  });
+
   timerDisplay.textContent = formatTimePomodoro(totalSeconds);
 
   intervalId = setInterval(() => {
@@ -425,6 +452,23 @@ function startPomodoro() {
 function resetPomodoro() {
   clearInterval(intervalId);
   totalSeconds = 0;
+
+  $.ajax({
+    type: "GET",
+    url: "end_timer",
+    data: {
+      entry_id: entryId
+    },
+    success: function(data) {
+      console.log("Timer ended successfully");
+      console.log("entry id=", entryId)
+      entryId = null
+    },
+    error: (error) => {
+      console.log(JSON.stringify(error));
+    }
+
+  });
 
   timerDisplay.textContent = formatTimePomodoro(totalSeconds);
 
@@ -459,33 +503,59 @@ startBtn.addEventListener('click', () => {
 });
 resetBtn.addEventListener('click', resetPomodoro);
 
-// invite widget
+// view achievement
+function viewAchievement() {
+  $.ajax({
+      type: "GET",
+      url: "view_achievement",
+      success: function(data) {
+          console.log("Achievement data fetched successfully:", data);
+          document.getElementById("totalTime").textContent = data.total_time;
+          document.getElementById("numSessions").textContent = data.num_sessions;
+          document.getElementById("achievementPopup").style.display = "block";
+      },
+      error: function(xhr, status, error) {
+          console.log("Error fetching achievement data:");
+          console.log("Status:", status);
+          console.log("Error:", error);
+      }
+  });
+}
+document.getElementById("viewAchievementBtn").addEventListener("click", function(event) {
+  event.preventDefault(); 
+  viewAchievement();
+});
+document.getElementById("closePopupBtn").addEventListener("click", function() {
+  document.getElementById("achievementPopup").style.display = "none";
+});
+// Tracking Reset Function
 
-// openInviteLink.addEventListener('click', () => {
-//     inviteLink.style.display = 'block';
-// });
-
-// closeInviteLink.addEventListener('click', () => {
-//     inviteLink.style.display = 'none';
-// });
-
-// // Event listener for accepting or denying join requests
-// document.querySelectorAll('.accept-request, .deny-request').forEach(button => {
-//     button.addEventListener('click', async (event) => {
-//         const requestId = event.target.getAttribute('data-request-id');
-//         const action = event.target.classList.contains('accept-request') ? 'accept' : 'deny';
-
-//         try {
-//             const response = await axios.post(`/room/handle_request/${requestId}/`, { action });
-//             if (response.status === 200) {
-//                 event.target.closest('.join-request').remove();
-//             }
-//         } catch (error) {
-//             console.error('Error handling join request:', error);
-//         }
-//     });
-// });
-
+function resetTracking() {
+  if (trackingSeconds > 0) { 
+    
+    console.log("tracking time:", trackingSeconds)
+    $.ajax({
+      type: 'GET',
+      url: 'update_tracking',  
+      data: {
+        tracking_seconds: trackingSeconds,
+      },
+      success: function(response) {
+        console.log("Total time updated successfully:", response.total_time);
+      },
+      error: (error) => {
+        console.log(JSON.stringify(error));
+      }
+    });
+  }
+  clearInterval(trackingIntervalId);
+  trackingSeconds = 0;
+  //trackingDisplay.textContent = formatTimePomodoro(trackingSeconds);
+  isTrackingRunning = false;
+  toggleSwitch.checked = false;
+}
+// Event Listener for Tracking Reset Button
+trackingResetBtn.addEventListener('click', resetTracking);
 
 // Note Widget
 document.getElementById('addTodoButton').addEventListener('click', function() {
@@ -541,7 +611,104 @@ document.getElementById('noteInput').addEventListener('keydown', function(event)
   }
 });
 
+// ----------------------------------- save note
+let typingTimer;
+const typingInterval = 2000; // 2 seconds
+const noteInput = document.getElementById('noteInput');
+const todoContainer = document.getElementById('todoContainer');
 
+// Save function to send data to the server
+function saveNoteAndTodo() {
+    const todos = [];
+    document.querySelectorAll('.todoItem').forEach(item => {
+        const todoText = item.querySelector('input[type="text"]').value;
+        const isChecked = item.querySelector('input[type="checkbox"]').checked;
+        todos.push({ text: todoText, completed: isChecked });
+    });
+
+    const noteContent = noteInput.value;
+
+    $.ajax({
+        type: 'GET',
+        url: 'save_note_and_todo',
+        data: {
+            todos: JSON.stringify(todos),
+            note: noteContent,
+        },
+        success: function(response) {
+            console.log('Note and todo saved successfully.');
+        },
+        error: function(error) {
+            console.error('Error saving note and todo:', error);
+        }
+    });
+}
+
+noteInput.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(saveNoteAndTodo, typingInterval);
+});
+
+noteInput.addEventListener('keydown', () => {
+    clearTimeout(typingTimer);
+});
+
+todoContainer.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(saveNoteAndTodo, typingInterval);
+});
+
+todoContainer.addEventListener('keydown', () => {
+    clearTimeout(typingTimer);
+});
+
+// ------------------------- load note
+//function loadNoteAndTodos() {}
+function loadNoteAndTodos() {
+  $.ajax({
+      type: 'GET',
+      url: 'get_note_and_todo',
+      success: function(response) {
+          if (response.status === 'error') {
+              console.error('Error fetching note and todos:', response.message);
+              return;
+          }
+
+          document.getElementById('noteInput').value = response.note;
+
+          const todoContainer = document.getElementById('todoContainer');
+          todoContainer.innerHTML = ''; 
+
+          response.todos.forEach(item => { 
+            const todoItem = document.createElement('div');
+            todoItem.className = 'todoItem';
+          
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+          
+            const todoTextInput = document.createElement('input');
+            todoTextInput.type = 'text';
+            todoTextInput.value = item.text; 
+            
+            checkbox.addEventListener('change', function() {
+                if (checkbox.checked) {
+                    todoTextInput.style.textDecoration = 'line-through';
+                } else {
+                    todoTextInput.style.textDecoration = 'none';
+                }
+            });
+          
+            todoItem.appendChild(checkbox);
+            todoItem.appendChild(todoTextInput);
+            todoContainer.appendChild(todoItem);
+          
+          });
+      },
+      error: function(error) {
+          console.error('Error fetching note and todos:', error);
+      }
+  });
+}
 //Drag and drop
 function makeDraggable(draggableElement) {
   let isDragging = false;
