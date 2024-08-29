@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+<body>
     <div class="Wrapper">
       <div class="wrapper1 sign-up">
         <form method="POST" action="">
@@ -23,7 +23,6 @@
               placeholder="Username"
               required
             />
-            <!--General-->
             <i class="bx bxs-user"></i>
           </div>
           <div class="input-box">
@@ -72,6 +71,15 @@
             >
           </div>
           <button type="submit" class="btn">Sign Up</button>
+
+          {% if messages %}
+          <div>
+            {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+
           <div class="register">
             <p>
               Already have an account?
@@ -79,14 +87,6 @@
             </p>
           </div>
         </form>
-
-        {% if messages %}
-        <div>
-          {% for message in messages %}
-          <p class="{{ message.tags }}">{{ message }}</p>
-          {% endfor %}
-        </div>
-        {% endif %}
       </div>
     </div>
     <script src="/static/account/js/Login/script.js"></script>
