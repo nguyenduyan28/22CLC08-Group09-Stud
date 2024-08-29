@@ -411,9 +411,7 @@ function startPomodoro() {
     error: (error) => {
       console.log(JSON.stringify(error));
     }
-    //error: function(error) {
-     // console.log("Error starting timer", error);
-   // }
+
   });
 
   timerDisplay.textContent = formatTimePomodoro(totalSeconds);

@@ -9,7 +9,7 @@ from django.http import JsonResponse
 import logging
 from django.utils import timezone
 from .models import tracking_time
-from datetime import timedelta
+
 # Create your views here.
 @login_required
 def yourroom(request):
@@ -74,35 +74,82 @@ from django.shortcuts import get_object_or_404
 from .models import Profile 
 @login_required
 @csrf_exempt
+# def start_timer(request):
+#     if request.method == 'GET':
+#         user_profile = get_object_or_404(Profile, user=request.user)
+#         logger.info("start_timer function called")
+#         entry = tracking_time.objects.create(user=user_profile, start_time=timezone.now())
+#         return JsonResponse({'entry_id': entry.id, 'start_time': entry.start_time})
+        
+# def end_timer(request):
+#     if request.method == 'GET':
+#         entry_id = request.GET.get('entry_id')
+#         if entry_id:
+#             entry = get_object_or_404(tracking_time, id = entry_id)
+#             #user_profile = get_object_or_404(Profile, user=request.user)
+#             #entry = tracking_time.objects.get(id=entry_id, user=user_profile)
+#             entry.end_time = timezone.now()
+#             entry.save()
+#             return JsonResponse({'entry_id': entry.id, 'end_time': entry.end_time})
+#         else:
+#             return JsonResponse({'error': 'entry_id not provided'}, status=400)
+        
+# def view_achievement(request):
+#     if request.method == 'GET':
+#         user_profile = get_object_or_404(Profile, user=request.user)
+#         sessions = tracking_time.objects.filter(user=user_profile)
+
+#         total_time = sum((session.duration() for session in sessions if session.duration()), timedelta())
+#         num_sessions = sessions.count()
+
+#         return JsonResponse({
+#             'total_time': str(total_time),
+#             'num_sessions': num_sessions
+#         })
+# def start_timer(request):
+#     if request.method == 'GET':
+#         user_profile = get_object_or_404(Profile, user=request.user)
+#         logger.info("start_timer function called")
+#         entry = tracking_time.objects.create(user=user_profile, start_time=timezone.now())
+#         return JsonResponse({'entry_id': entry.id, 'start_time': entry.start_time})
+        
 def start_timer(request):
     if request.method == 'GET':
-        user_profile = get_object_or_404(Profile, user=request.user)
         logger.info("start_timer function called")
-        entry = tracking_time.objects.create(user=user_profile, start_time=timezone.now())
-        return JsonResponse({'entry_id': entry.id, 'start_time': entry.start_time})
+        user_profile = get_object_or_404(Profile, user=request.user)
+        entry = tracking_time.objects.filter(user=user_profile).first()
         
+        if entry:
+            entry.start_time = timezone.now()
+            return JsonResponse({'entry_id': entry.id, 'start_time': entry.start_time})
+        else:
+            entry = tracking_time.objects.create(user=user_profile, start_time=timezone.now())
+            return JsonResponse({'entry_id': entry.id, 'start_time': entry.start_time})
+
 def end_timer(request):
     if request.method == 'GET':
         entry_id = request.GET.get('entry_id')
         if entry_id:
-            entry = get_object_or_404(tracking_time, id = entry_id)
-            #user_profile = get_object_or_404(Profile, user=request.user)
-            #entry = tracking_time.objects.get(id=entry_id, user=user_profile)
-            entry.end_time = timezone.now()
-            entry.save()
-            return JsonResponse({'entry_id': entry.id, 'end_time': entry.end_time})
+            user_profile = get_object_or_404(Profile, user=request.user)
+            entry = get_object_or_404(tracking_time, id=entry_id, user=user_profile)
+            #start_time = request.session.get('start_time')
+            if entry.start_time:
+                end_time = timezone.now()
+                session_duration = end_time - entry.start_time
+                entry.total_time += session_duration
+                entry.num_sessions += 1
+                entry.save()
+                return JsonResponse({'entry_id': entry.id})
+            else:
+                return JsonResponse({'error': 'start_time not found in session'}, status=400)
         else:
             return JsonResponse({'error': 'entry_id not provided'}, status=400)
-        
 def view_achievement(request):
     if request.method == 'GET':
         user_profile = get_object_or_404(Profile, user=request.user)
-        sessions = tracking_time.objects.filter(user=user_profile)
-
-        total_time = sum((session.duration() for session in sessions if session.duration()), timedelta())
-        num_sessions = sessions.count()
+        entry = get_object_or_404(tracking_time, user=user_profile)
 
         return JsonResponse({
-            'total_time': str(total_time),
-            'num_sessions': num_sessions
+            'total_time': str(entry.total_time),
+            'num_sessions': entry.num_sessions
         })

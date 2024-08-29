@@ -19,15 +19,28 @@ class Room(models.Model):
   def __str__(self):
     return self.roomName
   
+# class tracking_time(models.Model):
+#   user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#   start_time = models.DateTimeField()
+#   end_time = models.DateTimeField(null=True, blank=True)
+
+#   def duration(self):
+#       if self.end_time:
+#           return self.end_time - self.start_time
+#       return None
+
+#   def __str__(self):
+#       return f"User: {self.user.username}, Start: {self.start_time}, End: {self.end_time}"
+
+from datetime import timedelta
+from django.utils import timezone
+
 class tracking_time(models.Model):
-  user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-  start_time = models.DateTimeField()
-  end_time = models.DateTimeField(null=True, blank=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    start_time = models.DateTimeField(default=timezone.now)
+    #start_time = models.DateTimeField(null=True, blank=True)
+    total_time = models.DurationField(default=timedelta(0)) 
+    num_sessions = models.IntegerField(default=0) 
 
-  def duration(self):
-      if self.end_time:
-          return self.end_time - self.start_time
-      return None
-
-  def __str__(self):
-      return f"User: {self.user.username}, Start: {self.start_time}, End: {self.end_time}"
+    def __str__(self):
+        return f"User: {self.user.username}, Total Time: {self.total_time}, Sessions: {self.num_sessions}"
