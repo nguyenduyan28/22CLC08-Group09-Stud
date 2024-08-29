@@ -67,7 +67,7 @@ def login(request):
 
 
 
-logger = logging.getLogger(__name__)
+#logger = logging.getLogger(__name__)
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
@@ -115,12 +115,13 @@ from .models import Profile
         
 def start_timer(request):
     if request.method == 'GET':
-        logger.info("start_timer function called")
+        #logger.info("start_timer function called")
         user_profile = get_object_or_404(Profile, user=request.user)
         entry = tracking_time.objects.filter(user=user_profile).first()
         
         if entry:
             entry.start_time = timezone.now()
+            entry.save()
             return JsonResponse({'entry_id': entry.id, 'start_time': entry.start_time})
         else:
             entry = tracking_time.objects.create(user=user_profile, start_time=timezone.now())

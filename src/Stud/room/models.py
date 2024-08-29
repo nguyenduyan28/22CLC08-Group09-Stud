@@ -37,8 +37,7 @@ from django.utils import timezone
 
 class tracking_time(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    start_time = models.DateTimeField(default=timezone.now)
-    #start_time = models.DateTimeField(null=True, blank=True)
+    start_time = models.DateTimeField(default=timezone.now) 
     total_time = models.DurationField(default=timedelta(0)) 
     num_sessions = models.IntegerField(default=0) 
 

@@ -460,9 +460,7 @@ function resetPomodoro() {
     error: (error) => {
       console.log(JSON.stringify(error));
     }
-    /*error: function(error) {
-      console.log("Error ended timer", error);
-    }*/
+
   });
 
   timerDisplay.textContent = formatTimePomodoro(totalSeconds);
@@ -513,7 +511,6 @@ function viewAchievement() {
           console.log("Error fetching achievement data:");
           console.log("Status:", status);
           console.log("Error:", error);
-          console.log("Response Text:", xhr.responseText);
       }
   });
 }

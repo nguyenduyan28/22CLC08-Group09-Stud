@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'django_q',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +153,15 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "mainpage/static"),
     os.path.join(BASE_DIR, "room/static"),
 ]
+
+#django-q automatically reset 
+Q_CLUSTER = {
+    'name': 'DjangoQ',
+    'workers': 4,
+    'recycle': 500,
+    'timeout': 60,
+    'retry': 120,
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default',  # using Django ORM
+}
