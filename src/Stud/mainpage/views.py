@@ -25,7 +25,7 @@ def contact(request):
 def explore(request):
   return render(request, "mainpage/Explore.html")
 
-#
+# hope is right
 def createroom(request):
   if (request.method == 'POST'):
     if not request.user.is_authenticated:
