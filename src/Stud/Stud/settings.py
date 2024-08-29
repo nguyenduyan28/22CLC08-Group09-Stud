@@ -99,6 +99,7 @@ WSGI_APPLICATION = 'Stud.wsgi.app'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 from dotenv import load_dotenv
 env_path = Path('.') / '.env'
+# change
 load_dotenv(dotenv_path=env_path)
 DATABASES = {
     'default': {
