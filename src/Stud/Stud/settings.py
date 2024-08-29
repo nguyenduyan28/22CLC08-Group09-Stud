@@ -41,6 +41,8 @@ STATIC_ROOT = os.path.join (os.path.dirname(BASE_DIR), "Stud/staticfiles")
 # Application definition
 
 INSTALLED_APPS = [
+
+    'daphne',
     'mainpage.apps.MainPageConfig', # add this to start using app
     'account.apps.AccountConfig',
     'room.apps.RoomConfig',
@@ -51,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -65,6 +68,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Stud.urls'
+
+CHANNEL_LAYERS = {
+    "default": {"BACKEND": "channels.layers.InMemoryChannelLayer"},
+}
 
 TEMPLATES = [
     {
@@ -85,8 +92,8 @@ TEMPLATES = [
     },
 ]
 
-# ASGI_APPLICATION = 'Stud.asgi.app'
-WSGI_APPLICATION = 'Stud.wsgi.app'
+ASGI_APPLICATION = 'Stud.asgi.app'
+#WSGI_APPLICATION = 'Stud.wsgi.app'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

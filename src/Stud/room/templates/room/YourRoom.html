@@ -36,7 +36,7 @@
             <div class="container-header">
                     {%if host == False%}
                 <div class="left-header" style="Display:none;">
-                    <div class="yourroom-header">Your Room</div>
+                    <div class="yourroom-header"></div>
                     <div class="invite-header">Invite</div>
                     <div class="bellNoti">
                         <img class="bellNotiImage" src="/static/room/images/YourRoom/bell.svg"/>
@@ -45,7 +45,7 @@
                 {%else%}
 
                 <div class="left-header" >
-                    <div class="yourroom-header">Your Room</div>
+                    <div class="yourroom-header">{{room.roomName}}</div>
                     
                     <div class="invite-header">  <a href="../../room_access_view/{{room.invite_token}}/manage_requests/"  style="text-decoration:none;color: none;">Invite</a></div>
                     
@@ -253,7 +253,7 @@
         
         <!-- Message widget -->
         <div class="messageWidget">
-            <div class="containerMessage">
+            <div class="child-2">
                 <center><h2>Chats</h2></center><hr>
                 <div class="chat-body-parent">
                     <div class="chat-body" id="tasks">
@@ -262,8 +262,7 @@
                             {% for i in messages %}
                                 {% if i.sender != user %}
                                     <div class="receive">
-                                        <p><strong>{{i.sender}}</strong></p>
-                                        <p style="color: #000;"> {{i.message}}</p>
+                                        <p style="color: #000;"> {{i.message}}<strong>-{{i.sender}}</strong></p>
                                     </div>
                                 {% else %}
                                     <div class="send">
@@ -283,6 +282,73 @@
                 </div>
             </div>
         </div>
+        <script>
+            function scrollToBottom() {
+                var chatContainer = document.getElementById("chatContainer");
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            // Determine the WebSocket protocol based on the application's URL
+            const websocketProtocol = window.location.protocol === "https:" ? "wss" : "ws"; //chọn giao thức bảo mật Websocket HTTPS : wss
+            const wsEndpoint = `${websocketProtocol}://${window.location.host}/ws/notification/{{room_name}}/`;
+        
+            // Create a new WebSocket connection
+            const socket = new WebSocket(wsEndpoint);
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            // Successful connection event
+            socket.onopen = (event) => {
+                console.log("WebSocket connection opened!");
+            };
+        
+            // Socket disconnect event
+            socket.onclose = (event) => {
+                console.log("WebSocket connection closed!");
+            };
+            // Form submit listener
+            document.getElementById('message-form').addEventListener('submit', function(event){
+                event.preventDefault();
+                const message = document.getElementById('msg').value;
+                socket.send(
+                    JSON.stringify({
+                        'message': message,
+                        'room_name': '{{room_name}}',
+                        'sender': '{{user}}',
+                    })
+                );
+            });
+            
+            // Response from consumer on the server
+            socket.addEventListener("message", (event) => {
+                const messageData = JSON.parse(event.data)['message'];
+                console.log(messageData);
+        
+                var sender = messageData['sender'];
+                var message = messageData['message'];
+        
+                // Empty the message input field after the message has been sent
+                if (sender == '{{user}}'){
+                    document.getElementById('msg').value = '';
+                }
+        
+                // Append the message to the chatbox
+                var messageDiv = document.querySelector('.message');
+                if (sender != '{{user}}') { // Assuming you have a variable `currentUser` to hold the current user's name
+                    messageDiv.innerHTML += '<div class="receive"><p style="color: #000;">' + message + '<strong>-' + sender + '</strong></p></div>';
+                } else {
+                    messageDiv.innerHTML += '<div class="send"><p style="color: #000;">' + message + '</p></div>';
+                }
+                scrollToBottom();
+            });
+        </script>
         <!-- Participate widget-->
         <!-- <div class="memberWidget">
             <div class="memberWidget-top">

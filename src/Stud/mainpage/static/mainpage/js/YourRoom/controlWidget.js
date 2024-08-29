@@ -204,6 +204,75 @@ startBtn.addEventListener('click', () => {
 });
 resetBtn.addEventListener('click', resetPomodoro);
 
+
+
+// chatting
+
+function scrollToBottom() {
+  var chatContainer = document.getElementById("chatContainer");
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+// Determine the WebSocket protocol based on the application's URL
+const websocketProtocol = window.location.protocol === "https:" ? "wss" : "ws"; //chọn giao thức bảo mật Websocket HTTPS : wss
+const wsEndpoint = `${websocketProtocol}://${window.location.host}/ws/notification/{{room_name}}/`;
+
+// Create a new WebSocket connection
+const socket = new WebSocket(wsEndpoint);
+
+
+
+
+
+
+
+
+
+
+
+// Successful connection event
+socket.onopen = (event) => {
+  console.log("WebSocket connection opened!");
+};
+
+// Socket disconnect event
+socket.onclose = (event) => {
+  console.log("WebSocket connection closed!");
+};
+// Form submit listener
+document.getElementById('message-form').addEventListener('submit', function(event){
+  event.preventDefault();
+  const message = document.getElementById('msg').value;
+  socket.send(
+      JSON.stringify({
+          'message': message,
+          'room_name': '{{room_name}}',
+          'sender': '{{user}}',
+      })
+  );
+});
+
+// Response from consumer on the server
+socket.addEventListener("message", (event) => {
+  const messageData = JSON.parse(event.data)['message'];
+  console.log(messageData);
+
+  var sender = messageData['sender'];
+  var message = messageData['message'];
+
+  // Empty the message input field after the message has been sent
+  if (sender == '{{user}}'){
+      document.getElementById('msg').value = '';
+  }
+
+  // Append the message to the chatbox
+  var messageDiv = document.querySelector('.message');
+  if (sender != '{{user}}') { // Assuming you have a variable `currentUser` to hold the current user's name
+      messageDiv.innerHTML += '<div class="receive"><p style="color: #000;">' + message + '<strong>-' + sender + '</strong></p></div>';
+  } else {
+      messageDiv.innerHTML += '<div class="send"><p style="color: #000;">' + message + '</p></div>';
+  }
+  scrollToBottom();
+});
 //Drag and drop
 function makeDraggable(draggableElement) {
   let isDragging = false;

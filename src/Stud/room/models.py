@@ -29,3 +29,9 @@ class Image(models.Model):
 
   def __str__ (self):
     return self.title
+
+class Message(models.Model):
+    # dung 1 khoa ngoai de lien ket message voi room, neu room bi xoa thi cac message cung se bi xoa
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    sender = models.CharField(max_length=255)
+    message = models.TextField()

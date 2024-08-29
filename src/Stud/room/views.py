@@ -4,7 +4,7 @@ from .models import Image
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.sites.shortcuts import get_current_site
-from .models import Room, JoinRequest
+from .models import Room, JoinRequest,Message
 from account.models import Profile
 
 # Create your views here.
@@ -29,9 +29,17 @@ def yourroom(request, invite_token):
         form = ImageForm()
     images = room.image_set.all()
     joinRequest = JoinRequest.objects.filter(room=room)
+    # get_room = get_object_or_404(Room, id=room_id, room_name=room_name)
+    get_messages = Message.objects.filter(room=room)
+    context = {
+        "messages": get_messages,
+        "user": request.user.username,
+        "room_name": room.roomName,
+        'images': images, 'form': form, 'host' :  host, 'room': room
+    }
     if joinRequest:
         joinRequest = JoinRequest.objects.get(room=room)
-    return render(request, "room/YourRoom.html", {'images': images, 'form': form, 'host' :  host, 'room': room})
+    return render(request, "room/YourRoom.html", context)
 def yourroom1(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
