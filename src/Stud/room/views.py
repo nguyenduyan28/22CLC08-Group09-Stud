@@ -129,7 +129,7 @@ def room_access_view(request, invite_token):
             return redirect('room_access_view', invite_token=room.invite_token)
 
     return render(request, 'room/request_join_room.html', {'room': room, 'join_request': join_request})
-
+#
 @login_required
 def manage_join_requests(request, invite_token):
     room = get_object_or_404(Room, invite_token=invite_token)
