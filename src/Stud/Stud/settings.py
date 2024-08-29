@@ -158,3 +158,5 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "mainpage/static"),
     os.path.join(BASE_DIR, "room/static"),
 ]
+
+#
