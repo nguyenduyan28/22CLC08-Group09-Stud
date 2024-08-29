@@ -1,0 +1,80 @@
+
+<style>
+/* Join Requests Section */
+.join-requests__title {
+  font: 500 24px "Outfit", Helvetica, Arial, serif;
+  margin-bottom: 20px;
+  color: #C26565;
+}
+
+.join-requests__list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.join-requests__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #C26565;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.join-requests__username {
+  font: 500 18px "Outfit", Helvetica, Arial, serif;
+  color: #333;
+}
+
+.join-requests__form {
+  display: flex;
+  gap: 10px;
+}
+
+.join-requests__button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  font: 500 16px "Outfit", Helvetica, Arial, serif;
+  cursor: pointer;
+}
+
+.join-requests__button--approve {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.join-requests__button--approve:hover {
+  background-color: #45a049;
+}
+
+.join-requests__button--deny {
+  background-color: #f44336;
+  color: white;
+}
+
+.join-requests__button--deny:hover {
+  background-color: #da190b;
+}
+
+</style>
+
+<h2 class="join-requests__title">Manage Join Requests for {{ room.roomName }}</h2>
+
+
+<ul class="join-requests__list">
+  {% for join_request in join_requests %}
+  <li class="join-requests__item">
+    <span class="join-requests__username">{{ join_request.profile.user.username }}</span>
+    <form method="POST" class="join-requests__form">
+      {% csrf_token %}
+      <input type="hidden" name="request_id" value="{{ join_request.id }}">
+      <button type="submit" name="action" value="approve" class="join-requests__button join-requests__button--approve">Approve</button>
+      <button type="submit" name="action" value="deny" class="join-requests__button join-requests__button--deny">Deny</button>
+    </form>
+  </li>
+  {% endfor %}
+</ul>

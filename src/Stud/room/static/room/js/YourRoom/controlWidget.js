@@ -356,11 +356,6 @@ const timerDisplay = document.querySelector('.pomodoro');
 const toggleSwitch = document.getElementById('toggle-switch');
 const trackingDisplay = document.getElementById('tracking');
 
-const trackingResetBtn = document.getElementById('trackingResetButton');
-const lastTrackedDisplay = document.getElementById('lastTracked');
-const trackingList = document.getElementById('trackingList');
-
-
 let intervalId;
 let trackingIntervalId;
 let isPomodoroRunning = false;
@@ -464,26 +459,33 @@ startBtn.addEventListener('click', () => {
 });
 resetBtn.addEventListener('click', resetPomodoro);
 
-// Tracking Reset Function
-function resetTracking() {
-  if (trackingSeconds > 0) {
-      // Create a new list item for the tracked time
-      const listItem = document.createElement('li');
-      listItem.textContent = formatTimePomodoro(trackingSeconds);
-      
-      // Add the new list item to the tracking list
-      trackingList.appendChild(listItem);
-  }
+// invite widget
 
-  clearInterval(trackingIntervalId);
-  trackingSeconds = 0;
-  trackingDisplay.textContent = formatTimePomodoro(trackingSeconds);
-  isTrackingRunning = false;
-  toggleSwitch.checked = false;
-}
+openInviteLink.addEventListener('click', () => {
+    inviteLink.style.display = 'block';
+});
 
-// Event Listener for Tracking Reset Button
-trackingResetBtn.addEventListener('click', resetTracking);
+closeInviteLink.addEventListener('click', () => {
+    inviteLink.style.display = 'none';
+});
+
+// Event listener for accepting or denying join requests
+document.querySelectorAll('.accept-request, .deny-request').forEach(button => {
+    button.addEventListener('click', async (event) => {
+        const requestId = event.target.getAttribute('data-request-id');
+        const action = event.target.classList.contains('accept-request') ? 'accept' : 'deny';
+
+        try {
+            const response = await axios.post(`/room/handle_request/${requestId}/`, { action });
+            if (response.status === 200) {
+                event.target.closest('.join-request').remove();
+            }
+        } catch (error) {
+            console.error('Error handling join request:', error);
+        }
+    });
+});
+
 
 // Note Widget
 document.getElementById('addTodoButton').addEventListener('click', function() {

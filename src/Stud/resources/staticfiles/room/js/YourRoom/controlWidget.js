@@ -234,6 +234,7 @@ document.getElementById('addTodoButton').addEventListener('click', function() {
       }
   });
 
+
   todoItem.appendChild(checkbox);
   todoItem.appendChild(todoTextInput);
   document.getElementById('todoContainer').appendChild(todoItem);
@@ -257,6 +258,7 @@ document.getElementById('noteInput').addEventListener('keydown', function(event)
       }
   }
 });
+
 
 
 //Drag and drop

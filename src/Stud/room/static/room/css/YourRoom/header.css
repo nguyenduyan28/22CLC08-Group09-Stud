@@ -126,6 +126,34 @@ header{
     height: 24px;
     display: flex;
 }
+.invite-header-popup {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 300px;
+}
+
+.invite-header-popup .join-request {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.invite-header-popup .request-info {
+    flex-grow: 1;
+}
+
+.invite-header-popup .request-actions {
+    display: flex;
+    gap: 10px;
+}
+
 .messageIcon{
     width: 48px;
     height: 48px;
@@ -136,4 +164,57 @@ header{
     background-color: #282322;
     position: absolute;
     right: 40px;
+}
+a:hover, :active, :visited {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.participantWidget {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.headerParticipant {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+}
+
+.textHeaderParticipant {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.textParticipant {
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.containerParticipantList {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.participantItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.participantIcon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.participantName {
+    font-size: 14px;
+    color: #333;
 }
