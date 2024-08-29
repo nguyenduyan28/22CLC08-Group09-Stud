@@ -274,7 +274,7 @@
                         <div class="form">
                             <form action="" id="message-form" method="POST">
                                 {% csrf_token %}
-                                <textarea id="msg" cols="30" name="message" rows="10" placeholder="Enter your message" required></textarea>
+                                {{messageForm.as_p}}
                                 <button class="submit" type="submit">Send</button>
                             </form>
                         </div>
@@ -282,73 +282,61 @@
                 </div>
             </div>
         </div>
-        <script>
-            function scrollToBottom() {
-                var chatContainer = document.getElementById("chatContainer");
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-            // Determine the WebSocket protocol based on the application's URL
-            const websocketProtocol = window.location.protocol === "https:" ? "wss" : "ws"; //chọn giao thức bảo mật Websocket HTTPS : wss
-            const wsEndpoint = `${websocketProtocol}://${window.location.host}/ws/notification/{{room_name}}/`;
-        
-            // Create a new WebSocket connection
-            const socket = new WebSocket(wsEndpoint);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-            // Successful connection event
-            socket.onopen = (event) => {
-                console.log("WebSocket connection opened!");
-            };
-        
-            // Socket disconnect event
-            socket.onclose = (event) => {
-                console.log("WebSocket connection closed!");
-            };
-            // Form submit listener
-            document.getElementById('message-form').addEventListener('submit', function(event){
-                event.preventDefault();
-                const message = document.getElementById('msg').value;
-                socket.send(
-                    JSON.stringify({
-                        'message': message,
-                        'room_name': '{{room_name}}',
-                        'sender': '{{user}}',
-                    })
-                );
-            });
-            
-            // Response from consumer on the server
-            socket.addEventListener("message", (event) => {
-                const messageData = JSON.parse(event.data)['message'];
-                console.log(messageData);
-        
-                var sender = messageData['sender'];
-                var message = messageData['message'];
-        
-                // Empty the message input field after the message has been sent
-                if (sender == '{{user}}'){
-                    document.getElementById('msg').value = '';
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        function fetchMessages() {
+            $.ajax({
+                url: '/room/yourroom/{{room.invite_token}}/',  // URL to fetch messages
+                success: function(response){
+                    var messages = response.messages;
+                    var chatContainer = $('#chatContainer');
+
+                    // Append messages to chat container
+                    messages.forEach(function(msg) {
+                        var messageClass = (msg.sender === '{{ user.username }}') ? 'send' : 'receive';
+                        chatContainer.append('<div class="' + messageClass + '"><p style="color: #000;">' + msg.message + '<strong> - ' + msg.sender + '</strong></p></div>');
+                        
+                    });
+                },
+                error: function(response){
+                    console.log('Error:', response);
                 }
-        
-                // Append the message to the chatbox
-                var messageDiv = document.querySelector('.message');
-                if (sender != '{{user}}') { // Assuming you have a variable `currentUser` to hold the current user's name
-                    messageDiv.innerHTML += '<div class="receive"><p style="color: #000;">' + message + '<strong>-' + sender + '</strong></p></div>';
-                } else {
-                    messageDiv.innerHTML += '<div class="send"><p style="color: #000;">' + message + '</p></div>';
-                }
-                scrollToBottom();
             });
-        </script>
+        }
+
+        // Poll every 5 seconds
+        setInterval(fetchMessages, 5000);
+        $('#message-form').on('submit', function(e){
+        e.preventDefault();  // Prevent the default form submission
+
+        var messageContent = $('#id_message').val(); 
+
+            $.ajax({
+                type: 'POST',
+                url: '/room/yourroom/{{room.invite_token}}/',  // URL to send the form data to
+
+                data: {
+                    'message': messageContent,   // Get the message value
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'  // Include the CSRF token
+                },
+                success: function(response){
+                if (response.status === 'success') {
+                    // Append the new message to the chat container
+                    $('#chatContainer').append('<div class="send"><p style="color: #000;">' + messageContent + '</p></div>');
+                    
+                    // Clear the input field
+                    $('#id_message').val('');
+                }
+            },
+                error: function(response){
+                    console.log('Error:', response);
+                }
+            });
+        });
+    });
+</script>
+
         <!-- Participate widget-->
         <!-- <div class="memberWidget">
             <div class="memberWidget-top">

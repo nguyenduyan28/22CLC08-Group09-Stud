@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Image
+from .models import Image , Message
 
 
 class ImageForm(forms.ModelForm):
@@ -10,3 +10,8 @@ class ImageForm(forms.ModelForm):
     widgets = {
         'title': forms.TextInput(attrs={'class': 'title-field'}),
     }
+
+class MessageForm(forms.ModelForm):
+  class Meta:
+    model = Message
+    fields = ['message']
