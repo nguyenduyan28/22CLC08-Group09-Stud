@@ -123,7 +123,6 @@ def room_access_view(request, invite_token):
     if request.method == 'POST':
         if not join_request:
             JoinRequest.objects.create(profile=profile, room=room)
-            messages.info(room.roomHost.user, f'{profile.user.username} has requested to join your room "{room.roomName}".')
             return redirect('room_access_view', invite_token=room.invite_token)
 
     return render(request, 'room/request_join_room.html', {'room': room, 'join_request': join_request})
