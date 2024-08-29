@@ -46,7 +46,8 @@
 
                 <div class="left-header" >
                     <div class="yourroom-header">Your Room</div>
-                    <div class="invite-header">  <a href="../../room_access_view/{{room.invite_token}}/manage_requests/" style="text-decoration: none;">Invite</div>
+                    
+                    <div class="invite-header">  <a href="../../room_access_view/{{room.invite_token}}/manage_requests/"  style="text-decoration:none;color: none;">Invite</a></div>
                     
                     <div class="bellNoti">
                         <img class="bellNotiImage" src="/static/room/images/YourRoom/bell.svg"/>
@@ -248,6 +249,8 @@
                 <textarea id="noteInput" placeholder="Write your note here..."></textarea>
             </div>
         </div>
+
+        
         <!-- Message widget -->
         <div class="messageWidget">
             <div class="containerMessage">
@@ -281,7 +284,7 @@
             </div>
         </div>
         <!-- Participate widget-->
-        <div class="memberWidget">
+        <!-- <div class="memberWidget">
             <div class="memberWidget-top">
                 <div class="memberWidget-top-text">Members</div>
             </div>
@@ -289,9 +292,9 @@
                 <div class="memberWidget-bottom-member">10/20</div>
             </div>
             </div>
-        </div>
+        </div> -->
         <!-- Header information-->
-         <div class="yourroom-header-popup">
+         <!-- <div class="yourroom-header-popup">
             <div class="yourroom-header-popup-top">
                 <div class="yourroom-header-popup-top-text">Your room</div>
                 <img class="yourroom-header-popup-top-close" src="/static/room/images/YourRoom/closeWidget.svg">
@@ -300,8 +303,8 @@
                 <div class="yourroom-header-bottom-name">Room's name</div>
                 <div class="yourroom-header-bottom-description"> Room description</div>
             </div>
-        </div>
-        <div class="invite-header-popup">
+        </div> -->
+        <!-- <div class="invite-header-popup">
             <div class="invite-header-popup-top">
                 <div class="invite-header-popup-top-text">Invite link</div>
                 <img class="invite-header-popup-top-close" src="/static/room/images/YourRoom/closeWidget.svg">
@@ -309,7 +312,7 @@
             <div class="invite-header-popup-bottom">
                 <div class="invite-header-popup-bottom-text">Link</div>
             </div>
-        </div>
+        </div> -->
     </body>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/static/room/js/YourRoom/controlWidget.js"></script>
