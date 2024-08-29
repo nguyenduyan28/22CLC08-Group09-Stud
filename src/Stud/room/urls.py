@@ -10,5 +10,6 @@ urlpatterns = [
   path("login", views.login),
   path('yourroom/<str:invite_token>/join/', views.join_room, name='join_room'),
   path('yourroom/<str:invite_token>/view/', views.view_room, name='view_room'),
-  path("yourroom", views.yourroom, name='yr'),
+  path("yourroom/", views.listroom, name='yr'),
+  # path('listroom/', views.listroom, name='listroom')
 ]

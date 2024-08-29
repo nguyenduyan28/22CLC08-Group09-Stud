@@ -35,12 +35,14 @@ document.querySelectorAll('.explore__main--discoverRoomSection--roomBox').forEac
         const roomName = box.getAttribute('data-room-name');
         const roomDescription = box.getAttribute('data-room-description');
         const roomMembers = box.getAttribute('data-room-members');
-
+        const inviteToken = box.getAttribute('data-room-token');
         document.getElementById('modalRoomName').innerText = roomName;
         document.getElementById('modalRoomDescription').innerText = roomDescription;
         document.getElementById('modalRoomMembers').innerText = roomMembers;
 
+        const inviteLink = document.getElementById('modalRoomToken');
         const modal = document.getElementById('roomModalInfos');
+        inviteLink.href = `/room/yourroom/${inviteToken}`;
         modal.style.display = 'block';
     });
 });

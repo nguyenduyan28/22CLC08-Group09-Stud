@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.sites.shortcuts import get_current_site
 from .models import Room
+from account.models import Profile
+
 # Create your views here.
 @login_required
 def yourroom(request, invite_token):
@@ -15,7 +17,7 @@ def yourroom(request, invite_token):
             image  = form.save(commit=False)
             image.room = room
             image.save()
-            return redirect('yourroom')
+            return redirect(f'../{invite_token}')
     elif request.method == 'GET':
         form = ImageForm()
     images = room.image_set.all()
@@ -42,7 +44,6 @@ def upload_image(request):
     # sua cho nay
     #
     return render(request, 'room/upload_image.html', {'form': form})
-    return render(request, 'room/YourRoom.html', {'form': form})
 
 def image_list(request):
     if request.method == 'POST':
@@ -96,3 +97,10 @@ def view_room(request, invite_token):
     return render(request, 'room/YourRoom.html', {'form': form, 'mode': 'view' , 'image' : images})
 def login(request):
   return render(request, "room/Login.html")
+
+@login_required
+def listroom(request):
+    profile = Profile.objects.get(user=request.user)
+    room = profile.hosted_rooms.all()
+    return render(request, "room/listroom.html", {'room': room})
+    

@@ -5,9 +5,8 @@ import uuid
 class Room(models.Model):
   roomName = models.TextField(max_length=50)
   roomDesc = models.TextField(max_length=300)
-  roomHost = models.ForeignKey(Profile, on_delete=models.CASCADE)
+  roomHost = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='hosted_rooms')
   invite_token = models.CharField(max_length=50, blank=True, null=True, unique=True, default=None)
-
   def __str__(self):
     return self.roomName
 class Image(models.Model):
