@@ -69,7 +69,6 @@ def login(request):
   return render(request, "room/Login.html")
 
 
-logger = logging.getLogger(__name__)
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
@@ -79,7 +78,6 @@ from .models import Profile
 
 def start_timer(request):
     if request.method == 'GET':
-        #logger.info("start_timer function called")
         user_profile = get_object_or_404(Profile, user=request.user)
         entry = tracking_time.objects.filter(user=user_profile).first()
         
@@ -113,7 +111,6 @@ def end_timer(request):
 @csrf_exempt
 def update_tracking(request):
     if request.method == 'GET':
-        print("hihii")
         user_profile = get_object_or_404(Profile, user=request.user)
         tracking_seconds = int(request.GET.get('tracking_seconds', 0))
 

@@ -1,5 +1,8 @@
 from django.db import models
 from account.models import Profile
+from django.db.models import JSONField
+from datetime import timedelta
+from django.utils import timezone
 import uuid
 # Create your models here.
 class Image(models.Model):
@@ -20,9 +23,6 @@ class Room(models.Model):
     return self.roomName
   
 
-from datetime import timedelta
-from django.utils import timezone
-
 class tracking_time(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     start_time = models.DateTimeField(default=timezone.now) 
@@ -33,9 +33,10 @@ class tracking_time(models.Model):
         return f"User: {self.user.username}, Total Time: {self.total_time}, Sessions: {self.num_sessions}"
     
 
-from django.db.models import JSONField
 
 class note(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     note_content = models.TextField(blank=True, null=True)
     todos = JSONField(default=list)  
+
+
