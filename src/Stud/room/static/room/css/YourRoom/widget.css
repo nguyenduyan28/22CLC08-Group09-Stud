@@ -1,6 +1,9 @@
+
+/* Theme Widget*/
 .themeWidget{
     width: 268px;
-    height: 342px;
+    /* height: 342px; */
+    height: fit-content;
     background-color: #282322;
     border-radius: 10px;
     position: fixed;
@@ -13,7 +16,7 @@ body{
 .headerTheme{
     height: 40px;
     width: 100%;
-    position: absolute;
+    position: relative;
     display: flex;
     justify-content: center;
     top: 10px;
@@ -64,19 +67,21 @@ body{
 .textTheme{
     font: 200 14px "Outfit", Helvetica, Arial, serif;
     font-weight: light;
-    position: absolute;
-    top: 50px;
+    position: relative;
     left: 20px;
     color: white;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .containerThemeList{
     width: 100%;
-    height: 237px;
-    position: absolute;
-    top: 80px;
+    /* height: 237px; */
+    height: fit-content;
+    position: relative;
     display: flex;
     justify-content: center;
     height: fit-content;
+    margin-bottom: 10px;
 }
 .themeHolder{
     width: 237px;
@@ -103,59 +108,289 @@ body{
 .imageBox:hover{
     filter: brightness(1.2);
 }
-
+/* Upload section*/
+.uploadImageButton{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.buttonUploadImage{
+    height: 40px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #C26565;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: white;
+    cursor: pointer;
+}
+/* Upload popup*/
+label{
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: #fff;
+    display: inline-block;
+}
+.title-field {
+    font: 300 12px "Outfit", Helvetica, Arial, serif;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.image_title{
+    display: none;
+}
+.image-field {
+    border: 2px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    display: none;
+}
+#file-chosen{
+    margin-left: 0.3rem;
+    color : white;
+    font-family: sans-serif;
+}
+/* input[type="file"] {
+    display: none;
+} */
+.chooseFileButton{
+    position: relative;
+    display: inline-block;
+    background-color: indigo;
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+ .formUploadImage{
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+ }
+ .formUploadImage-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+ }
+ .formUploadImage-bottom{
+    height: fit-content;
+    width: fit-content;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.formUploadImage-bottom-button{
+    height: 40px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffefe9;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: black;
+}
 /*Music Widget*/
-.musicContainer{
+.musicContainer {
     width: 500px;
-    height: 180px;
+    height: 230px;
     position: fixed;
     background-color: #282322;
     display: none;
     overflow: hidden;
     border-radius: 14px;
 }
-.topperMusic{
+.topperMusic {
     width: 100%;
     height: 28px;
     padding-left: 465px;
     padding-top: 4px;
     position: relative;
 }
-.textTopperMusic{
+.textTopperMusic {
     position: absolute;
     left: 15px;
     bottom: 5px;
     font: 500 20px "Outfit", Helvetica, Arial, serif;
     color: white;
 }
-.musicWidget{
-    position :absolute;
+.musicWidget {
+    position: absolute;
     width: 500px;
     height: 152px;
     top: 28px;
     left: 0px;
     border-top-right-radius: none;
 }
+.urlInputContainer {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#urlInput {
+    width: 300px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+#playMusicButton, #resetButton {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #C26565;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: white;
+    cursor: pointer;
+}
+#playMusicButton:hover, #resetButton:hover {
+    background-color: #C26565;
+}
+
 /*Calendar widget*/
-.calendarContainer {
+.calendarWidget{
+    background-color: #282322;
+    position: fixed;
+    width: 370px;
+    height: 608px;
+    color: white;
+    display: none;
+    border-radius: 10px;
+}
+.headerCalendarWidget{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 0.5px solid #fff;
+}
+.textCalendarWidget{
+    margin-left: 10px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+}
+.closeCalendarWidget{
+    margin-right: 10px;
+}
+.calendarSection {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    height: 300px;
+    top: 240px;
+    overflow: auto;
+    font: 500 14px "Outfit", Helvetica, Arial, serif;
+    border: 0.5px solid #fff;
+}
+.hour {
+    position: relative;
+    display: flex;
+    border-bottom: 0.5px solid #fff;
+    height: 60px;
+    box-sizing: border-box;
+}
+.hour .time {
+    width: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+.hour .events {
+    position: relative;
+    flex-grow: 1;
+    border-left: 1px solid #fff;
+    height: 100%;
+}
+.event {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: #C26565;
+    padding: 2px;
+    box-sizing: border-box;
+}
+.clockSection {
     font-size: 16px;
     border-radius: 4px;
-    width: 300px;
-    height: 108px;
+    position: absolute;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 145px;
     font: 500 16px "Outfit", Helvetica, Arial, serif;
-    position: fixed;
-    border: black;
-    display: none;
-  }
-  
-.time {
+    border-bottom: 1px solid #fff;
+}  
+.timeClock {
     font: 500 3em "Outfit", Helvetica, Arial, serif;
-    color: #282322;
+    color: #fff;
 }
   
-.date {
+.dateClock {
     margin-top: 12px;
     font: 400 1.75em "Outfit", Helvetica, Arial, serif;
+}
+
+.controls {
+    position: absolute;
+    top: 188px;
+    width: 100%;
+    height: 52px;
+    display: flex;
+    justify-content: space-between;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    white-space: nowrap;
+    align-items: center;
+}
+.dateNavButton {
+    display: flex;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dateNavButton button {
+    margin: 0 5px;
+    background-color: #C26565;
+    font: 500 14px "Outfit", Helvetica, Arial, serif;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.calendarNavButton{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    top: 563px;
+    border-top: 1px solid #fff;
+}
+#authorize_button,
+#signout_button{
+    margin: 0px 10px 0px 10px;
+    background-color: #C26565;
+    padding: 5px;
+    font: 500 14px "Outfit", Helvetica, Arial, serif;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#sigout_button:hover,
+#authorize_button:hover,
+#prevDayButton:hover,
+#nextDayButton:hover{
+    transform: scale(1.1);
 }
 
 /*Clock Widget*/
@@ -202,8 +437,7 @@ body{
 }
 .textPomodoro{
     position: absolute;
-    top: -10px;
-    left: 5px;
+    left: 15px;
     font: 500 20px "Outfit", Helvetica, Arial, serif;
 }
 .pomodoroSection{
@@ -225,6 +459,11 @@ body{
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+#minutes,
+#seconds{
+    padding-left: 5px;
+    width: 30px;
 }
 .minutesSection,
 .secondSection{
@@ -285,8 +524,7 @@ body{
 }
 .textTracking{
     position: absolute;
-    top: -10px;
-    left: 5px;
+    left: 15px;
     font: 500 20px "Outfit", Helvetica, Arial, serif;
 }
 .trackingSection{
@@ -361,4 +599,135 @@ display: none;
     100% {
         box-shadow: 0 0 0 0 #ff0000;
     }
+}
+
+/*Note widget*/
+.noteWidget {
+    position: fixed;
+    width: 268px;
+    height: 380px;
+    padding: 10px;
+    display: none;
+    background-color: #282322;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.containerHeaderNote{
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+.textNote {
+    position: relative;
+    left: 10px;
+    width: 100%;
+    height: 30px;
+    font: 500 20px "Outfit", Helvetica, Arial, serif;
+    color: #fff;
+}
+.closeNoteWidget{
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: -2px;
+    position: relative;
+}
+.closeNoteWidget:hover{
+    transform: scale(1.1);
+}
+.containerNoteButton {
+    margin-left: 180px;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 50px;  
+}
+
+#addTodoButton {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    background-color: #C26565;
+    color: #fff;
+    cursor: pointer;
+}
+
+#addTodoButton:hover {
+    filter: brightness(1.1);
+    transform: scale(1.05);
+}
+
+#noteSection {
+    position: absolute;
+    top: 80px;
+    margin-bottom: 20px;
+    position: relative;
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#noteInput {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    border: none;
+    margin-top: 10px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #282322;
+    box-sizing: border-box;
+    resize: none;
+}
+
+#noteInput:focus {
+    outline: none;
+}
+
+#todoContainer {
+    margin-bottom: 0px;
+}
+
+.todoItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 7px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #584E4C;
+}
+
+.todoItem input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.todoItem input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    font: 400 16px "Outfit", Helvetica, Arial, serif;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;   
+    box-sizing: border-box;
+    background-color: #282322;
+    border-radius: 10px;
+    color: #fff;
+}
+.todoItem input[type="text"]:focus {
+    outline: none;
+    border: 1px solid #fff;
 }

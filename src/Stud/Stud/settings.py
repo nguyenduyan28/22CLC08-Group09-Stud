@@ -36,7 +36,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app", ".now.sh"]
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join (os.path.dirname(BASE_DIR), "staticfiles", "static")
+STATIC_ROOT = os.path.join (os.path.dirname(BASE_DIR), "Stud/staticfiles")
 
 # Application definition
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'room.apps.RoomConfig',
     'django.contrib.admin',
+    'whitenoise.runserver_nostatic',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -83,8 +85,8 @@ TEMPLATES = [
     },
 ]
 
-ASGI_APPLICATION = 'Stud.asgi.app'
-# WSGI_APPLICATION = 'Stud.wsgi.app'
+# ASGI_APPLICATION = 'Stud.asgi.app'
+WSGI_APPLICATION = 'Stud.wsgi.app'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -93,11 +95,14 @@ env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': 'aws-0-ap-southeast-1.pooler.supabase.com',
+        'NAME': 'postgres',
+        'USER': 'postgres.ijjrxossgxaryhbbetsk',
+        'PORT': '6543',
+        'PASSWORD': 'stud@database22clc08',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -133,7 +138,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -143,4 +148,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "resources/staticfiles")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "account/static"),
+    os.path.join(BASE_DIR, "mainpage/static"),
+    os.path.join(BASE_DIR, "room/static"),
 ]

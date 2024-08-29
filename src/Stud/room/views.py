@@ -1,10 +1,19 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ImageForm
 from .models import Image
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required
 def yourroom(request):
-  images = Image.objects.all()
-  return render(request, "room/YourRoom.html", {'images': images})
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('yourroom')
+    elif request.method == 'GET':
+        form = ImageForm()
+    images = Image.objects.all()
+    return render(request, "room/YourRoom.html", {'images': images, 'form': form})
 
 def upload_image(request):
     if request.method == 'POST':
@@ -14,7 +23,9 @@ def upload_image(request):
             return redirect('image_list')
     elif request.method == 'GET':
         form = ImageForm()
+    # sua cho nay
     return render(request, 'room/upload_image.html', {'form': form})
+    return render(request, 'room/YourRoom.html', {'form': form})
 
 def image_list(request):
     if request.method == 'POST':
