@@ -4,13 +4,21 @@ from .models import Image
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.sites.shortcuts import get_current_site
-from .models import Room
+from .models import Room, JoinRequest
 from account.models import Profile
 
 # Create your views here.
 @login_required
 def yourroom(request, invite_token):
     room = get_object_or_404(Room, invite_token=invite_token)
+    profile = request.user.profile
+    if profile == room.roomHost:
+        joinRequest = get_object_or_404(JoinRequest, room=room)
+        if JoinRequest :
+            return redirect(f'../../room_access_view/{invite_token}/manage_requests')
+        
+    if profile not in room.members.all():
+        return redirect(f'../../room_access_view/{invite_token}')
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
@@ -104,3 +112,47 @@ def listroom(request):
     room = profile.hosted_rooms.all()
     return render(request, "room/listroom.html", {'room': room})
     
+from django.contrib import messages
+
+@login_required
+def room_access_view(request, invite_token):
+    room = get_object_or_404(Room, invite_token=invite_token)
+    profile = request.user.profile
+
+    
+    join_request = JoinRequest.objects.filter(profile=profile, room=room).first()
+
+    if request.method == 'POST':
+        if not join_request:
+            JoinRequest.objects.create(profile=profile, room=room)
+            messages.info(room.roomHost.user, f'{profile.user.username} has requested to join your room "{room.roomName}".')
+            return redirect('room_access_view', invite_token=room.invite_token)
+
+    return render(request, 'room/request_join_room.html', {'room': room, 'join_request': join_request})
+
+@login_required
+def manage_join_requests(request, invite_token):
+    room = get_object_or_404(Room, invite_token=invite_token)
+    
+    # Ensure only the host can manage requests
+    if room.roomHost != request.user.profile:
+        return redirect('some_error_view')
+
+    join_requests = JoinRequest.objects.filter(room=room, is_approved=False)
+
+    if request.method == 'POST':
+        request_id = request.POST.get('request_id')
+        action = request.POST.get('action')
+        join_request = get_object_or_404(JoinRequest, id=request_id)
+
+        if action == 'approve':
+            room.members.add(join_request.profile)
+            join_request.is_approved = True
+            join_request.save()
+        elif action == 'deny':
+            join_request.delete()
+
+        join_request.delete()
+        return redirect('manage_join_requests', invite_token=room.invite_token)
+
+    return render(request, 'room/manage_requests.html', {'room': room, 'join_requests': join_requests})

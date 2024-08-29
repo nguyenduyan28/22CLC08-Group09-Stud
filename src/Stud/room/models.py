@@ -7,8 +7,20 @@ class Room(models.Model):
   roomDesc = models.TextField(max_length=300)
   roomHost = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='hosted_rooms')
   invite_token = models.CharField(max_length=50, blank=True, null=True, unique=True, default=None)
+  members = models.ManyToManyField(Profile, related_name='joined_rooms', blank=True)
   def __str__(self):
     return self.roomName
+
+
+
+class JoinRequest(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)
+    is_approved = models.BooleanField(default=False)
+    request_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.profile.user.username} - {self.room.roomName}"
 class Image(models.Model):
   title = models.CharField(max_length=100)
   image = models.ImageField(upload_to='images/')

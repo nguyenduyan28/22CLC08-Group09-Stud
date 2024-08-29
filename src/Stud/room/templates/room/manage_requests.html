@@ -1,0 +1,15 @@
+<h2>Manage Join Requests for {{ room.roomName }}</h2>
+
+<ul>
+    {% for join_request in join_requests %}
+        <li>{{ join_request.profile.user.username }}
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="request_id" value="{{ join_request.id }}">
+                <button type="submit" name="action" value="approve">Approve</button>
+                <button type="submit" name="action" value="deny">Deny</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+

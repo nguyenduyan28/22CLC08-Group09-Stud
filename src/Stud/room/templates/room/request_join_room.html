@@ -1,0 +1,10 @@
+<h2>Request to Join {{ room.roomName }}</h2>
+
+{% if join_request %}
+    <p>Your request to join this room is pending approval.</p>
+{% else %}
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Request to Join</button>
+    </form>
+{% endif %}
