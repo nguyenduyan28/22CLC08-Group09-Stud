@@ -8,6 +8,7 @@
     border-radius: 10px;
     position: fixed;
     overflow: hidden;
+    cursor: pointer;
     display: none;
 }
 body{
@@ -771,4 +772,48 @@ display: none;
 .todoItem input[type="text"]:focus {
     outline: none;
     border: 1px solid #fff;
+}
+
+/* Members widget*/
+.memberWidget{
+    position: fixed;
+    display: none;
+    height: fit-content;
+    width: fit-content;
+    background-color: #282322;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.memberWidget-top{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 300px;
+    border-bottom: 1px solid #fff;
+    padding: 10px;
+}
+.memberWidget-top-text{
+    font: 500 16px "Outfit", Helvetica, Arial, serif;
+    color: white;
+}
+.memberWidget-bottom{
+    position: relative;
+    height: 100px;
+    width: 300px;
+    color: white;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    overflow-y: auto;
+}
+.memberControl{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+}
+.memberWidget-bottom-member{
+    font: 500 24px "Outfit", Helvetica, Arial, serif;
+    color: white;
 }

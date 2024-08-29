@@ -18,7 +18,7 @@
         <!-- Full interactive content here -->
         <!-- View-only content here -->
         <script>
-  document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', (event) => {
             document.querySelectorAll('.container-nav div').forEach((element) => {
                 element.style.pointerEvents = 'none';
                 element.style.opacity = '0.5';  // Optional: Make the buttons look disabled
@@ -292,15 +292,26 @@
             </div>
         </div>
         <!-- Participate widget-->
-        <!-- <div class="memberWidget">
+        <div class="memberWidget">
             <div class="memberWidget-top">
                 <div class="memberWidget-top-text">Members</div>
             </div>
             <div class="memberWidget-bottom">
-                <div class="memberWidget-bottom-member">10/20</div>
+                <div class="memberControl">
+                    <div class="memberWidget-bottom-member">member</div>
+                    <img class="deleteMember" src="/static/room/images/YourRoom/closeWidget.svg">
+                </div>
+                <div class="memberControl">
+                    <div class="memberWidget-bottom-member">member</div>
+                    <img class="deleteMember" src="/static/room/images/YourRoom/closeWidget.svg">
+                </div>
+                                <div class="memberControl">
+                    <div class="memberWidget-bottom-member">member</div>
+                    <img class="deleteMember" src="/static/room/images/YourRoom/closeWidget.svg">
+                </div>
             </div>
             </div>
-        </div> -->
+        </div>
         <!-- Header information-->
          <!-- <div class="yourroom-header-popup">
             <div class="yourroom-header-popup-top">

@@ -1,16 +1,23 @@
-
 <style>
 /* Join Requests Section */
 .join-requests__title {
-  font: 500 24px "Outfit", Helvetica, Arial, serif;
+  height: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font: 700 24px "Outfit", Helvetica, Arial, serif;
   margin-bottom: 20px;
   color: #C26565;
 }
 
 .join-requests__list {
   list-style-type: none;
+  width: 1400px;
   padding: 0;
   margin: 0;
+  gap : 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .join-requests__item {
@@ -22,16 +29,29 @@
   border: 1px solid #C26565;
   border-radius: 8px;
   background-color: #f9f9f9;
+  height: fit-content;
+  width: 300px;
+  flex-direction: column;
+  background-color: #C26565;
 }
-
+.header__joinRequest{
+  font: 600 20px "Outfit", Helvetica, Arial, serif;
+}
 .join-requests__username {
-  font: 500 18px "Outfit", Helvetica, Arial, serif;
-  color: #333;
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+  max-height: 120px;
+  width: 100%;
+  overflow-y: auto;
+  word-wrap: break-word;
+  font: 400 20px "Outfit", Helvetica, Arial, serif;
 }
 
 .join-requests__form {
+  margin-top: 15px;
   display: flex;
-  gap: 10px;
+  gap: 50px;
 }
 
 .join-requests__button {
@@ -59,14 +79,15 @@
 .join-requests__button--deny:hover {
   background-color: #da190b;
 }
-
 </style>
 
 <h2 class="join-requests__title">Manage Join Requests for {{ room.roomName }}</h2>
-
-
+<div class="list_header">
+  <h2 class="header__joinRequest">Lists of join requests</h2>
+</div>
 <ul class="join-requests__list">
-  {% for join_request in join_requests %}
+
+  <!-- {% for join_request in join_requests %} -->
   <li class="join-requests__item">
     <span class="join-requests__username">{{ join_request.profile.user.username }}</span>
     <form method="POST" class="join-requests__form">
