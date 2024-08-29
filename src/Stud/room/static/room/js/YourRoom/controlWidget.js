@@ -519,33 +519,55 @@ function viewAchievement() {
       }
   });
 }
-
 document.getElementById("viewAchievementBtn").addEventListener("click", function(event) {
-  event.preventDefault(); // Prevent default form submission
+  event.preventDefault(); 
   viewAchievement();
 });
-
 document.getElementById("closePopupBtn").addEventListener("click", function() {
   document.getElementById("achievementPopup").style.display = "none";
 });
 // Tracking Reset Function
-function resetTracking() {
-  if (trackingSeconds > 0) {
-      // Create a new list item for the tracked time
-      const listItem = document.createElement('li');
-      listItem.textContent = formatTimePomodoro(trackingSeconds);
-      
-      // Add the new list item to the tracking list
-      trackingList.appendChild(listItem);
-  }
 
+function resetTracking() {
+  if (trackingSeconds > 0) { 
+    /*console.log("tracking time:", trackingSeconds)
+    $.ajax({
+      type: 'POST',
+      url: "{{% 'update_tracking/' %}}",
+      //url: 'update_tracking',  
+      data: {
+        tracking_seconds: trackingSeconds,
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+      },
+      success: function(response) {
+        console.log("Total time updated successfully:", response.total_time);
+      },
+      error: (error) => {
+        console.log(JSON.stringify(error));
+      }
+    });
+  }*/
+    console.log("tracking time:", trackingSeconds)
+    $.ajax({
+      type: 'GET',
+      url: 'update_tracking',  
+      data: {
+        tracking_seconds: trackingSeconds,
+      },
+      success: function(response) {
+        console.log("Total time updated successfully:", response.total_time);
+      },
+      error: (error) => {
+        console.log(JSON.stringify(error));
+      }
+    });
+  }
   clearInterval(trackingIntervalId);
   trackingSeconds = 0;
-  trackingDisplay.textContent = formatTimePomodoro(trackingSeconds);
+  //trackingDisplay.textContent = formatTimePomodoro(trackingSeconds);
   isTrackingRunning = false;
   toggleSwitch.checked = false;
 }
-
 // Event Listener for Tracking Reset Button
 trackingResetBtn.addEventListener('click', resetTracking);
 

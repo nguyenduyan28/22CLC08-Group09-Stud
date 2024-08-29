@@ -187,14 +187,7 @@
                         </div>
                     </div>
                     <div class="startResetSection">
-                        <!-- achievement btn-->
-                        <button id="viewAchievementBtn">View Achievement</button>
-                        <div id="achievementPopup" style="display: none;">
-                            <p>Total Time Studied: <span id="totalTime"></span></p>
-                            <p>Number of Sessions: <span id="numSessions"></span></p>
-                            <button id="closePopupBtn">Close</button>
-                        </div>
-                        <!-- achievement btn-->
+                        
                         <form method="post">
                             {% csrf_token %}
                             <button class="startButton" id="startButton" action="/start_timer" >Start</button>
@@ -218,13 +211,29 @@
                             <label for="toggle-switch" class="toggle-label"></label>
                         </div>
                         <!-- Add Reset Button -->
-                        <button class="trackingResetButton" id="trackingResetButton">Reset</button>
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            <button type="button"class="trackingResetButton" id="trackingResetButton" action="/update_tracking">Reset</button>
+                        </form>
+                        
                     </div>
+                    <!-- 
                     <div class="trackingListSection">
-                        <!-- Display tracked time list -->
                          <h1 class="trackingHistoryText">Tracking history</h1>
                         <ul class="trackingList" id="trackingList"></ul>
                     </div>
+                    -->
+                    <!-- achievement btn-->
+                    <div class="trackingListSection">
+                        <button id="viewAchievementBtn">View Achievement</button>
+                        <div id="achievementPopup" style="display: none;">
+                            <p>Total Time Studied: <span id="totalTime"></span></p>
+                            <p>Number of Sessions: <span id="numSessions"></span></p>
+                            <button id="closePopupBtn">Close</button>
+                        </div>
+                    </div>
+                    <!-- achievement btn-->
                 </div>
                 
                 

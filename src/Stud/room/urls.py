@@ -11,6 +11,6 @@ urlpatterns = [
   path('join-room/<str:invite_token>/', views.joinroom, name='join_room'),
   path('start_timer/', views.start_timer, name='start_timer'),
   path('end_timer/', views.end_timer, name='end_timer'),
-  
+  path('update_tracking/', views.update_tracking, name='update_tracking'),
   path('view_achievement/', views.view_achievement, name = 'view_achievement'),
 ]

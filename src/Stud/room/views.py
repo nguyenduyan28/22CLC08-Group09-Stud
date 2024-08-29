@@ -67,7 +67,7 @@ def login(request):
 
 
 
-#logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
@@ -145,6 +145,31 @@ def end_timer(request):
                 return JsonResponse({'error': 'start_time not found in session'}, status=400)
         else:
             return JsonResponse({'error': 'entry_id not provided'}, status=400)
+        
+@csrf_exempt
+def update_tracking(request):
+    if request.method == 'GET':
+        print("hihii")
+        user_profile = get_object_or_404(Profile, user=request.user)
+        tracking_seconds = int(request.GET.get('tracking_seconds', 0))
+
+        total_time = timezone.timedelta(seconds=tracking_seconds)
+        
+        entry = tracking_time.objects.filter(user=user_profile).first()
+        
+        if entry:
+            entry.total_time += total_time
+            entry.num_sessions += 1
+            entry.save()
+            return JsonResponse({'status': 'success', 'total_time': str(entry.total_time)})
+        else:
+            entry = tracking_time.objects.create(user=user_profile, total_time = total_time)
+            entry.num_sessions = 1
+            entry.save()
+            return JsonResponse({'status': 'success', 'total_time': str(entry.total_time)})
+        
+    return JsonResponse({'status': 'error'}, status=400)
+
 def view_achievement(request):
     if request.method == 'GET':
         user_profile = get_object_or_404(Profile, user=request.user)
@@ -154,3 +179,4 @@ def view_achievement(request):
             'total_time': str(entry.total_time),
             'num_sessions': entry.num_sessions
         })
+    
