@@ -14,7 +14,7 @@ def yourroom(request, invite_token):
     profile = request.user.profile
     if profile == room.roomHost:
         joinRequest = get_object_or_404(JoinRequest, room=room)
-        if JoinRequest :
+        if joinRequest :
             return redirect(f'../../room_access_view/{invite_token}/manage_requests')
         
     if profile not in room.members.all():
