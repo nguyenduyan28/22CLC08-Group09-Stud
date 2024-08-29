@@ -12,10 +12,9 @@ from account.models import Profile
 def yourroom(request, invite_token):
     room = get_object_or_404(Room, invite_token=invite_token)
     profile = request.user.profile
+    host =False
     if profile == room.roomHost:
-        joinRequest = JoinRequest.objects.filter(room=room)
-        if joinRequest:
-            return redirect(f'../../room_access_view/{invite_token}/manage_requests')
+        host = True
 
     if profile not in room.members.all():
         return redirect(f'../../room_access_view/{invite_token}')
@@ -29,7 +28,10 @@ def yourroom(request, invite_token):
     elif request.method == 'GET':
         form = ImageForm()
     images = room.image_set.all()
-    return render(request, "room/YourRoom.html", {'images': images, 'form': form})
+    joinRequest = JoinRequest.objects.filter(room=room)
+    if joinRequest:
+        joinRequest = JoinRequest.objects.get(room=room)
+    return render(request, "room/YourRoom.html", {'images': images, 'form': form, 'host' :  host, 'room': room})
 def yourroom1(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
@@ -112,12 +114,22 @@ def listroom(request):
     
 from django.contrib import messages
 
+from django.http import JsonResponse
+
+from django.http import JsonResponse
+
 @login_required
 def room_access_view(request, invite_token):
     room = get_object_or_404(Room, invite_token=invite_token)
     profile = request.user.profile
 
+    # If the user is already a member, redirect them to the room
+    if profile in room.members.all():
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'is_member': True})
+        return redirect(f'../../yourroom/{invite_token}')
     
+    # Handle join request logic
     join_request = JoinRequest.objects.filter(profile=profile, room=room).first()
 
     if request.method == 'POST':
@@ -125,8 +137,11 @@ def room_access_view(request, invite_token):
             JoinRequest.objects.create(profile=profile, room=room)
             return redirect('room_access_view', invite_token=room.invite_token)
 
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return JsonResponse({'is_member': False})
+
     return render(request, 'room/request_join_room.html', {'room': room, 'join_request': join_request})
-#
+
 @login_required
 def manage_join_requests(request, invite_token):
     room = get_object_or_404(Room, invite_token=invite_token)

@@ -459,6 +459,34 @@ startBtn.addEventListener('click', () => {
 });
 resetBtn.addEventListener('click', resetPomodoro);
 
+// invite widget
+
+openInviteLink.addEventListener('click', () => {
+    inviteLink.style.display = 'block';
+});
+
+closeInviteLink.addEventListener('click', () => {
+    inviteLink.style.display = 'none';
+});
+
+// Event listener for accepting or denying join requests
+document.querySelectorAll('.accept-request, .deny-request').forEach(button => {
+    button.addEventListener('click', async (event) => {
+        const requestId = event.target.getAttribute('data-request-id');
+        const action = event.target.classList.contains('accept-request') ? 'accept' : 'deny';
+
+        try {
+            const response = await axios.post(`/room/handle_request/${requestId}/`, { action });
+            if (response.status === 200) {
+                event.target.closest('.join-request').remove();
+            }
+        } catch (error) {
+            console.error('Error handling join request:', error);
+        }
+    });
+});
+
+
 // Note Widget
 document.getElementById('addTodoButton').addEventListener('click', function() {
   const todoItem = document.createElement('div');

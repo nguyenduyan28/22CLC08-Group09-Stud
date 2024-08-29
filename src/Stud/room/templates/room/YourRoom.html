@@ -34,13 +34,25 @@
       {% endif %}
         <header>
             <div class="container-header">
-                <div class="left-header">
+                    {%if host == False%}
+                <div class="left-header" style="Display:none;">
                     <div class="yourroom-header">Your Room</div>
                     <div class="invite-header">Invite</div>
                     <div class="bellNoti">
                         <img class="bellNotiImage" src="/static/room/images/YourRoom/bell.svg"/>
                     </div>
                 </div>
+                {%else%}
+
+                <div class="left-header" >
+                    <div class="yourroom-header">Your Room</div>
+                    <div class="invite-header">  <a href="../../room_access_view/{{room.invite_token}}/manage_requests/" style="text-decoration: none;">Invite</div>
+                    
+                    <div class="bellNoti">
+                        <img class="bellNotiImage" src="/static/room/images/YourRoom/bell.svg"/>
+                    </div>
+                </div>
+                    {%endif%}
                 <div class="right-header">
                     <div class="logout" >
                         <a href="../"><img class="logoutImage" src="/static/room/images/YourRoom/logout.svg"/></a>

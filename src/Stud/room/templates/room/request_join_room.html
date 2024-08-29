@@ -1,10 +1,39 @@
-<h2>Request to Join {{ room.roomName }}</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Access</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="room-access">
+        <h1>Request to join {{ room.name }}</h1>
+        {% if not join_request %}
+        <form id="join-request-form" method="POST">
+            {% csrf_token %}
+            <button type="submit">Request to Join</button>
+        </form>
+        {% else %}
+        <p>Your request to join this room is pending approval.</p>
+        {% endif %}
+    </div>
 
-{% if join_request %}
-    <p>Your request to join this room is pending approval.</p>
-{% else %}
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit">Request to Join</button>
-    </form>
-{% endif %}
+    <script>
+        function checkMembershipStatus() {
+            $.ajax({
+                url: '{% url "room_access_view" invite_token=room.invite_token %}',
+                method: 'GET',
+                success: function(response) {
+                    if (response.is_member) {
+                        window.location.href = '../../yourroom/{{ room.invite_token }}';
+                    }
+                }
+            });
+        }
+
+        // Check membership status every 5 seconds
+        setInterval(checkMembershipStatus, 5000);
+    </script>
+</body>
+</html>
